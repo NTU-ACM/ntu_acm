@@ -40,6 +40,7 @@ powMod.cc	快速幂取模
 nC0tonCp.cc	计算从C(n, 0)到C(n, p)的值
 Stern-BrocotTree.cc	二分分数树（Stern-Brocot Tree)
 mobius.cc	计算莫比乌斯函数
+game.txt	博弈论
 
 [图论]
 union-find.cc 	并查集
@@ -54,12 +55,17 @@ twoSAT.cc	2-SAT问题
 
 [数据结构]
 BIT.cc	树状数组
+differenceArray.cc	差分数组
 2DBIT.cc	二维树状数组
 Heap.cc	堆
 RMQ.cc	RMQ
 segmentTree.cc	线段树
+treap.cc	Treap树
+splayTree.cc	Splay树
+mo.cc	莫队算法
 
 [字符串]
+KMP.cc	KMP
 trie.cc	TRIE
 suffixArray.cc	后缀数组
 suffixAutomathine.cc	后缀自动机
