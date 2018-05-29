@@ -285,6 +285,9 @@ INPUT code/nC0tonCp.cc
 INPUT code/Stern-BrocotTree.cc
 INPUT code/Stern-BrocotTree.cc
 INPUT code/Stern-BrocotTree.cc
+INPUT code/mobius.cc
+INPUT code/mobius.cc
+INPUT code/mobius.cc
 INPUT code/union-find.cc
 INPUT code/union-find.cc
 INPUT code/union-find.cc
@@ -345,9 +348,9 @@ INPUT code/Planegeometry.txt
 INPUT code/point.cc
 INPUT code/point.cc
 INPUT code/point.cc
-INPUT code/frac.cc
-INPUT code/frac.cc
-INPUT code/frac.cc
+INPUT code/Fraction.cc
+INPUT code/Fraction.cc
+INPUT code/Fraction.cc
 INPUT code/Matrix.cc
 INPUT code/Matrix.cc
 INPUT code/Matrix.cc

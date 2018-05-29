@@ -39,6 +39,7 @@ mul.cc	快速乘法取模
 powMod.cc	快速幂取模
 nC0tonCp.cc	计算从C(n, 0)到C(n, p)的值
 Stern-BrocotTree.cc	二分分数树（Stern-Brocot Tree)
+mobius.cc	计算莫比乌斯函数
 
 [图论]
 union-find.cc 	并查集
@@ -69,7 +70,7 @@ Planegeometry.txt	平面几何公式
 
 [类]
 point.cc	点类
-frac.cc	分数类
+Fraction.cc	分数类
 Matrix.cc	矩阵
 Matrix01.cc	01矩阵
 
