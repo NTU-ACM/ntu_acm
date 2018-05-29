@@ -1,11 +1,11 @@
 # Fdb version 3
-["xdvipdfmx"] 1527570736 "ntudocument.xdv" "ntudocument.pdf" "ntudocument" 1527570737
-  "ntudocument.xdv" 1527570736 1467748 14392d5ca221e31b5d89526c1b01e7f9 "xelatex"
+["xdvipdfmx"] 1527570945 "ntudocument.xdv" "ntudocument.pdf" "ntudocument" 1527570946
+  "ntudocument.xdv" 1527570945 1467760 12f72b28b8978157c34275c4cd25fecc "xelatex"
   (generated)
   "ntudocument.pdf"
-["xelatex"] 1527570729 "ntudocument.tex" "ntudocument.xdv" "ntudocument" 1527570737
+["xelatex"] 1527570937 "ntudocument.tex" "ntudocument.xdv" "ntudocument" 1527570946
   "/Library/Fonts/Songti.ttc" 1501211855 66933232 48b917363d34d9f8e018d72f817cd5db ""
-  "/dev/null" 1527570733 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "/dev/null" 1527570946 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1480098689 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1480098701 1528 abec98dbc43e172678c11b3b9031252a ""
@@ -159,14 +159,14 @@
   "code/twoSAT.cc" 1527568206 781 afda8516f0c15cea1cd961e75d53a2ff ""
   "code/union-find(undo).cc" 1527568206 921 948ecd4094f1c10150e5c184c872e3fb ""
   "code/union-find.cc" 1527568206 197 051e15f3529457aa28a9b3d87529922c ""
-  "contents.tex" 1527570720 5251 1a4a2dc4681b8139db2d307e458df36c ""
-  "ntudocument.aux" 1527570736 11687 6f0145877386c61e4dcc27bd01edb092 ""
-  "ntudocument.out" 1527570736 6094 998a75c7047f4e3fdec9b72daf27fd4f ""
-  "ntudocument.tex" 1527568206 2756 b6dea237b3581c04ca4d64d8a0d0cd91 ""
-  "ntudocument.toc" 1527570736 4745 5776cc18b0c08331236ffdc5954efa0c ""
+  "contents.tex" 1527570937 5251 1a4a2dc4681b8139db2d307e458df36c ""
+  "ntudocument.aux" 1527570944 11687 6f0145877386c61e4dcc27bd01edb092 ""
+  "ntudocument.out" 1527570945 6094 998a75c7047f4e3fdec9b72daf27fd4f ""
+  "ntudocument.tex" 1527570932 2757 94ae4ae45e10786bc5d622f69e4f4f7f ""
+  "ntudocument.toc" 1527570945 4745 5776cc18b0c08331236ffdc5954efa0c ""
   (generated)
-  "ntudocument.xdv"
+  "ntudocument.aux"
   "ntudocument.out"
   "ntudocument.log"
   "ntudocument.toc"
-  "ntudocument.aux"
+  "ntudocument.xdv"
