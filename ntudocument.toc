@@ -39,29 +39,30 @@
 \contentsline {section}{\numberline {4.7}Floyd 任意两点间最短路}{21}{section.4.7}
 \contentsline {section}{\numberline {4.8}Dinic 最大流}{21}{section.4.8}
 \contentsline {section}{\numberline {4.9}2-SAT问题}{23}{section.4.9}
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}数据结构}{25}{chapter.5}
-\contentsline {section}{\numberline {5.1}树状数组}{25}{section.5.1}
-\contentsline {section}{\numberline {5.2}差分数组}{25}{section.5.2}
-\contentsline {section}{\numberline {5.3}二维树状数组}{26}{section.5.3}
-\contentsline {section}{\numberline {5.4}堆}{26}{section.5.4}
-\contentsline {section}{\numberline {5.5}RMQ}{27}{section.5.5}
-\contentsline {section}{\numberline {5.6}线段树}{28}{section.5.6}
-\contentsline {section}{\numberline {5.7}Treap树}{29}{section.5.7}
-\contentsline {section}{\numberline {5.8}Splay树}{31}{section.5.8}
-\contentsline {section}{\numberline {5.9}莫队算法}{33}{section.5.9}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}字符串}{35}{chapter.6}
-\contentsline {section}{\numberline {6.1}KMP}{35}{section.6.1}
-\contentsline {section}{\numberline {6.2}TRIE}{35}{section.6.2}
-\contentsline {section}{\numberline {6.3}后缀数组}{36}{section.6.3}
-\contentsline {section}{\numberline {6.4}后缀自动机}{37}{section.6.4}
-\contentsline {section}{\numberline {6.5}最长回文子串}{38}{section.6.5}
-\contentsline {chapter}{\numberline {第七章\hspace {.3em}}几何}{40}{chapter.7}
-\contentsline {section}{\numberline {7.1}平面几何公式}{40}{section.7.1}
-\contentsline {chapter}{\numberline {第八章\hspace {.3em}}类}{42}{chapter.8}
-\contentsline {section}{\numberline {8.1}点类}{42}{section.8.1}
-\contentsline {section}{\numberline {8.2}分数类}{42}{section.8.2}
-\contentsline {section}{\numberline {8.3}矩阵}{43}{section.8.3}
-\contentsline {section}{\numberline {8.4}01矩阵}{44}{section.8.4}
-\contentsline {chapter}{\numberline {第九章\hspace {.3em}}黑科技}{46}{chapter.9}
-\contentsline {section}{\numberline {9.1}位运算}{46}{section.9.1}
-\contentsline {section}{\numberline {9.2}珂朵莉树（Old Driver Tree)}{46}{section.9.2}
+\contentsline {section}{\numberline {4.10}tarjan强连通分量}{24}{section.4.10}
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}数据结构}{27}{chapter.5}
+\contentsline {section}{\numberline {5.1}树状数组}{27}{section.5.1}
+\contentsline {section}{\numberline {5.2}差分数组}{27}{section.5.2}
+\contentsline {section}{\numberline {5.3}二维树状数组}{28}{section.5.3}
+\contentsline {section}{\numberline {5.4}堆}{28}{section.5.4}
+\contentsline {section}{\numberline {5.5}RMQ}{29}{section.5.5}
+\contentsline {section}{\numberline {5.6}线段树}{30}{section.5.6}
+\contentsline {section}{\numberline {5.7}Treap树}{31}{section.5.7}
+\contentsline {section}{\numberline {5.8}Splay树}{33}{section.5.8}
+\contentsline {section}{\numberline {5.9}莫队算法}{35}{section.5.9}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}字符串}{37}{chapter.6}
+\contentsline {section}{\numberline {6.1}KMP}{37}{section.6.1}
+\contentsline {section}{\numberline {6.2}TRIE}{37}{section.6.2}
+\contentsline {section}{\numberline {6.3}后缀数组}{38}{section.6.3}
+\contentsline {section}{\numberline {6.4}后缀自动机}{39}{section.6.4}
+\contentsline {section}{\numberline {6.5}最长回文子串}{40}{section.6.5}
+\contentsline {chapter}{\numberline {第七章\hspace {.3em}}几何}{42}{chapter.7}
+\contentsline {section}{\numberline {7.1}平面几何公式}{42}{section.7.1}
+\contentsline {chapter}{\numberline {第八章\hspace {.3em}}类}{44}{chapter.8}
+\contentsline {section}{\numberline {8.1}点类}{44}{section.8.1}
+\contentsline {section}{\numberline {8.2}分数类}{44}{section.8.2}
+\contentsline {section}{\numberline {8.3}矩阵}{45}{section.8.3}
+\contentsline {section}{\numberline {8.4}01矩阵}{46}{section.8.4}
+\contentsline {chapter}{\numberline {第九章\hspace {.3em}}黑科技}{48}{chapter.9}
+\contentsline {section}{\numberline {9.1}位运算}{48}{section.9.1}
+\contentsline {section}{\numberline {9.2}珂朵莉树（Old Driver Tree)}{48}{section.9.2}

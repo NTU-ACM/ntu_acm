@@ -1,11 +1,11 @@
 # Fdb version 3
-["xdvipdfmx"] 1527572869 "ntudocument.xdv" "ntudocument.pdf" "ntudocument" 1527572870
-  "ntudocument.xdv" 1527572868 1893544 d374d79741d05c0d4227928b99fbe481 "xelatex"
+["xdvipdfmx"] 1531819848 "ntudocument.xdv" "ntudocument.pdf" "ntudocument" 1531819849
+  "ntudocument.xdv" 1531819848 1990504 79db1a3b4f83e838a15114801908b0c6 "xelatex"
   (generated)
   "ntudocument.pdf"
-["xelatex"] 1527572860 "ntudocument.tex" "ntudocument.xdv" "ntudocument" 1527572870
+["xelatex"] 1531819839 "ntudocument.tex" "ntudocument.xdv" "ntudocument" 1531819849
   "/Library/Fonts/Songti.ttc" 1501211855 66933232 48b917363d34d9f8e018d72f817cd5db ""
-  "/dev/null" 1527572864 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "/dev/null" 1531819844 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1480098689 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1480098701 1528 abec98dbc43e172678c11b3b9031252a ""
@@ -160,19 +160,20 @@
   "code/suffixArray.cc" 1527568206 1084 5da2dfa7e92d59f9950d7c3758ae69c3 ""
   "code/suffixAutomathine.cc" 1527568206 913 4169fb40813d38b5c545497dba034531 ""
   "code/sync_with_stdio.cc" 1527568206 50 fa4a408f09ba98394b45cf6676b4c513 ""
+  "code/tarjan.cc" 1531819783 1725 d37edf81f04f78dbeb505b6e22cfc06f ""
   "code/treap.cc" 1527571338 2596 665d9bb632d3d2f07eacd529ecb9ce75 ""
   "code/trie.cc" 1527568206 548 b7714ccbb1ae89be8d5345fe7adfe247 ""
   "code/twoSAT.cc" 1527568206 781 afda8516f0c15cea1cd961e75d53a2ff ""
   "code/union-find(undo).cc" 1527568206 921 948ecd4094f1c10150e5c184c872e3fb ""
   "code/union-find.cc" 1527568206 197 051e15f3529457aa28a9b3d87529922c ""
-  "contents.tex" 1527572851 5780 7da1f3bdfb3c67b47e211b3ad99e548d ""
-  "ntudocument.aux" 1527572868 12710 577e3c6cfd4bec791f48ac9639d36046 ""
-  "ntudocument.out" 1527572868 6594 ce98dc0f0199e1f3fb25099081425120 ""
+  "contents.tex" 1531819830 5880 bafc6c4c54e683ac0b44b54e00f9531e ""
+  "ntudocument.aux" 1531819848 12894 aa26801797034ee14503b73f2422e576 ""
+  "ntudocument.out" 1531819848 6720 c04235eda3f186c9a7c448a930c4316a ""
   "ntudocument.tex" 1527570932 2757 94ae4ae45e10786bc5d622f69e4f4f7f ""
-  "ntudocument.toc" 1527572868 5159 59329cd3c142203e6757e66d9fd025fc ""
+  "ntudocument.toc" 1531819848 5242 cbb3c6044089dc283ad9eef03853c70a ""
   (generated)
-  "ntudocument.log"
-  "ntudocument.xdv"
+  "ntudocument.toc"
   "ntudocument.out"
   "ntudocument.aux"
-  "ntudocument.toc"
+  "ntudocument.log"
+  "ntudocument.xdv"

@@ -318,6 +318,9 @@ INPUT code/Dinic.cc
 INPUT code/twoSAT.cc
 INPUT code/twoSAT.cc
 INPUT code/twoSAT.cc
+INPUT code/tarjan.cc
+INPUT code/tarjan.cc
+INPUT code/tarjan.cc
 INPUT code/BIT.cc
 INPUT code/BIT.cc
 INPUT code/BIT.cc

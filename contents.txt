@@ -52,6 +52,7 @@ dijkstra.cc	dijkstra 最短路
 Floyd.cc	Floyd 任意两点间最短路
 Dinic.cc	Dinic 最大流
 twoSAT.cc	2-SAT问题
+tarjan.cc	tarjan强连通分量
 
 [数据结构]
 BIT.cc	树状数组
