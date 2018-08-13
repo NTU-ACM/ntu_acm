@@ -234,6 +234,9 @@ INPUT code/backpack.cc
 INPUT code/LIS(nlogn).cc
 INPUT code/LIS(nlogn).cc
 INPUT code/LIS(nlogn).cc
+INPUT code/DPmin.cc
+INPUT code/DPmin.cc
+INPUT code/DPmin.cc
 INPUT code/bfisprime.cc
 INPUT code/bfisprime.cc
 INPUT code/bfisprime.cc
@@ -321,6 +324,12 @@ INPUT code/twoSAT.cc
 INPUT code/tarjan.cc
 INPUT code/tarjan.cc
 INPUT code/tarjan.cc
+INPUT code/BCCpoint.cc
+INPUT code/BCCpoint.cc
+INPUT code/BCCpoint.cc
+INPUT code/BCCedge.cc
+INPUT code/BCCedge.cc
+INPUT code/BCCedge.cc
 INPUT code/BIT.cc
 INPUT code/BIT.cc
 INPUT code/BIT.cc

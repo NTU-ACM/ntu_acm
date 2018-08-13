@@ -9,6 +9,7 @@
 \contentsline {chapter}{\numberline {第二章\hspace {.3em}}动态规划}{6}{chapter.2}
 \contentsline {section}{\numberline {2.1}背包问题}{6}{section.2.1}
 \contentsline {section}{\numberline {2.2}最长单调子序列（nlogn)}{6}{section.2.2}
+\contentsline {section}{\numberline {2.3}单调队列优化DP}{7}{section.2.3}
 \contentsline {chapter}{\numberline {第三章\hspace {.3em}}数学}{8}{chapter.3}
 \contentsline {section}{\numberline {3.1}暴力判素数}{8}{section.3.1}
 \contentsline {section}{\numberline {3.2}埃氏筛}{8}{section.3.2}
@@ -40,29 +41,31 @@
 \contentsline {section}{\numberline {4.8}Dinic 最大流}{21}{section.4.8}
 \contentsline {section}{\numberline {4.9}2-SAT问题}{23}{section.4.9}
 \contentsline {section}{\numberline {4.10}tarjan强连通分量}{24}{section.4.10}
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}数据结构}{27}{chapter.5}
-\contentsline {section}{\numberline {5.1}树状数组}{27}{section.5.1}
-\contentsline {section}{\numberline {5.2}差分数组}{27}{section.5.2}
-\contentsline {section}{\numberline {5.3}二维树状数组}{28}{section.5.3}
-\contentsline {section}{\numberline {5.4}堆}{28}{section.5.4}
-\contentsline {section}{\numberline {5.5}RMQ}{29}{section.5.5}
-\contentsline {section}{\numberline {5.6}线段树}{30}{section.5.6}
-\contentsline {section}{\numberline {5.7}Treap树}{31}{section.5.7}
-\contentsline {section}{\numberline {5.8}Splay树}{33}{section.5.8}
-\contentsline {section}{\numberline {5.9}莫队算法}{35}{section.5.9}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}字符串}{37}{chapter.6}
-\contentsline {section}{\numberline {6.1}KMP}{37}{section.6.1}
-\contentsline {section}{\numberline {6.2}TRIE}{37}{section.6.2}
-\contentsline {section}{\numberline {6.3}后缀数组}{38}{section.6.3}
-\contentsline {section}{\numberline {6.4}后缀自动机}{39}{section.6.4}
-\contentsline {section}{\numberline {6.5}最长回文子串}{40}{section.6.5}
-\contentsline {chapter}{\numberline {第七章\hspace {.3em}}几何}{42}{chapter.7}
-\contentsline {section}{\numberline {7.1}平面几何公式}{42}{section.7.1}
-\contentsline {chapter}{\numberline {第八章\hspace {.3em}}类}{44}{chapter.8}
-\contentsline {section}{\numberline {8.1}点类}{44}{section.8.1}
-\contentsline {section}{\numberline {8.2}分数类}{44}{section.8.2}
-\contentsline {section}{\numberline {8.3}矩阵}{45}{section.8.3}
-\contentsline {section}{\numberline {8.4}01矩阵}{46}{section.8.4}
-\contentsline {chapter}{\numberline {第九章\hspace {.3em}}黑科技}{48}{chapter.9}
-\contentsline {section}{\numberline {9.1}位运算}{48}{section.9.1}
-\contentsline {section}{\numberline {9.2}珂朵莉树（Old Driver Tree)}{48}{section.9.2}
+\contentsline {section}{\numberline {4.11}点双联通分量}{26}{section.4.11}
+\contentsline {section}{\numberline {4.12}边双联通分量}{27}{section.4.12}
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}数据结构}{30}{chapter.5}
+\contentsline {section}{\numberline {5.1}树状数组}{30}{section.5.1}
+\contentsline {section}{\numberline {5.2}差分数组}{30}{section.5.2}
+\contentsline {section}{\numberline {5.3}二维树状数组}{31}{section.5.3}
+\contentsline {section}{\numberline {5.4}堆}{31}{section.5.4}
+\contentsline {section}{\numberline {5.5}RMQ}{32}{section.5.5}
+\contentsline {section}{\numberline {5.6}线段树}{33}{section.5.6}
+\contentsline {section}{\numberline {5.7}Treap树}{34}{section.5.7}
+\contentsline {section}{\numberline {5.8}Splay树}{36}{section.5.8}
+\contentsline {section}{\numberline {5.9}莫队算法}{38}{section.5.9}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}字符串}{40}{chapter.6}
+\contentsline {section}{\numberline {6.1}KMP}{40}{section.6.1}
+\contentsline {section}{\numberline {6.2}TRIE}{40}{section.6.2}
+\contentsline {section}{\numberline {6.3}后缀数组}{41}{section.6.3}
+\contentsline {section}{\numberline {6.4}后缀自动机}{42}{section.6.4}
+\contentsline {section}{\numberline {6.5}最长回文子串}{43}{section.6.5}
+\contentsline {chapter}{\numberline {第七章\hspace {.3em}}几何}{45}{chapter.7}
+\contentsline {section}{\numberline {7.1}平面几何公式}{45}{section.7.1}
+\contentsline {chapter}{\numberline {第八章\hspace {.3em}}类}{47}{chapter.8}
+\contentsline {section}{\numberline {8.1}点类}{47}{section.8.1}
+\contentsline {section}{\numberline {8.2}分数类}{47}{section.8.2}
+\contentsline {section}{\numberline {8.3}矩阵}{48}{section.8.3}
+\contentsline {section}{\numberline {8.4}01矩阵}{49}{section.8.4}
+\contentsline {chapter}{\numberline {第九章\hspace {.3em}}黑科技}{51}{chapter.9}
+\contentsline {section}{\numberline {9.1}位运算}{51}{section.9.1}
+\contentsline {section}{\numberline {9.2}珂朵莉树（Old Driver Tree)}{51}{section.9.2}

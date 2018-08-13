@@ -1,11 +1,11 @@
 # Fdb version 3
-["xdvipdfmx"] 1531819848 "ntudocument.xdv" "ntudocument.pdf" "ntudocument" 1531819849
-  "ntudocument.xdv" 1531819848 1990504 79db1a3b4f83e838a15114801908b0c6 "xelatex"
+["xdvipdfmx"] 1534169811 "ntudocument.xdv" "ntudocument.pdf" "ntudocument" 1534169812
+  "ntudocument.xdv" 1534169810 2158616 b32e8cc6e17893161530dc9144521841 "xelatex"
   (generated)
   "ntudocument.pdf"
-["xelatex"] 1531819839 "ntudocument.tex" "ntudocument.xdv" "ntudocument" 1531819849
+["xelatex"] 1534169801 "ntudocument.tex" "ntudocument.xdv" "ntudocument" 1534169812
   "/Library/Fonts/Songti.ttc" 1501211855 66933232 48b917363d34d9f8e018d72f817cd5db ""
-  "/dev/null" 1531819844 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "/dev/null" 1534169803 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1480098689 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1480098701 1528 abec98dbc43e172678c11b3b9031252a ""
@@ -108,8 +108,11 @@
   "/usr/local/texlive/2017/texmf-var/web2c/xetex/xelatex.fmt" 1523516150 3678527 a17b292d36e386992d8b34fe27183b1a ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
   "code/2DBIT.cc" 1527568206 476 cc32f6ee4682e882f7c0195a05be94ce ""
+  "code/BCCedge.cc" 1534169240 1546 a5ab787dc68b23fd283662a207122573 ""
+  "code/BCCpoint.cc" 1534169182 1217 7e71dcf8c64f2ddb303d7ab5b97ce700 ""
   "code/BIT.cc" 1527568206 155 15825e634004d26180e56ed422754fd7 ""
   "code/Cnmmodp.cc" 1527568206 198 f1c81c7c38dae1bf4dbe7f767e61a608 ""
+  "code/DPmin.cc" 1534169760 378 8f7917327fea65e7041fbcebb2ba8fea ""
   "code/Dinic.cc" 1527568206 1661 cf7d871f6017f79494d083209cf5b968 ""
   "code/Eratosthenes.cc" 1527568206 174 4d9e5590e4568ea2a02c1bbb4e3e4cbf ""
   "code/EulerPhi.cc" 1527568206 206 5316bfd20c7a16c634db1434d477e616 ""
@@ -166,14 +169,14 @@
   "code/twoSAT.cc" 1527568206 781 afda8516f0c15cea1cd961e75d53a2ff ""
   "code/union-find(undo).cc" 1527568206 921 948ecd4094f1c10150e5c184c872e3fb ""
   "code/union-find.cc" 1527568206 197 051e15f3529457aa28a9b3d87529922c ""
-  "contents.tex" 1531819830 5880 bafc6c4c54e683ac0b44b54e00f9531e ""
-  "ntudocument.aux" 1531819848 12894 aa26801797034ee14503b73f2422e576 ""
-  "ntudocument.out" 1531819848 6720 c04235eda3f186c9a7c448a930c4316a ""
+  "contents.tex" 1534169791 6175 bacd35a415b4896a8f0590a9d35b8901 ""
+  "ntudocument.aux" 1534169810 13437 5f1745c05424319a5db19962558a53e8 ""
+  "ntudocument.out" 1534169810 7041 ae2c335db7f5b42cc1fe9abd4f055667 ""
   "ntudocument.tex" 1527570932 2757 94ae4ae45e10786bc5d622f69e4f4f7f ""
-  "ntudocument.toc" 1531819848 5242 cbb3c6044089dc283ad9eef03853c70a ""
+  "ntudocument.toc" 1534169810 5481 2b2964e47616f1e8b93dd7640a285009 ""
   (generated)
-  "ntudocument.toc"
-  "ntudocument.out"
-  "ntudocument.aux"
-  "ntudocument.log"
   "ntudocument.xdv"
+  "ntudocument.out"
+  "ntudocument.log"
+  "ntudocument.aux"
+  "ntudocument.toc"
