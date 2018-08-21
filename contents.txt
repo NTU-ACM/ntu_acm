@@ -58,6 +58,7 @@ tarjan.cc	tarjan强连通分量
 BCCpoint.cc	点双联通分量
 BCCedge.cc	边双联通分量
 euler_circuit.cc	欧拉回路
+hungary.cc 	二分图最大匹配匈牙利算法
 
 [数据结构]
 BIT.cc	树状数组

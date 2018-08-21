@@ -333,6 +333,12 @@ INPUT code/BCCpoint.cc
 INPUT code/BCCedge.cc
 INPUT code/BCCedge.cc
 INPUT code/BCCedge.cc
+INPUT code/euler_circuit.cc
+INPUT code/euler_circuit.cc
+INPUT code/euler_circuit.cc
+INPUT code/hungary.cc
+INPUT code/hungary.cc
+INPUT code/hungary.cc
 INPUT code/BIT.cc
 INPUT code/BIT.cc
 INPUT code/BIT.cc
@@ -348,6 +354,9 @@ INPUT code/Heap.cc
 INPUT code/RMQ.cc
 INPUT code/RMQ.cc
 INPUT code/RMQ.cc
+INPUT code/RMQ2.cc
+INPUT code/RMQ2.cc
+INPUT code/RMQ2.cc
 INPUT code/segmentTree.cc
 INPUT code/segmentTree.cc
 INPUT code/segmentTree.cc
@@ -366,9 +375,9 @@ INPUT code/KMP.cc
 INPUT code/trie.cc
 INPUT code/trie.cc
 INPUT code/trie.cc
-INPUT code/suffixArray.cc
-INPUT code/suffixArray.cc
-INPUT code/suffixArray.cc
+INPUT code/SA.cc
+INPUT code/SA.cc
+INPUT code/SA.cc
 INPUT code/suffixAutomathine.cc
 INPUT code/suffixAutomathine.cc
 INPUT code/suffixAutomathine.cc

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  13 AUG 2018 23:38
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  22 AUG 2018 00:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1724,34 +1724,34 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 [18]) (./code/MST_Prim.cc [19]) (./code/SPFA.cc) [20] (./code/dijkstra.cc)
 [21] (./code/Floyd.cc) (./code/Dinic.cc [22]) [23] (./code/twoSAT.cc [24])
 (./code/tarjan.cc [25]) [26] (./code/BCCpoint.cc [27]) (./code/BCCedge.cc
-[28] [29]) [30]
+[28] [29]) (./code/euler_circuit.cc) [30] (./code/hungary.cc) [31]
 第五章
-(./code/BIT.cc) (./code/differenceArray.cc [31
+(./code/BIT.cc) (./code/differenceArray.cc [32
 
 ]) (./code/2DBIT.cc)
-(./code/Heap.cc [32]) (./code/RMQ.cc) [33] (./code/segmentTree.cc [34])
-(./code/treap.cc [35]) [36] (./code/splayTree.cc [37] [38]) (./code/mo.cc
-[39]) [40]
+(./code/Heap.cc [33]) (./code/RMQ.cc) [34] (./code/RMQ2.cc)
+(./code/segmentTree.cc [35]) (./code/treap.cc [36] [37]) (./code/splayTree.cc
+[38] [39]) (./code/mo.cc [40]) [41]
 第六章
-(./code/KMP.cc) (./code/trie.cc [41
+(./code/KMP.cc) (./code/trie.cc [42
 
-]) (./code/suffixArray.cc [42])
-(./code/suffixAutomathine.cc [43]) (./code/manacher.cc [44]) [45]
+]) (./code/SA.cc [43])
+(./code/suffixAutomathine.cc [44] [45]) (./code/manacher.cc) [46]
 第七章
-(./code/Planegeometry.txt [46
+(./code/Planegeometry.txt [47
 
-]) [47]
+]) [48]
 第八章
-(./code/point.cc) (./code/Fraction.cc [48
+(./code/point.cc) (./code/Fraction.cc [49
 
-]) (./code/Matrix.cc [49])
-(./code/Matrix01.cc [50]) [51]
+]) (./code/Matrix.cc [50])
+(./code/Matrix01.cc [51]) [52]
 第九章
-(./code/bitOperation.cc) (./code/ODT.cc [52
+(./code/bitOperation.cc) (./code/ODT.cc [53
 
 ]))
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 108.
- [53]
+ [54]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 108.
  (./ntudocument.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 108.
@@ -1759,12 +1759,12 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 108.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
  ) 
 Here is how much of TeX's memory you used:
- 30407 strings out of 493005
- 566208 string characters out of 6134596
- 852682 words of memory out of 5000000
- 33903 multiletter control sequences out of 15000+600000
+ 30464 strings out of 493005
+ 566829 string characters out of 6134596
+ 853682 words of memory out of 5000000
+ 33951 multiletter control sequences out of 15000+600000
  8998 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  57i,12n,68p,10493b,1969s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ntudocument.xdv (54 pages, 2178644 bytes).
+Output written on ntudocument.xdv (55 pages, 2293212 bytes).
