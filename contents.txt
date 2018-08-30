@@ -20,6 +20,7 @@ pythonInput.py	python 输入
 [动态规划]
 backpack.cc	背包问题
 LIS(nlogn).cc	最长单调子序列（nlogn)
+LCS.cc	最长公共子序列
 DPmin.cc	单调队列优化DP
 
 [数学]
@@ -78,6 +79,7 @@ trie.cc	TRIE
 SA.cc	后缀数组
 suffixAutomathine.cc	后缀自动机
 manacher.cc	最长回文子串
+stringhash.cc	字符串哈希
 
 [几何]
 Planegeometry.txt	平面几何公式

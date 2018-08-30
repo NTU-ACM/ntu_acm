@@ -234,6 +234,9 @@ INPUT code/backpack.cc
 INPUT code/LIS(nlogn).cc
 INPUT code/LIS(nlogn).cc
 INPUT code/LIS(nlogn).cc
+INPUT code/LCS.cc
+INPUT code/LCS.cc
+INPUT code/LCS.cc
 INPUT code/DPmin.cc
 INPUT code/DPmin.cc
 INPUT code/DPmin.cc
@@ -384,6 +387,9 @@ INPUT code/suffixAutomathine.cc
 INPUT code/manacher.cc
 INPUT code/manacher.cc
 INPUT code/manacher.cc
+INPUT code/stringhash.cc
+INPUT code/stringhash.cc
+INPUT code/stringhash.cc
 INPUT code/Planegeometry.txt
 INPUT code/Planegeometry.txt
 INPUT code/Planegeometry.txt
