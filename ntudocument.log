@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  22 AUG 2018 00:32
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  3 SEP 2018 13:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1716,44 +1716,44 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (./code/lcm.cc) (./code/exGcd.cc) (./code/crt.cc [11]) (./code/EulerPhi.cc)
 (./code/inv.cc) (./code/Cnmmodp.cc) [12] (./code/lucas.cc) (./code/mul.cc)
 (./code/powMod.cc) (./code/nC0tonCp.cc [13]) (./code/Stern-BrocotTree.cc
-[14]) (./code/mobius.cc) (./code/game.txt [15]) (./code/XORbasis.cc [16])
-[17]
+[14]) (./code/mobius.cc) (./code/game.txt [15]) (./code/LinearBasis.cc [16])
+[17] [18]
 第四章
-(./code/union-find.cc) (./code/union-find(undo).cc [18
+(./code/union-find.cc) (./code/union-find(undo).cc [19
 
 ]) (./code/Kruskal.cc
-[19]) (./code/MST_Prim.cc [20]) (./code/SPFA.cc) [21] (./code/dijkstra.cc)
-[22] (./code/Floyd.cc) (./code/Dinic.cc [23]) [24] (./code/twoSAT.cc [25])
-(./code/tarjan.cc [26]) [27] (./code/BCCpoint.cc [28]) (./code/BCCedge.cc
-[29] [30]) (./code/euler_circuit.cc) [31] (./code/hungary.cc) [32]
+[20]) (./code/MST_Prim.cc [21]) (./code/SPFA.cc) [22] (./code/dijkstra.cc)
+[23] (./code/Floyd.cc) (./code/Dinic.cc [24]) [25] (./code/twoSAT.cc [26])
+(./code/tarjan.cc [27]) [28] (./code/BCCpoint.cc [29]) (./code/BCCedge.cc
+[30] [31]) (./code/euler_circuit.cc) [32] (./code/hungary.cc) [33]
 第五章
-(./code/BIT.cc) (./code/differenceArray.cc [33
+(./code/BIT.cc) (./code/differenceArray.cc [34
 
 ]) (./code/2DBIT.cc)
-(./code/Heap.cc [34]) (./code/RMQ.cc) [35] (./code/RMQ2.cc)
-(./code/segmentTree.cc [36]) (./code/treap.cc [37] [38]) (./code/splayTree.cc
-[39] [40]) (./code/mo.cc [41]) [42]
+(./code/Heap.cc [35]) (./code/RMQ.cc) [36] (./code/RMQ2.cc)
+(./code/segmentTree.cc [37]) (./code/treap.cc [38] [39]) (./code/splayTree.cc
+[40] [41]) (./code/mo.cc [42]) [43]
 第六章
-(./code/KMP.cc) (./code/trie.cc [43
+(./code/KMP.cc) (./code/trie.cc [44
 
-]) (./code/SA.cc [44])
-(./code/suffixAutomathine.cc [45] [46]) (./code/manacher.cc)
-(./code/stringhash.cc [47] [48]) [49]
+]) (./code/SA.cc [45])
+(./code/suffixAutomathine.cc [46] [47]) (./code/manacher.cc)
+(./code/stringhash.cc [48] [49]) [50]
 第七章
-(./code/Planegeometry.txt [50
+(./code/Planegeometry.txt [51
 
-]) [51]
+]) [52]
 第八章
-(./code/point.cc) (./code/Fraction.cc [52
+(./code/point.cc) (./code/Fraction.cc [53
 
-]) (./code/Matrix.cc [53])
-(./code/Matrix01.cc [54]) [55]
+]) (./code/Matrix.cc [54])
+(./code/Matrix01.cc [55]) [56]
 第九章
-(./code/bitOperation.cc) (./code/ODT.cc [56
+(./code/bitOperation.cc) (./code/ODT.cc [57
 
 ]))
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 108.
- [57]
+ [58]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 108.
  (./ntudocument.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 108.
@@ -1761,12 +1761,12 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 108.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
  ) 
 Here is how much of TeX's memory you used:
- 30509 strings out of 493005
- 567373 string characters out of 6134596
- 853683 words of memory out of 5000000
- 33990 multiletter control sequences out of 15000+600000
+ 30518 strings out of 493005
+ 567497 string characters out of 6134596
+ 844683 words of memory out of 5000000
+ 33999 multiletter control sequences out of 15000+600000
  8998 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  57i,12n,68p,10493b,1969s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ntudocument.xdv (58 pages, 2414572 bytes).
+Output written on ntudocument.xdv (59 pages, 2454124 bytes).

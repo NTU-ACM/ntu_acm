@@ -297,9 +297,9 @@ INPUT code/mobius.cc
 INPUT code/game.txt
 INPUT code/game.txt
 INPUT code/game.txt
-INPUT code/XORbasis.cc
-INPUT code/XORbasis.cc
-INPUT code/XORbasis.cc
+INPUT code/LinearBasis.cc
+INPUT code/LinearBasis.cc
+INPUT code/LinearBasis.cc
 INPUT code/union-find.cc
 INPUT code/union-find.cc
 INPUT code/union-find.cc

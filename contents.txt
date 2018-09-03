@@ -43,7 +43,7 @@ nC0tonCp.cc	计算从C(n, 0)到C(n, p)的值
 Stern-BrocotTree.cc	二分分数树（Stern-Brocot Tree)
 mobius.cc	计算莫比乌斯函数
 game.txt	博弈论
-XORbasis.cc	异或线性基
+LinearBasis.cc	异或线性基
 
 [图论]
 union-find.cc 	并查集
