@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <cmath>
 
 const int maxn = 2e5 + 10;
 
@@ -18,34 +19,35 @@ int a[maxn];
 struct Node {
 	int id, l, r, val, cnt;
 
-	int operator<(const Node& b)
-	{
+	int operator< (const Node& b) {
 		return cnt == b.cnt ? r < b.r : cnt < b.cnt;
 	}
-}nod[maxn];
+} nod[maxn];
 
 void modify(int i, int flag) {
 
 }
 
 void mo() {
-	cin >> n >> q;
+	std::cin >> n >> q;
 	siz = sqrt(n);
 	for (int i = 1; i <= n; i++) {
-		cin >> a[i];
+		std::cin >> a[i];
 	}
 	for (int i = 1; i <= q; i++) {
-		cin >> nod[i].l >> nod[i].r;
+		std::cin >> nod[i].l >> nod[i].r;
 		nod[i].id = i;
 		nod[i].cnt = nod[i].l / siz;
 	}
 	std::sort(nod + 1, nod + q + 1);
 	int l = 0, r = 0;
 	for (int i = 1; i <= q; i++) {
-		while (l < nod[i].l - 1) modify(++l);
-		while (l >= nod[i].l) modify(l--);
-		while (r < nod[i].r) modify(++r);
-		while (r > nod[i].r) modify(r--);
+		while (l < nod[i].l - 1)	modify(++l, 1);
+		while (l >= nod[i].l) 		modify(l--, 1);
+		while (r < nod[i].r) 		modify(++r, 1);
+		while (r > nod[i].r) 		modify(r--, 1);
 		ans[nod[i].id] = Ans;
 	}
 }
+
+int main() {}

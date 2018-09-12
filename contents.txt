@@ -16,12 +16,14 @@ fastInString.cc	字符串快速输入
 fastOutInt.cc	整型快速输出
 fastOutString.cc	字符串快速输出
 pythonInput.py	python 输入
+int128.cc	int128输入输出
 
 [动态规划]
 backpack.cc	背包问题
 LIS(nlogn).cc	最长单调子序列（nlogn)
 LCS.cc	最长公共子序列
 DPmin.cc	单调队列优化DP
+numDP.cc	数位DP
 
 [数学]
 bfisprime.cc	暴力判素数
@@ -60,6 +62,7 @@ BCCpoint.cc	点双联通分量
 BCCedge.cc	边双联通分量
 euler_circuit.cc	欧拉回路
 hungary.cc 	二分图最大匹配匈牙利算法
+kth_shortest_path.cc	k短路
 
 [数据结构]
 BIT.cc	树状数组
@@ -92,4 +95,5 @@ Matrix01.cc	01矩阵
 
 [黑科技]
 bitOperation.cc	位运算
+random.cc	随机
 ODT.cc	珂朵莉树（Old Driver Tree)

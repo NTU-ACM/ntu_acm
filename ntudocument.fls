@@ -228,6 +228,9 @@ INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT code/pythonInput.py
 INPUT code/pythonInput.py
+INPUT code/int128.cc
+INPUT code/int128.cc
+INPUT code/int128.cc
 INPUT code/backpack.cc
 INPUT code/backpack.cc
 INPUT code/backpack.cc
@@ -240,6 +243,9 @@ INPUT code/LCS.cc
 INPUT code/DPmin.cc
 INPUT code/DPmin.cc
 INPUT code/DPmin.cc
+INPUT code/numDP.cc
+INPUT code/numDP.cc
+INPUT code/numDP.cc
 INPUT code/bfisprime.cc
 INPUT code/bfisprime.cc
 INPUT code/bfisprime.cc
@@ -342,6 +348,9 @@ INPUT code/euler_circuit.cc
 INPUT code/hungary.cc
 INPUT code/hungary.cc
 INPUT code/hungary.cc
+INPUT code/kth_shortest_path.cc
+INPUT code/kth_shortest_path.cc
+INPUT code/kth_shortest_path.cc
 INPUT code/BIT.cc
 INPUT code/BIT.cc
 INPUT code/BIT.cc
@@ -408,6 +417,9 @@ INPUT code/Matrix01.cc
 INPUT code/bitOperation.cc
 INPUT code/bitOperation.cc
 INPUT code/bitOperation.cc
+INPUT code/random.cc
+INPUT code/random.cc
+INPUT code/random.cc
 INPUT code/ODT.cc
 INPUT code/ODT.cc
 INPUT code/ODT.cc
