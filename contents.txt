@@ -46,6 +46,7 @@ Stern-BrocotTree.cc	二分分数树（Stern-Brocot Tree)
 mobius.cc	计算莫比乌斯函数
 game.txt	博弈论
 LinearBasis.cc	异或线性基
+BigIntegerSqrt.java	java大数开方
 
 [图论]
 union-find.cc 	并查集
@@ -56,13 +57,17 @@ SPFA.cc	SPFA 最短路
 dijkstra.cc	dijkstra 最短路
 Floyd.cc	Floyd 任意两点间最短路
 Dinic.cc	Dinic 最大流
-twoSAT.cc	2-SAT问题
+TwoSAT.cc	2-SAT问题
 tarjan.cc	tarjan强连通分量
 BCCpoint.cc	点双联通分量
 BCCedge.cc	边双联通分量
 euler_circuit.cc	欧拉回路
 hungary.cc 	二分图最大匹配匈牙利算法
 kth_shortest_path.cc	k短路
+floyd_mincycle.cc	最小环
+Directed_MST.cc	最小树形图
+mincost_maxflow.cc	最小费用最大流
+zkwCostFlow.cc	ZKW费用流
 
 [数据结构]
 BIT.cc	树状数组
@@ -75,14 +80,20 @@ segmentTree.cc	线段树
 treap.cc	Treap树
 splayTree.cc	Splay树
 mo.cc	莫队算法
+LCAonline.cc	最近公共祖先(在线)
+LCAoffline.cc	最近公共祖先(离线)
+heavy_light_decomposition.cpp	树链剖分
+
 
 [字符串]
 KMP.cc	KMP
 trie.cc	TRIE
-SA.cc	后缀数组
+SA.cc	后缀数组(倍增)
+sais.cc	后缀数组(sais)
 suffixAutomathine.cc	后缀自动机
 manacher.cc	最长回文子串
-stringhash.cc	字符串哈希
+stringhash.cc	字符串哈希算法
+string_hashmap.cpp	字符串哈希表
 
 [几何]
 Planegeometry.txt	平面几何公式
@@ -97,3 +108,6 @@ Matrix01.cc	01矩阵
 bitOperation.cc	位运算
 random.cc	随机
 ODT.cc	珂朵莉树（Old Driver Tree)
+builtinBitFunction.txt	内置位运算函数
+0-1planning.cpp	0-1分数规划
+BM.cc	BM线性递推

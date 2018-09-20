@@ -1,15 +1,15 @@
 #include <queue> 
 #include <vector> 
 #include <cstring> 
+#include <algorithm>
 
-#define INF 0x7FFFFFFF 
-#define maxn 1010 
+const int maxn = "Edit";
+const int inf = 0x7FFFFFFF; 
 
-using namespace std;
-struct Edge{ 
-	int c,f;
-	unsigned v,flip;
-	Edge(unsigned v,int c,int f,unsigned flip):v(v),c(c),f(f),flip(flip){} 
+struct Edge { 
+	int c, f;
+	unsigned v, flip;
+	Edge(unsigned v, int c, int f, unsigned flip) : v(v), c(c), f(f), flip(flip) {} 
 };
 
 /*
@@ -19,66 +19,66 @@ struct Edge{
 *t:汇点 。
 */
 
-class Dinic{ 
+class Dinic { 
 private:
 	bool b[maxn];
 	int a[maxn];
-	unsigned p[maxn],cur[maxn],d[maxn];
-	vector<Edge> G[maxn];
+	unsigned p[maxn], cur[maxn], d[maxn];
+	std::vector<Edge> G[maxn];
 public:
-	unsigned s,t;
-	void Init(unsigned n){ 
-		for(int i=0;i<=n;++i)
+	unsigned s, t;
+	void Init(unsigned n) { 
+		for(int i=0; i<=n; ++i)
 			G[i].clear();
 	}
-	void AddEdge(unsigned u,unsigned v,int c){ 
-		G[u].push_back(Edge(v,c,0,G[v].size())); 
-		G[v].push_back(Edge(u,0,0,G[u].size()-1)); //使用无向图时将0改为c即可
+	void AddEdge(unsigned u, unsigned v, int c) { 
+		G[u].push_back(Edge(v, c, 0, G[v].size())); 
+		G[v].push_back(Edge(u, 0, 0, G[u].size()-1)); //使用无向图时将0改为c即可
 	}
-	bool BFS(){ 
-		unsigned u,v;
-		queue<unsigned> q; 
-		memset(b,0,sizeof(b)); 
+	bool BFS() { 
+		unsigned u, v;
+		std::queue<unsigned> q; 
+		memset(b, 0, sizeof(b)); 
 		q.push(s);
-		d[s]=0;
-		b[s]=1; 
-		while(!q.empty()){
-			u=q.front();
+		d[s] = 0;
+		b[s] = 1; 
+		while (!q.empty()) {
+			u = q.front();
 			q.pop();
-			for(auto it=G[u].begin();it!=G[u].end();++it) {
-				Edge &e=*it; 
-				if(!b[e.v]&&e.c>e.f){
-					b[e.v]=1; 
-					d[e.v]=d[u]+1; 
+			for (auto it = G[u].begin(); it != G[u].end(); ++it) {
+				Edge &e = *it; 
+				if(!b[e.v] && e.c > e.f){
+					b[e.v] = 1; 
+					d[e.v] = d[u] + 1; 
 					q.push(e.v);
 				} 
 			}
 		}
 		return b[t]; 
 	}
-	int DFS(unsigned u,int a){ 
-		if(u==t||a==0)
+	int DFS(unsigned u, int a){ 
+		if(u==t || a==0)
 			return a; 
-		int flow=0,f;
-		for(unsigned &i=cur[u];i<G[u].size();++i){ 
-			Edge &e=G[u][i];
-			if(d[u]+1==d[e.v]&&(f=DFS(e.v,min(a,e.c-e.f)))>0){ 
-				a-=f;
-				e.f+=f; 
-				G[e.v][e.flip].f-=f; 
-				flow+=f;
-				if(!a) break;
+		int flow = 0, f;
+		for (unsigned &i = cur[u]; i<G[u].size(); ++i){ 
+			Edge &e = G[u][i];
+			if (d[u]+1 == d[e.v] && (f = DFS(e.v, std::min(a, e.c - e.f))) > 0) { 
+				a -= f;
+				e.f += f; 
+				G[e.v][e.flip].f -= f; 
+				flow += f;
+				if (!a) break;
 			} 
 		}
 		return flow; 
 	}
-	int MaxFlow(unsigned s,unsigned t){ 
-		int flow=0;
-		this->s=s; 
-		this->t=t; 
-		while(BFS()){
-			memset(cur,0,sizeof(cur));
-			flow+=DFS(s,INF); 
+	int MaxFlow(unsigned s, unsigned t){ 
+		int flow = 0;
+		this->s = s; 
+		this->t = t; 
+		while (BFS()) {
+			memset(cur, 0, sizeof(cur));
+			flow += DFS(s, inf); 
 		}
 		return flow; 
 	}

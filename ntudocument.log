@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  12 SEP 2018 23:39
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  20 SEP 2018 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1717,58 +1717,65 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (./code/inv.cc) (./code/Cnmmodp.cc) [13] (./code/lucas.cc) (./code/mul.cc)
 (./code/powMod.cc) (./code/nC0tonCp.cc [14]) (./code/Stern-BrocotTree.cc
 [15]) (./code/mobius.cc) (./code/game.txt [16]) (./code/LinearBasis.cc [17])
-[18] [19]
+[18] (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(./code/BigIntegerSqrt.java) [19]
 第四章
 (./code/union-find.cc) (./code/union-find(undo).cc [20
 
 ]) (./code/Kruskal.cc
 [21]) (./code/MST_Prim.cc [22]) (./code/SPFA.cc) [23] (./code/dijkstra.cc)
-[24] (./code/Floyd.cc) (./code/Dinic.cc [25]) [26] (./code/twoSAT.cc [27])
+[24] (./code/Floyd.cc) (./code/Dinic.cc [25]) [26] (./code/TwoSAT.cc [27])
 (./code/tarjan.cc [28]) [29] (./code/BCCpoint.cc [30]) (./code/BCCedge.cc
 [31] [32]) (./code/euler_circuit.cc) [33] (./code/hungary.cc)
-(./code/kth_shortest_path.cc [34] [35]) [36]
+(./code/kth_shortest_path.cc [34] [35]) (./code/floyd_mincycle.cc) [36]
+(./code/Directed_MST.cc [37]) (./code/mincost_maxflow.cc [38])
+(./code/zkwCostFlow.cc [39] [40]) [41]
 第五章
-(./code/BIT.cc) (./code/differenceArray.cc [37
+(./code/BIT.cc) (./code/differenceArray.cc [42
 
 ]) (./code/2DBIT.cc)
-(./code/Heap.cc [38]) (./code/RMQ.cc) [39] (./code/RMQ2.cc)
-(./code/segmentTree.cc [40]) (./code/treap.cc [41] [42]) (./code/splayTree.cc
-[43] [44]) (./code/mo.cc [45]) [46]
+(./code/Heap.cc [43]) (./code/RMQ.cc) [44] (./code/RMQ2.cc)
+(./code/segmentTree.cc [45]) (./code/treap.cc [46] [47]) (./code/splayTree.cc
+[48] [49]) (./code/mo.cc [50]) (./code/LCAonline.cc [51]) (./code/LCAoffline.cc
+[52]) (./code/heavy_light_decomposition.cpp [53]) [54]
 第六章
-(./code/KMP.cc) (./code/trie.cc [47
+(./code/KMP.cc) (./code/trie.cc [55
 
-]) (./code/SA.cc [48])
-(./code/suffixAutomathine.cc [49] [50]) (./code/manacher.cc)
-(./code/stringhash.cc [51] [52]) [53]
+]) (./code/SA.cc [56]) (./code/sais.cc
+[57]) [58] (./code/suffixAutomathine.cc [59]) (./code/manacher.cc)
+(./code/stringhash.cc [60] [61]) (./code/string_hashmap.cpp [62]) [63]
 第七章
-(./code/Planegeometry.txt [54
+(./code/Planegeometry.txt [64
 
-]) [55]
+]) [65]
 第八章
-(./code/point.cc) (./code/Fraction.cc [56
+(./code/point.cc) (./code/Fraction.cc [66
 
-]) (./code/Matrix.cc [57])
-(./code/Matrix01.cc [58]) [59]
+]) (./code/Matrix.cc [67])
+(./code/Matrix01.cc [68]) [69]
 第九章
-(./code/bitOperation.cc) (./code/random.cc [60
+(./code/bitOperation.cc) (./code/random.cc [70
 
-]) (./code/ODT.cc [61]))
+]) (./code/ODT.cc [71])
+(./code/builtinBitFunction.txt [72]) (./code/0-1planning.cpp) (./code/BM.cc
+[73] [74] [75]))
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 108.
- [62]
+ [76]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 108.
-
-(./ntudocument.aux)
+ (./ntudocument.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 108.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 108.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
  ) 
 Here is how much of TeX's memory you used:
- 30588 strings out of 493005
- 568227 string characters out of 6134596
- 844683 words of memory out of 5000000
- 34057 multiletter control sequences out of 15000+600000
+ 30957 strings out of 493005
+ 573510 string characters out of 6134596
+ 941499 words of memory out of 5000000
+ 34383 multiletter control sequences out of 15000+600000
  8998 words of font info for 72 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  57i,12n,68p,10493b,1969s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ntudocument.xdv (63 pages, 2687040 bytes).
+Output written on ntudocument.xdv (77 pages, 3473864 bytes).
