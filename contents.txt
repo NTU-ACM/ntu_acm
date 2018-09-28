@@ -27,6 +27,7 @@ numDP.cc	数位DP
 
 [数学]
 bfisprime.cc	暴力判素数
+Miller_Rabin.cc	米勒罗宾素性检测
 Eratosthenes.cc	埃氏筛
 eulerSieve.cc	欧拉筛
 factorization.cc	分解质因数
@@ -47,6 +48,12 @@ mobius.cc	计算莫比乌斯函数
 game.txt	博弈论
 LinearBasis.cc	异或线性基
 BigIntegerSqrt.java	java大数开方
+fft_namespace.cc	多项式乘法/平方/取模
+fft.cc	快速傅里叶变换
+ntt.cc	快速数论变换
+fwt.cc	快速沃尔什变换
+CDQfft.cc	分治fft
+formula.tex	公式
 
 [图论]
 union-find.cc 	并查集
@@ -59,6 +66,7 @@ Floyd.cc	Floyd 任意两点间最短路
 Dinic.cc	Dinic 最大流
 TwoSAT.cc	2-SAT问题
 tarjan.cc	tarjan强连通分量
+Kosaraju.cc	Kosaraju强连通分量
 BCCpoint.cc	点双联通分量
 BCCedge.cc	边双联通分量
 euler_circuit.cc	欧拉回路
@@ -66,6 +74,8 @@ hungary.cc 	二分图最大匹配匈牙利算法
 kth_shortest_path.cc	k短路
 floyd_mincycle.cc	最小环
 Directed_MST.cc	最小树形图
+SMST_Prim.cc	次小生成树(Prim)
+SMST_Kruskal.cc	次小生成树(Kruskal)
 mincost_maxflow.cc	最小费用最大流
 zkwCostFlow.cc	ZKW费用流
 
