@@ -1,10 +1,10 @@
 //Author: XieNaoban
 //在求桥的基础上修改
-#include<algorithm>
-#include<cstring>
-#include<vector>
-#include<cmath>
-#include<set>
+#include <algorithm>
+#include <cstring>
+#include <vector>
+#include <cmath>
+#include <set>
 
 class CutEdge {
 private:

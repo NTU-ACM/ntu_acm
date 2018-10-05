@@ -1,6 +1,6 @@
-//Author:CookiC
-#include<stack>
-#include<vector>
+//Author: CookiC
+#include <stack>
+#include <vector>
 #define maxn 1000
 using namespace std;
 

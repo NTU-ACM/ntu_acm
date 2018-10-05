@@ -1,101 +1,76 @@
-#define maxn 5010
-#define maxm 30000
-int top;//栈顶位置
-int Bcnt;//强连通分量编号
-int Index;//时间顺序
-int DFN[maxn];//时间戳
-int LOW[maxn];
-int belong[maxn];//顶点i属于哪个强连通分量
-int Stack[maxn];//栈
-int instack[maxn];//是否在栈内
-int n,m;
+//written by kuangbin
+const int maxn = "Edit";
+const int maxm = "Edit";
+
 struct node {
-	int to;
-	int next;
+	int to, next;
 } edge[maxm];
-int head[maxn];
-bool Judge[maxn];
-int ansi;
+
+int head[maxn], tot;
+int low[maxn], dfn[maxn], stack[maxn], belong[maxn];
+int cur, top, scc;
+bool instack[maxn];
+int num[maxn];
+
+int in[maxn], out[maxn];
+
 void init() {
-	std::fill(head,head+n+1,-1);
-	std::fill(DFN,DFN+n+1,0);
-	std::fill(Judge,Judge+n+1,true);
-	ansi=0;
-	top=0;
-	Bcnt=0;
-	Index=0;
+	tot = 0;
+	std::fill(head, head+maxn, -1);
+	std::fill(in, in+maxn, 0);
+	std::fill(out, out+maxn, 0);
 }
-void add(int a,int b) {
-	edge[ansi].to=b;
-	edge[ansi].next=head[a];
-	head[a]=ansi++;
+
+void addedge(int u, int v) {
+	edge[tot].to = v;
+	edge[tot].next = head[u];
+	head[u] = tot++;
 }
-void read() {
-	int a,b;
-	for(int i=0; i<m; i++) {
-		scanf("%d%d",&a,&b);
-		add(a,b);
-	}
-}
-void tarjan(int i) {
-	int j,k;
-	DFN[i]=LOW[i]=++Index;
-	instack[i]=true;
-	top++;
-	Stack[top]=i;
-	for (k=head[i]; k!=-1; k=edge[k].next) {
-		j=edge[k].to;
-		if (!DFN[j]) {//j未访问，用dfn值标记是否已访问过
-			tarjan(j);
-			if (LOW[j]<LOW[i])
-				LOW[i]=LOW[j];
+
+void tarjan(int u) {
+	int v;
+	low[u] = dfn[u] = ++cur;
+	stack[top++] = u;
+	instack[u] = 1;
+	for (int i = head[u]; i != -1; i = edge[i].next) {
+		v = edge[i].to;
+		if (!dfn[v]) {
+			tarjan(v);
+			if (low[u] > low[v]) low[u] = low[v];
+		} else if (instack[v] && low[u] > dfn[v]) {
+			low[u] = dfn[v];
 		}
-		else if (instack[j] && DFN[j]<LOW[i])
-			LOW[i]=DFN[j];
 	}
-	if (DFN[i]==LOW[i]) {//dfn和low相等，递归打印强连通分量
-		Bcnt++;//强连通分量编号
+	if (low[u] == dfn[u]) {
+		scc++;
 		do {
-			j=Stack[top--];
-			instack[j]=false;
-			belong[j]=Bcnt;
-		}
-		while (j!=i);
+			v = stack[--top];
+			instack[v] = 0;
+			belong[v] = scc;
+			num[scc]++;
+		} while (v != u);
 	}
 }
-void judge() {
-	for(int i=1; i<=n; i++) {
-		for (int k=head[i]; k!=-1; k=edge[k].next) {
-			if(belong[i]!=belong[edge[k].to]) {
-				Judge[belong[i]]=false;
-			}
+
+void solve(int n) {
+	std::fill(dfn, dfn+maxn, 0);
+	std::fill(instack, instack+maxn, 0);
+	std::fill(num, num+maxn, 0);
+	cur = scc = top = 0;
+	for (int i = 1; i <= n; i++) {
+		if (!dfn[i]) {
+			tarjan(i);
 		}
 	}
 }
 
-void solve() {
-	init();
-	read();
-	for (int i=1; i<=n; i++) {
-		if (!DFN[i]) {
-			tarjan(i);
-		}
-	}
-	judge();
-	int ss;
-	for (int i=n; i>=1; i--) {
-		if(Judge[belong[i]]) {
-			ss=i;
-			break;
-		}
-	}
-	for (int i=1; i<=n; i++) {
-		if(Judge[belong[i]]) {
-			printf("%d",i);
-			if(i!=ss) {
-				printf(" ");
+void in_out(int n) {
+	for (int u = 1; u <= n; u++) {
+		for (int i = head[u]; i != -1; i = edge[i].next) {
+			if (belong[u] != belong[edge[i].to]) {
+				in[belong[edge[i].to]]++;
+				out[belong[u]]++;
 			}
 		}
 	}
-	printf("\n");
 }

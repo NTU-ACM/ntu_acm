@@ -43,8 +43,12 @@ lucas.cc	Lucas定理
 mul.cc	快速乘法取模
 powMod.cc	快速幂取模
 nC0tonCp.cc	计算从C(n, 0)到C(n, p)的值
+FirstStirling.cc	计算第一类斯特林数
+NumofCo-prime.cc	互质对数计数
+Bsgs.cc	BSGS
 Stern-BrocotTree.cc	二分分数树（Stern-Brocot Tree)
 mobius.cc	计算莫比乌斯函数
+Dujiao.cc	杜教筛
 game.txt	博弈论
 LinearBasis.cc	异或线性基
 BigIntegerSqrt.java	java大数开方
@@ -56,8 +60,9 @@ CDQfft.cc	分治fft
 formula.tex	公式
 
 [图论]
+PriorStar.cc	前向星
 union-find.cc 	并查集
-union-find(undo).cc 	可撤销并查集（按秩合并）
+union-find(undo).cc	可撤销并查集（按秩合并）
 Kruskal.cc	Kruskal最小生成树
 MST_Prim.cc	Prim最小生成树
 SPFA.cc	SPFA 最短路
@@ -69,6 +74,7 @@ tarjan.cc	tarjan强连通分量
 Kosaraju.cc	Kosaraju强连通分量
 BCCpoint.cc	点双联通分量
 BCCedge.cc	边双联通分量
+bridge.cc	求桥
 euler_circuit.cc	欧拉回路
 hungary.cc 	二分图最大匹配匈牙利算法
 kth_shortest_path.cc	k短路
@@ -76,6 +82,8 @@ floyd_mincycle.cc	最小环
 Directed_MST.cc	最小树形图
 SMST_Prim.cc	次小生成树(Prim)
 SMST_Kruskal.cc	次小生成树(Kruskal)
+determinant.cc	最小生成树计数
+zhuliucount.cc	最小树形图计数
 mincost_maxflow.cc	最小费用最大流
 zkwCostFlow.cc	ZKW费用流
 
@@ -87,11 +95,13 @@ Heap.cc	堆
 RMQ.cc	RMQ
 RMQ2.cc	RMQ
 segmentTree.cc	线段树
+scanningLine.cc	扫描线	
 treap.cc	Treap树
 splayTree.cc	Splay树
 mo.cc	莫队算法
 LCAonline.cc	最近公共祖先(在线)
 LCAoffline.cc	最近公共祖先(离线)
+LCAwanggann.cc	最近公共祖先
 heavy_light_decomposition.cpp	树链剖分
 
 
@@ -118,6 +128,7 @@ Matrix01.cc	01矩阵
 bitOperation.cc	位运算
 random.cc	随机
 ODT.cc	珂朵莉树（Old Driver Tree)
+CDQ.cc	CDQ分治
 builtinBitFunction.txt	内置位运算函数
 0-1planning.cpp	0-1分数规划
 BM.cc	BM线性递推
