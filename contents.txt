@@ -57,7 +57,9 @@ fft.cc	快速傅里叶变换
 ntt.cc	快速数论变换
 fwt.cc	快速沃尔什变换
 CDQfft.cc	分治fft
-formula.tex	公式
+formula.tex	常用公式
+my_formula.tex	数论公式
+colorPolynomial.txt	染色多项式
 
 [图论]
 PriorStar.cc	前向星
@@ -77,6 +79,7 @@ BCCedge.cc	边双联通分量
 bridge.cc	求桥
 euler_circuit.cc	欧拉回路
 hungary.cc 	二分图最大匹配匈牙利算法
+KM.cc	二分图最大权匹配KM算法
 kth_shortest_path.cc	k短路
 floyd_mincycle.cc	最小环
 Directed_MST.cc	最小树形图
@@ -95,9 +98,16 @@ Heap.cc	堆
 RMQ.cc	RMQ
 RMQ2.cc	RMQ
 segmentTree.cc	线段树
-scanningLine.cc	扫描线	
+ZKWsegmentTree.cc	ZKW线段树
+SegmentTreeBeats.cc	吉司机线段树
+scanningLine.cc	扫描线
+2dsegtree1.cc	二维线段树(单点更新区间最值)
+2dsegtree2.cc	二维线段树(区间加值单点查询)
+chairmantree.cc	主席树	
+BITchairmanTree.cc	主席树动态k大
 treap.cc	Treap树
 splayTree.cc	Splay树
+pointDC.cc	点分治
 mo.cc	莫队算法
 LCAonline.cc	最近公共祖先(在线)
 LCAoffline.cc	最近公共祖先(离线)
@@ -125,6 +135,7 @@ Matrix.cc	矩阵
 Matrix01.cc	01矩阵
 
 [黑科技]
+EnumSubset.cc	快速枚举子集
 bitOperation.cc	位运算
 random.cc	随机
 ODT.cc	珂朵莉树（Old Driver Tree)

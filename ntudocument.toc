@@ -45,71 +45,82 @@
 \contentsline {section}{\numberline {3.29}快速数论变换}{29}{section.3.29}
 \contentsline {section}{\numberline {3.30}快速沃尔什变换}{30}{section.3.30}
 \contentsline {section}{\numberline {3.31}分治fft}{30}{section.3.31}
-\contentsline {section}{\numberline {3.32}公式}{31}{section.3.32}
-\contentsline {chapter}{\numberline {第四章\hspace {.3em}}图论}{34}{chapter.4}
-\contentsline {section}{\numberline {4.1}前向星}{34}{section.4.1}
-\contentsline {section}{\numberline {4.2}并查集}{34}{section.4.2}
-\contentsline {section}{\numberline {4.3}可撤销并查集（按秩合并）}{35}{section.4.3}
-\contentsline {section}{\numberline {4.4}Kruskal最小生成树}{36}{section.4.4}
-\contentsline {section}{\numberline {4.5}Prim最小生成树}{37}{section.4.5}
-\contentsline {section}{\numberline {4.6}SPFA 最短路}{37}{section.4.6}
-\contentsline {section}{\numberline {4.7}dijkstra 最短路}{38}{section.4.7}
-\contentsline {section}{\numberline {4.8}Floyd 任意两点间最短路}{39}{section.4.8}
-\contentsline {section}{\numberline {4.9}Dinic 最大流}{40}{section.4.9}
-\contentsline {section}{\numberline {4.10}2-SAT问题}{41}{section.4.10}
-\contentsline {section}{\numberline {4.11}tarjan强连通分量}{42}{section.4.11}
-\contentsline {section}{\numberline {4.12}Kosaraju强连通分量}{44}{section.4.12}
-\contentsline {section}{\numberline {4.13}点双联通分量}{45}{section.4.13}
-\contentsline {section}{\numberline {4.14}边双联通分量}{46}{section.4.14}
-\contentsline {section}{\numberline {4.15}求桥}{48}{section.4.15}
-\contentsline {section}{\numberline {4.16}欧拉回路}{49}{section.4.16}
-\contentsline {section}{\numberline {4.17}二分图最大匹配匈牙利算法}{49}{section.4.17}
-\contentsline {section}{\numberline {4.18}k短路}{50}{section.4.18}
-\contentsline {section}{\numberline {4.19}最小环}{52}{section.4.19}
-\contentsline {section}{\numberline {4.20}最小树形图}{53}{section.4.20}
-\contentsline {section}{\numberline {4.21}次小生成树(Prim)}{54}{section.4.21}
-\contentsline {section}{\numberline {4.22}次小生成树(Kruskal)}{55}{section.4.22}
-\contentsline {section}{\numberline {4.23}最小生成树计数}{56}{section.4.23}
-\contentsline {section}{\numberline {4.24}最小树形图计数}{57}{section.4.24}
-\contentsline {section}{\numberline {4.25}最小费用最大流}{59}{section.4.25}
-\contentsline {section}{\numberline {4.26}ZKW费用流}{61}{section.4.26}
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}数据结构}{63}{chapter.5}
-\contentsline {section}{\numberline {5.1}树状数组}{63}{section.5.1}
-\contentsline {section}{\numberline {5.2}差分数组}{63}{section.5.2}
-\contentsline {section}{\numberline {5.3}二维树状数组}{64}{section.5.3}
-\contentsline {section}{\numberline {5.4}堆}{64}{section.5.4}
-\contentsline {section}{\numberline {5.5}RMQ}{65}{section.5.5}
-\contentsline {section}{\numberline {5.6}RMQ}{66}{section.5.6}
-\contentsline {section}{\numberline {5.7}线段树}{66}{section.5.7}
-\contentsline {section}{\numberline {5.8}扫描线}{67}{section.5.8}
-\contentsline {section}{\numberline {5.9}Treap树}{72}{section.5.9}
-\contentsline {section}{\numberline {5.10}Splay树}{73}{section.5.10}
-\contentsline {section}{\numberline {5.11}莫队算法}{75}{section.5.11}
-\contentsline {section}{\numberline {5.12}最近公共祖先(在线)}{76}{section.5.12}
-\contentsline {section}{\numberline {5.13}最近公共祖先(离线)}{77}{section.5.13}
-\contentsline {section}{\numberline {5.14}最近公共祖先}{78}{section.5.14}
-\contentsline {section}{\numberline {5.15}树链剖分}{81}{section.5.15}
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}字符串}{83}{chapter.6}
-\contentsline {section}{\numberline {6.1}KMP}{83}{section.6.1}
-\contentsline {section}{\numberline {6.2}TRIE}{83}{section.6.2}
-\contentsline {section}{\numberline {6.3}后缀数组(倍增)}{84}{section.6.3}
-\contentsline {section}{\numberline {6.4}后缀数组(sais)}{85}{section.6.4}
-\contentsline {section}{\numberline {6.5}后缀自动机}{87}{section.6.5}
-\contentsline {section}{\numberline {6.6}最长回文子串}{88}{section.6.6}
-\contentsline {section}{\numberline {6.7}字符串哈希算法}{88}{section.6.7}
-\contentsline {section}{\numberline {6.8}字符串哈希表}{90}{section.6.8}
-\contentsline {chapter}{\numberline {第七章\hspace {.3em}}几何}{92}{chapter.7}
-\contentsline {section}{\numberline {7.1}平面几何公式}{92}{section.7.1}
-\contentsline {chapter}{\numberline {第八章\hspace {.3em}}类}{94}{chapter.8}
-\contentsline {section}{\numberline {8.1}点类}{94}{section.8.1}
-\contentsline {section}{\numberline {8.2}分数类}{94}{section.8.2}
-\contentsline {section}{\numberline {8.3}矩阵}{95}{section.8.3}
-\contentsline {section}{\numberline {8.4}01矩阵}{96}{section.8.4}
-\contentsline {chapter}{\numberline {第九章\hspace {.3em}}黑科技}{98}{chapter.9}
-\contentsline {section}{\numberline {9.1}位运算}{98}{section.9.1}
-\contentsline {section}{\numberline {9.2}随机}{98}{section.9.2}
-\contentsline {section}{\numberline {9.3}珂朵莉树（Old Driver Tree)}{99}{section.9.3}
-\contentsline {section}{\numberline {9.4}CDQ分治}{100}{section.9.4}
-\contentsline {section}{\numberline {9.5}内置位运算函数}{101}{section.9.5}
-\contentsline {section}{\numberline {9.6}0-1分数规划}{102}{section.9.6}
-\contentsline {section}{\numberline {9.7}BM线性递推}{102}{section.9.7}
+\contentsline {section}{\numberline {3.32}常用公式}{31}{section.3.32}
+\contentsline {section}{\numberline {3.33}数论公式}{33}{section.3.33}
+\contentsline {section}{\numberline {3.34}染色多项式}{34}{section.3.34}
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}图论}{35}{chapter.4}
+\contentsline {section}{\numberline {4.1}前向星}{35}{section.4.1}
+\contentsline {section}{\numberline {4.2}并查集}{35}{section.4.2}
+\contentsline {section}{\numberline {4.3}可撤销并查集（按秩合并）}{36}{section.4.3}
+\contentsline {section}{\numberline {4.4}Kruskal最小生成树}{37}{section.4.4}
+\contentsline {section}{\numberline {4.5}Prim最小生成树}{38}{section.4.5}
+\contentsline {section}{\numberline {4.6}SPFA 最短路}{38}{section.4.6}
+\contentsline {section}{\numberline {4.7}dijkstra 最短路}{39}{section.4.7}
+\contentsline {section}{\numberline {4.8}Floyd 任意两点间最短路}{40}{section.4.8}
+\contentsline {section}{\numberline {4.9}Dinic 最大流}{41}{section.4.9}
+\contentsline {section}{\numberline {4.10}2-SAT问题}{42}{section.4.10}
+\contentsline {section}{\numberline {4.11}tarjan强连通分量}{43}{section.4.11}
+\contentsline {section}{\numberline {4.12}Kosaraju强连通分量}{45}{section.4.12}
+\contentsline {section}{\numberline {4.13}点双联通分量}{46}{section.4.13}
+\contentsline {section}{\numberline {4.14}边双联通分量}{47}{section.4.14}
+\contentsline {section}{\numberline {4.15}求桥}{49}{section.4.15}
+\contentsline {section}{\numberline {4.16}欧拉回路}{50}{section.4.16}
+\contentsline {section}{\numberline {4.17}二分图最大匹配匈牙利算法}{50}{section.4.17}
+\contentsline {section}{\numberline {4.18}二分图最大权匹配KM算法}{51}{section.4.18}
+\contentsline {section}{\numberline {4.19}k短路}{52}{section.4.19}
+\contentsline {section}{\numberline {4.20}最小环}{54}{section.4.20}
+\contentsline {section}{\numberline {4.21}最小树形图}{55}{section.4.21}
+\contentsline {section}{\numberline {4.22}次小生成树(Prim)}{56}{section.4.22}
+\contentsline {section}{\numberline {4.23}次小生成树(Kruskal)}{57}{section.4.23}
+\contentsline {section}{\numberline {4.24}最小生成树计数}{58}{section.4.24}
+\contentsline {section}{\numberline {4.25}最小树形图计数}{59}{section.4.25}
+\contentsline {section}{\numberline {4.26}最小费用最大流}{62}{section.4.26}
+\contentsline {section}{\numberline {4.27}ZKW费用流}{63}{section.4.27}
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}数据结构}{66}{chapter.5}
+\contentsline {section}{\numberline {5.1}树状数组}{66}{section.5.1}
+\contentsline {section}{\numberline {5.2}差分数组}{66}{section.5.2}
+\contentsline {section}{\numberline {5.3}二维树状数组}{67}{section.5.3}
+\contentsline {section}{\numberline {5.4}堆}{67}{section.5.4}
+\contentsline {section}{\numberline {5.5}RMQ}{68}{section.5.5}
+\contentsline {section}{\numberline {5.6}RMQ}{69}{section.5.6}
+\contentsline {section}{\numberline {5.7}线段树}{69}{section.5.7}
+\contentsline {section}{\numberline {5.8}ZKW线段树}{70}{section.5.8}
+\contentsline {section}{\numberline {5.9}吉司机线段树}{71}{section.5.9}
+\contentsline {section}{\numberline {5.10}扫描线}{74}{section.5.10}
+\contentsline {section}{\numberline {5.11}二维线段树(单点更新区间最值)}{78}{section.5.11}
+\contentsline {section}{\numberline {5.12}二维线段树(区间加值单点查询)}{80}{section.5.12}
+\contentsline {section}{\numberline {5.13}主席树}{82}{section.5.13}
+\contentsline {section}{\numberline {5.14}主席树动态k大}{84}{section.5.14}
+\contentsline {section}{\numberline {5.15}Treap树}{86}{section.5.15}
+\contentsline {section}{\numberline {5.16}Splay树}{88}{section.5.16}
+\contentsline {section}{\numberline {5.17}点分治}{90}{section.5.17}
+\contentsline {section}{\numberline {5.18}莫队算法}{92}{section.5.18}
+\contentsline {section}{\numberline {5.19}最近公共祖先(在线)}{93}{section.5.19}
+\contentsline {section}{\numberline {5.20}最近公共祖先(离线)}{94}{section.5.20}
+\contentsline {section}{\numberline {5.21}最近公共祖先}{95}{section.5.21}
+\contentsline {section}{\numberline {5.22}树链剖分}{97}{section.5.22}
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}字符串}{100}{chapter.6}
+\contentsline {section}{\numberline {6.1}KMP}{100}{section.6.1}
+\contentsline {section}{\numberline {6.2}TRIE}{100}{section.6.2}
+\contentsline {section}{\numberline {6.3}后缀数组(倍增)}{101}{section.6.3}
+\contentsline {section}{\numberline {6.4}后缀数组(sais)}{102}{section.6.4}
+\contentsline {section}{\numberline {6.5}后缀自动机}{104}{section.6.5}
+\contentsline {section}{\numberline {6.6}最长回文子串}{105}{section.6.6}
+\contentsline {section}{\numberline {6.7}字符串哈希算法}{105}{section.6.7}
+\contentsline {section}{\numberline {6.8}字符串哈希表}{107}{section.6.8}
+\contentsline {chapter}{\numberline {第七章\hspace {.3em}}几何}{109}{chapter.7}
+\contentsline {section}{\numberline {7.1}平面几何公式}{109}{section.7.1}
+\contentsline {chapter}{\numberline {第八章\hspace {.3em}}类}{111}{chapter.8}
+\contentsline {section}{\numberline {8.1}点类}{111}{section.8.1}
+\contentsline {section}{\numberline {8.2}分数类}{111}{section.8.2}
+\contentsline {section}{\numberline {8.3}矩阵}{112}{section.8.3}
+\contentsline {section}{\numberline {8.4}01矩阵}{113}{section.8.4}
+\contentsline {chapter}{\numberline {第九章\hspace {.3em}}黑科技}{115}{chapter.9}
+\contentsline {section}{\numberline {9.1}快速枚举子集}{115}{section.9.1}
+\contentsline {section}{\numberline {9.2}位运算}{115}{section.9.2}
+\contentsline {section}{\numberline {9.3}随机}{116}{section.9.3}
+\contentsline {section}{\numberline {9.4}珂朵莉树（Old Driver Tree)}{116}{section.9.4}
+\contentsline {section}{\numberline {9.5}CDQ分治}{117}{section.9.5}
+\contentsline {section}{\numberline {9.6}内置位运算函数}{118}{section.9.6}
+\contentsline {section}{\numberline {9.7}0-1分数规划}{119}{section.9.7}
+\contentsline {section}{\numberline {9.8}BM线性递推}{119}{section.9.8}
