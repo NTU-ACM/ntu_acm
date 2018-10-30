@@ -20,6 +20,9 @@
 \section{python 输入}
 \raggedbottom\lstinputlisting[style=py]{code/pythonInput.py}
 \hrulefill
+\section{java 输入}
+\raggedbottom\lstinputlisting[style=java]{code/read.java}
+\hrulefill
 \section{int128输入输出}
 \raggedbottom\lstinputlisting[style=cpp]{code/int128.cc}
 \hrulefill
@@ -40,8 +43,14 @@
 \section{数位DP}
 \raggedbottom\lstinputlisting[style=cpp]{code/numDP.cc}
 \hrulefill
+\section{数位DP}
+\raggedbottom\lstinputlisting[style=cpp]{code/math_DP.cc}
+\hrulefill
+\section{上升子序列最大和(nlogn)}
+\raggedbottom\lstinputlisting[style=cpp]{code/2dWIS.cc}
+\hrulefill
 
-\chapter{数学}
+\chapter{数论}
 \section{暴力判素数}
 \raggedbottom\lstinputlisting[style=cpp]{code/bfisprime.cc}
 \hrulefill
@@ -57,9 +66,6 @@
 \section{分解质因数}
 \raggedbottom\lstinputlisting[style=cpp]{code/factorization.cc}
 \hrulefill
-\section{暴力判回文数}
-\raggedbottom\lstinputlisting[style=cpp]{code/bfispalindrome.cc}
-\hrulefill
 \section{最大公约数}
 \raggedbottom\lstinputlisting[style=cpp]{code/gcd.cc}
 \hrulefill
@@ -72,29 +78,20 @@
 \section{中国剩余定理}
 \raggedbottom\lstinputlisting[style=cpp]{code/crt.cc}
 \hrulefill
+\section{扩展CRT}
+\raggedbottom\lstinputlisting[style=cpp]{code/exCRT.cc}
+\hrulefill
 \section{欧拉函数}
 \raggedbottom\lstinputlisting[style=cpp]{code/EulerPhi.cc}
 \hrulefill
 \section{求逆元}
 \raggedbottom\lstinputlisting[style=cpp]{code/inv.cc}
 \hrulefill
-\section{C(n,m) mod p (n很大p可以很大）}
-\raggedbottom\lstinputlisting[style=cpp]{code/Cnmmodp.cc}
-\hrulefill
-\section{Lucas定理}
-\raggedbottom\lstinputlisting[style=cpp]{code/lucas.cc}
-\hrulefill
 \section{快速乘法取模}
 \raggedbottom\lstinputlisting[style=cpp]{code/mul.cc}
 \hrulefill
 \section{快速幂取模}
 \raggedbottom\lstinputlisting[style=cpp]{code/powMod.cc}
-\hrulefill
-\section{计算从C(n, 0)到C(n, p)的值}
-\raggedbottom\lstinputlisting[style=cpp]{code/nC0tonCp.cc}
-\hrulefill
-\section{计算第一类斯特林数}
-\raggedbottom\lstinputlisting[style=cpp]{code/FirstStirling.cc}
 \hrulefill
 \section{互质对数计数}
 \raggedbottom\lstinputlisting[style=cpp]{code/NumofCo-prime.cc}
@@ -105,11 +102,37 @@
 \section{二分分数树（Stern-Brocot Tree)}
 \raggedbottom\lstinputlisting[style=cpp]{code/Stern-BrocotTree.cc}
 \hrulefill
+\section{	二次剩余}
+\raggedbottom\lstinputlisting[style=cpp]{code/QuadraticResidue.cc}
+\hrulefill
 \section{计算莫比乌斯函数}
 \raggedbottom\lstinputlisting[style=cpp]{code/mobius.cc}
 \hrulefill
 \section{杜教筛}
 \raggedbottom\lstinputlisting[style=cpp]{code/Dujiao.cc}
+\hrulefill
+\section{常用公式}
+\raggedbottom\input code/formula.tex
+\hrulefill
+\section{数论公式}
+\raggedbottom\input code/my_formula.tex
+\hrulefill
+
+\chapter{数学}
+\section{C(n,m) mod p (n很大p可以很大）}
+\raggedbottom\lstinputlisting[style=cpp]{code/Cnmmodp.cc}
+\hrulefill
+\section{Lucas定理}
+\raggedbottom\lstinputlisting[style=cpp]{code/lucas.cc}
+\hrulefill
+\section{计算从C(n, 0)到C(n, p)的值}
+\raggedbottom\lstinputlisting[style=cpp]{code/nC0tonCp.cc}
+\hrulefill
+\section{计算第一类斯特林数}
+\raggedbottom\lstinputlisting[style=cpp]{code/FirstStirling.cc}
+\hrulefill
+\section{自适应辛普森}
+\raggedbottom\lstinputlisting[style=cpp]{code/AdaptiveSimpson.cc}
 \hrulefill
 \section{博弈论}
 \raggedbottom\lstinputlisting[style=txt]{code/game.txt}
@@ -119,6 +142,12 @@
 \hrulefill
 \section{java大数开方}
 \raggedbottom\lstinputlisting[style=java]{code/BigIntegerSqrt.java}
+\hrulefill
+\section{单纯形法}
+\raggedbottom\lstinputlisting[style=cpp]{code/simplex.cc}
+\hrulefill
+\section{容斥}
+\raggedbottom\lstinputlisting[style=cpp]{code/rongchi.cc}
 \hrulefill
 \section{多项式乘法/平方/取模}
 \raggedbottom\lstinputlisting[style=cpp]{code/fft_namespace.cc}
@@ -135,14 +164,17 @@
 \section{分治fft}
 \raggedbottom\lstinputlisting[style=cpp]{code/CDQfft.cc}
 \hrulefill
-\section{常用公式}
-\raggedbottom\input code/formula.tex
-\hrulefill
-\section{数论公式}
-\raggedbottom\input code/my_formula.tex
+\section{polya项链染色}
+\raggedbottom\lstinputlisting[style=cpp]{code/polya_necklace.cc}
 \hrulefill
 \section{染色多项式}
 \raggedbottom\lstinputlisting[style=txt]{code/colorPolynomial.txt}
+\hrulefill
+\section{	错位排列递推公式}
+\raggedbottom\lstinputlisting[style=cpp]{code/derangements.cc}
+\hrulefill
+\section{BBP公式求pi十六进制的第k位}
+\raggedbottom\lstinputlisting[style=cpp]{code/BBP.cc}
 \hrulefill
 
 \chapter{图论}
@@ -170,9 +202,6 @@
 \section{Floyd 任意两点间最短路}
 \raggedbottom\lstinputlisting[style=cpp]{code/Floyd.cc}
 \hrulefill
-\section{Dinic 最大流}
-\raggedbottom\lstinputlisting[style=cpp]{code/Dinic.cc}
-\hrulefill
 \section{2-SAT问题}
 \raggedbottom\lstinputlisting[style=cpp]{code/TwoSAT.cc}
 \hrulefill
@@ -193,12 +222,6 @@
 \hrulefill
 \section{欧拉回路}
 \raggedbottom\lstinputlisting[style=cpp]{code/euler_circuit.cc}
-\hrulefill
-\section{二分图最大匹配匈牙利算法}
-\raggedbottom\lstinputlisting[style=txt]{code/hungary.cc }
-\hrulefill
-\section{二分图最大权匹配KM算法}
-\raggedbottom\lstinputlisting[style=cpp]{code/KM.cc}
 \hrulefill
 \section{k短路}
 \raggedbottom\lstinputlisting[style=cpp]{code/kth_shortest_path.cc}
@@ -221,11 +244,29 @@
 \section{最小树形图计数}
 \raggedbottom\lstinputlisting[style=cpp]{code/zhuliucount.cc}
 \hrulefill
+\section{Dinic 最大流}
+\raggedbottom\lstinputlisting[style=cpp]{code/Dinic.cc}
+\hrulefill
+\section{	ISAP 最大流}
+\raggedbottom\lstinputlisting[style=cpp]{code/ISAP.cc}
+\hrulefill
 \section{最小费用最大流}
 \raggedbottom\lstinputlisting[style=cpp]{code/mincost_maxflow.cc}
 \hrulefill
 \section{ZKW费用流}
 \raggedbottom\lstinputlisting[style=cpp]{code/zkwCostFlow.cc}
+\hrulefill
+\section{上下界网络流}
+\raggedbottom\lstinputlisting[style=cpp]{code/upperlowerFlow.cc}
+\hrulefill
+\section{图匹配理论}
+\raggedbottom\lstinputlisting[style=txt]{code/Binarymatching.txt}
+\hrulefill
+\section{二分图最大匹配匈牙利算法}
+\raggedbottom\lstinputlisting[style=txt]{code/hungary.cc }
+\hrulefill
+\section{二分图最大权匹配KM算法}
+\raggedbottom\lstinputlisting[style=cpp]{code/KM.cc}
 \hrulefill
 
 \chapter{数据结构}
@@ -237,6 +278,9 @@
 \hrulefill
 \section{二维树状数组}
 \raggedbottom\lstinputlisting[style=cpp]{code/2DBIT.cc}
+\hrulefill
+\section{树状数组求逆序对}
+\raggedbottom\lstinputlisting[style=cpp]{code/inversionPair.cc}
 \hrulefill
 \section{堆}
 \raggedbottom\lstinputlisting[style=cpp]{code/Heap.cc}
@@ -259,6 +303,9 @@
 \section{扫描线}
 \raggedbottom\lstinputlisting[style=cpp]{code/scanningLine.cc}
 \hrulefill
+\section{扫描线最大矩形覆盖}
+\raggedbottom\lstinputlisting[style=cpp]{code/linescanMaxSquareCover.cc}
+\hrulefill
 \section{二维线段树(单点更新区间最值)}
 \raggedbottom\lstinputlisting[style=cpp]{code/2dsegtree1.cc}
 \hrulefill
@@ -274,11 +321,29 @@
 \section{Treap树}
 \raggedbottom\lstinputlisting[style=cpp]{code/treap.cc}
 \hrulefill
+\section{函数式Treap}
+\raggedbottom\lstinputlisting[style=cpp]{code/fhq_treap.cc}
+\hrulefill
+\section{Splay树}
+\raggedbottom\lstinputlisting[style=cpp]{code/splay.cc}
+\hrulefill
+\section{Splay树}
+\raggedbottom\lstinputlisting[style=cpp]{code/splay2.cc}
+\hrulefill
 \section{Splay树}
 \raggedbottom\lstinputlisting[style=cpp]{code/splayTree.cc}
 \hrulefill
 \section{点分治}
 \raggedbottom\lstinputlisting[style=cpp]{code/pointDC.cc}
+\hrulefill
+\section{树上启发式合并}
+\raggedbottom\lstinputlisting[style=cpp]{code/dsu_on_tree.cc}
+\hrulefill
+\section{	0-1trie区间异或最大值}
+\raggedbottom\lstinputlisting[style=cpp]{code/interval_xor_max.cc}
+\hrulefill
+\section{	0-1trie子树异或最大值}
+\raggedbottom\lstinputlisting[style=cpp]{code/tree_xor_max.cc}
 \hrulefill
 \section{莫队算法}
 \raggedbottom\lstinputlisting[style=cpp]{code/mo.cc}
@@ -300,8 +365,14 @@
 \section{KMP}
 \raggedbottom\lstinputlisting[style=cpp]{code/KMP.cc}
 \hrulefill
+\section{扩展KMP}
+\raggedbottom\lstinputlisting[style=cpp]{code/exKMP.cc}
+\hrulefill
 \section{TRIE}
 \raggedbottom\lstinputlisting[style=cpp]{code/trie.cc}
+\hrulefill
+\section{AC自动机}
+\raggedbottom\lstinputlisting[style=cpp]{code/ACautomachine.cc}
 \hrulefill
 \section{后缀数组(倍增)}
 \raggedbottom\lstinputlisting[style=cpp]{code/SA.cc}
@@ -315,6 +386,9 @@
 \section{最长回文子串}
 \raggedbottom\lstinputlisting[style=cpp]{code/manacher.cc}
 \hrulefill
+\section{回文树}
+\raggedbottom\lstinputlisting[style=cpp]{code/PAM.cc}
+\hrulefill
 \section{字符串哈希算法}
 \raggedbottom\lstinputlisting[style=cpp]{code/stringhash.cc}
 \hrulefill
@@ -325,6 +399,27 @@
 \chapter{几何}
 \section{平面几何公式}
 \raggedbottom\lstinputlisting[style=txt]{code/Planegeometry.txt}
+\hrulefill
+\section{求凸包}
+\raggedbottom\lstinputlisting[style=cpp]{code/Graham.cc}
+\hrulefill
+\section{四点共面}
+\raggedbottom\lstinputlisting[style=cpp]{code/fourPointPlane.cc}
+\hrulefill
+\section{多边形重心}
+\raggedbottom\lstinputlisting[style=cpp]{code/polygonCore.cc}
+\hrulefill
+\section{旋转卡壳}
+\raggedbottom\lstinputlisting[style=cpp]{code/RotatingJam.cc}
+\hrulefill
+\section{模拟退火}
+\raggedbottom\lstinputlisting[style=cpp]{code/SimulatedAnnealing.cc}
+\hrulefill
+\section{半平面交}
+\raggedbottom\lstinputlisting[style=cpp]{code/half_plane_inter_section.cc}
+\hrulefill
+\section{计算几何}
+\raggedbottom\lstinputlisting[style=cpp]{code/SJTUgeometry.cc}
 \hrulefill
 
 \chapter{类}
@@ -340,13 +435,34 @@
 \section{01矩阵}
 \raggedbottom\lstinputlisting[style=cpp]{code/Matrix01.cc}
 \hrulefill
+\section{简单大数}
+\raggedbottom\lstinputlisting[style=txt]{code/DataAnalysis.cc }
+\hrulefill
+\section{大数}
+\raggedbottom\lstinputlisting[style=cpp]{code/Bignum.cc}
+\hrulefill
+\section{java大数}
+\raggedbottom\input code/javaBigIntger.tex
+\hrulefill
 
-\chapter{黑科技}
+\chapter{技巧与黑科技}
+\section{离散化}
+\raggedbottom\lstinputlisting[style=cpp]{code/discretization.cc}
+\hrulefill
 \section{快速枚举子集}
 \raggedbottom\lstinputlisting[style=cpp]{code/EnumSubset.cc}
 \hrulefill
+\section{bitset}
+\raggedbottom\lstinputlisting[style=txt]{code/bitset.txt}
+\hrulefill
 \section{位运算}
 \raggedbottom\lstinputlisting[style=cpp]{code/bitOperation.cc}
+\hrulefill
+\section{跳舞链}
+\raggedbottom\lstinputlisting[style=cpp]{code/DLX.cc}
+\hrulefill
+\section{K-D树}
+\raggedbottom\lstinputlisting[style=cpp]{code/KDTree.cc}
 \hrulefill
 \section{随机}
 \raggedbottom\lstinputlisting[style=cpp]{code/random.cc}

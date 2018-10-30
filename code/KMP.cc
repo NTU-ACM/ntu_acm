@@ -1,6 +1,6 @@
 //Author:CookiC
 //返回下标最大的匹配串
-#include<cstring>
+#include <cstring>
 
 void getFail(char *P, int *f) {
 	int i, j;
@@ -15,10 +15,10 @@ void getFail(char *P, int *f) {
 	}
 }
 
-int KMP(char *T, char *P) {
+int kmp(char *T, char *P) {
 	int ans = -1;
 	int n = strlen(T), m = strlen(P);
-	int *f = new int[m+1];
+	int f[maxn];
 	getFail(P, f);
 	int j = 0;
 	for(int i=0; i<n; ++i){

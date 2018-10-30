@@ -1,29 +1,24 @@
-#include <cstring>
-
-const int maxn = 10000*50+10; 
-const int max_stringlen = 26+2;
-int trie[maxn][max_stringlen];
-int val[maxn];
-int trie_index;
-
-int index_of(const char &c) { 
-	return c - 'a';
-}
-void trie_init() { 
-	trie_index = 0;
-	memset(val, 0, sizeof(val));
-	memset(trie, 0, sizeof(trie)); 
-}
-void trie_insert(char *s, int v) { //要求v!=0 
-	int len = strlen(s);
-	int now = 0;
-	for (int i = 0; i < len; ++i) {
-		int idx = index_of(s[i]); 
-		int &tr = trie[now][idx]; 
-		if (!tr) {
-			tr = ++trie_index; 
-		}
-		now = tr; 
+int tree[maxn][26];
+int sum[maxn];
+int tot;
+void Insert(char *str) {
+	int len = strlen(str);
+	int root = 0;
+	for (int i = 0; i < len; i++) {
+		int id = str[i] - 'a';
+		if (!tree[root][id]) tree[root][id] = ++tot;
+		sum[tree[root][id]]++;
+		root = tree[root][id];
 	}
-	val[now] += v; 
+}
+
+int Find(char *str) {
+	int len = strlen(str);
+	int root = 0;
+	for (int i = 0; i < len; i++) {
+		int id = str[i] - 'a';
+		if (!tree[root][id]) return 0;
+		root = tree[root][id];
+	}
+	return sum[root];
 }

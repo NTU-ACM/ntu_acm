@@ -91,18 +91,17 @@ dfs(root);
 //=============================================================================
 
 // LCA 倍增算法
-int n, m, root;
+int n, ma, root;
 int d[maxn], f[maxn][20];
 vector<int> v[maxn];
-
-inline void dfs(int u, int dep) {
+inline void dfs(int u, int dep, int fa) {
 	d[u] = dep;
-	m = max(m, dep);
+	f[u][0] = fa;
+	ma = max(ma, dep);
 	for (int i = 0; i < v[u].size(); i++)
-		dfs(v[u][i], dep + 1);
+		if (v[u][i] != fa) dfs(v[u][i], dep + 1, u);
 }
-
-int log2(int x) {
+inline int log2(int x) {
 	int k = 0;
 	while (x > 1) {
 		x >>= 1;
@@ -110,16 +109,15 @@ int log2(int x) {
 	}
 	return k;
 }
-
-void init() {
-	dfs(root, 0);
-	int s = log2(m);
+inline void init() {
+	dfs(root, 0, 0);
+	int s = log2(ma);
 	for (int j = 1; j <= s; j++)
 		for (int i = 1; i <= n; i++)
 			f[i][j] = f[f[i][j - 1]][j - 1];
 }
-
-int query(int x, int y) {
+// 求x与y的LCA
+inline int query(int x, int y) {
 	if (d[x] < d[y]) swap(x, y);
 	int s = log2(d[x] - d[y]);
 	while (d[x] > d[y]) {
@@ -136,4 +134,30 @@ int query(int x, int y) {
 		s--;
 	}
 	return x == y ? x : f[x][0];
+}
+// 判断a与p是否在同一树边上（p在a上方）
+inline bool check(int a, int p) {
+	if (d[a] < d[p]) return false;
+	if (d[a] == d[p]) return a == p;
+	int s = log2(d[a] - d[p]);
+	while (d[a] > d[p]) {
+		if (d[a] - (1 << s) >= d[p])
+			a = f[a][s];
+		s--;
+	}
+	return a == p;
+}
+// 求一条树边上x到y的距离
+inline int getlen(int x, int y) {
+	int ret = 0;
+	if (d[x] < d[y]) swap(x, y);
+	int s = log2(d[x] - d[y]);
+	while (d[x] > d[y]) {
+		if (d[x] - (1 << s) >= d[y]) {
+			ret += (1 << s);
+			x = f[x][s];
+		}
+		s--;
+	}
+	return ret;
 }

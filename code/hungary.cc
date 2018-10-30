@@ -5,7 +5,7 @@ bool used[maxn];
 
 bool dfs(int u) {
 	int v;
-	for(v = 0; v < n; v++) {
+	for(v = 0; v < m; v++) {
 		if(g[u][v] && !used[v]) {
 			used[v] = true;
 			if(linker[v] == -1 || dfs(linker[v])) {

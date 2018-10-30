@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  7 OCT 2018 23:33
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  31 OCT 2018 00:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1747,31 +1747,30 @@ File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-(./code/pythonInput.py) (./code/int128.cc) [6]
+(./code/pythonInput.py)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(./code/read.java) (./code/int128.cc) [6]
 第二章
 (./code/backpack.cc) (./code/LIS(nlogn).cc [7
 
 ]) (./code/LCS.cc)
-(./code/DPmin.cc) [8] (./code/numDP.cc [9]) [10]
+(./code/DPmin.cc) [8] (./code/numDP.cc [9]) (./code/math_DP.cc)
+(./code/2dWIS.cc [10]) [11] [12]
 第三章
-(./code/bfisprime.cc) (./code/Miller_Rabin.cc) [11
+(./code/bfisprime.cc) (./code/Miller_Rabin.cc) [13
 
 ] (./code/Eratosthenes.cc)
-(./code/eulerSieve.cc) (./code/factorization.cc [12]) (./code/bfispalindrome.cc
-) (./code/gcd.cc) (./code/lcm.cc [13]) (./code/exGcd.cc) (./code/crt.cc)
-(./code/EulerPhi.cc [14]) (./code/inv.cc) (./code/Cnmmodp.cc) (./code/lucas.cc)
-(./code/mul.cc [15]) (./code/powMod.cc) (./code/nC0tonCp.cc [16])
-(./code/FirstStirling.cc) (./code/NumofCo-prime.cc [17]) (./code/Bsgs.cc
-[18]) [19] (./code/Stern-BrocotTree.cc) (./code/mobius.cc [20])
-(./code/Dujiao.cc) (./code/game.txt [21]) [22] (./code/LinearBasis.cc [23])
-(/usr/local/texlive/2017/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-(./code/BigIntegerSqrt.java) (./code/fft_namespace.cc [24] [25] [26] [27])
-(./code/fft.cc [28]) (./code/ntt.cc [29]) (./code/fwt.cc) (./code/CDQfft.cc
-[30]) (./code/formula.tex [31]
+(./code/eulerSieve.cc) (./code/factorization.cc [14]) (./code/gcd.cc)
+(./code/lcm.cc) (./code/exGcd.cc [15]) (./code/crt.cc) (./code/exCRT.cc)
+(./code/EulerPhi.cc [16]) (./code/inv.cc) (./code/mul.cc) (./code/powMod.cc
+[17]) (./code/NumofCo-prime.cc) (./code/Bsgs.cc [18] [19])
+(./code/Stern-BrocotTree.cc [20]) (./code/QuadraticResidue.cc) [21]
+(./code/mobius.cc) (./code/Dujiao.cc) (./code/formula.tex [22]
 Missing character: There is no ⋅ in font [lmroman10-regular]:mapping=tex-text;!
- [32]) (./code/my_formula.tex
+ [23])
+(./code/my_formula.tex
 Overfull \hbox (24.66277pt too wide) in paragraph at lines 4--6
 []\TU/STSong(0)/m/n/10.53937 小 于 \TU/lmr/m/n/10.53937 n \TU/STSong(0)/m/n/10.53
 937 的 \TU/lmr/m/n/10.53937 i,j, \TU/STSong(0)/m/n/10.53937 且 \TU/lmr/m/n/10.539
@@ -1784,60 +1783,95 @@ OT1/cmr/m/n/10.53937 [\OML/cmm/m/it/10.53937 gcd\OT1/cmr/m/n/10.53937 (\OML/cmm
 cmm/m/it/10.53937 i; j\OT1/cmr/m/n/10.53937 ) =
  []
 
-[33]) (./code/colorPolynomial.txt) [34]
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 7--9
+
+ []
+
+) [25]
 第四章
-(./code/PriorStar.cc) (./code/union-find.cc [35
+(./code/Cnmmodp.cc) (./code/lucas.cc) (./code/nC0tonCp.cc [26
+
+])
+(./code/FirstStirling.cc) (./code/AdaptiveSimpson.cc [27]) (./code/game.txt
+[28]) (./code/LinearBasis.cc [29]) (./code/BigIntegerSqrt.java [30])
+(./code/simplex.cc [31]) (./code/rongchi.cc [32]) (./code/fft_namespace.cc
+[33] [34] [35]) (./code/fft.cc [36]) (./code/ntt.cc [37]) (./code/fwt.cc)
+[38] (./code/CDQfft.cc) (./code/polya_necklace.cc [39])
+(./code/colorPolynomial.txt) (./code/derangements.cc) (./code/BBP.cc [40])
+[41]
+第五章
+(./code/PriorStar.cc) (./code/union-find.cc [42
 
 ]) (./code/union-find(undo).cc
-[36]) (./code/Kruskal.cc [37]) (./code/MST_Prim.cc) (./code/SPFA.cc [38])
-(./code/dijkstra.cc [39]) (./code/Floyd.cc) [40] (./code/Dinic.cc [41])
-(./code/TwoSAT.cc [42]) (./code/tarjan.cc [43] [44]) (./code/Kosaraju.cc
-[45]) (./code/BCCpoint.cc [46]) (./code/BCCedge.cc [47] [48]) (./code/bridge.cc
-[49]) (./code/euler_circuit.cc) (./code/hungary.cc [50]) (./code/KM.cc [51])
-(./code/kth_shortest_path.cc [52] [53]) (./code/floyd_mincycle.cc [54])
-(./code/Directed_MST.cc [55]) (./code/SMST_Prim.cc [56])
-(./code/SMST_Kruskal.cc [57]) (./code/determinant.cc [58])
-(./code/zhuliucount.cc [59] [60]) [61] (./code/mincost_maxflow.cc [62])
-(./code/zkwCostFlow.cc [63]) [64] [65]
-第五章
-(./code/BIT.cc) (./code/differenceArray.cc [66
+[43]) (./code/Kruskal.cc [44]) (./code/MST_Prim.cc) (./code/SPFA.cc [45])
+(./code/dijkstra.cc [46]) (./code/Floyd.cc) [47] (./code/TwoSAT.cc) [48]
+(./code/tarjan.cc [49]) (./code/Kosaraju.cc [50]) (./code/BCCpoint.cc [51])
+(./code/BCCedge.cc [52] [53]) (./code/bridge.cc [54]) (./code/euler_circuit.cc
+[55]) (./code/kth_shortest_path.cc [56] [57]) (./code/floyd_mincycle.cc)
+(./code/Directed_MST.cc [58]) (./code/SMST_Prim.cc [59])
+(./code/SMST_Kruskal.cc [60] [61]) (./code/determinant.cc [62])
+(./code/zhuliucount.cc [63] [64]) (./code/Dinic.cc [65]) [66] (./code/ISAP.cc
+[67]) [68] (./code/mincost_maxflow.cc [69]) (./code/zkwCostFlow.cc [70])
+[71] (./code/upperlowerFlow.cc [72] [73] [74] [75] [76] [77])
+(./code/Binarymatching.txt [78] [79]) (./code/hungary.cc [80]) (./code/KM.cc
+[81]) [82]
+第六章
+(./code/BIT.cc) (./code/differenceArray.cc [83
 
 ]) (./code/2DBIT.cc)
-(./code/Heap.cc [67]) (./code/RMQ.cc) [68] (./code/RMQ2.cc)
-(./code/segmentTree.cc [69]) (./code/ZKWsegmentTree.cc [70])
-(./code/SegmentTreeBeats.cc [71] [72] [73]) (./code/scanningLine.cc [74]
-[75] [76] [77]) (./code/2dsegtree1.cc [78] [79]) (./code/2dsegtree2.cc [80]
-[81]) (./code/chairmantree.cc [82] [83]) (./code/BITchairmanTree.cc [84]
-[85]) (./code/treap.cc [86] [87]) (./code/splayTree.cc [88] [89])
-(./code/pointDC.cc [90] [91]) (./code/mo.cc [92]) (./code/LCAonline.cc)
-[93] (./code/LCAoffline.cc [94]) (./code/LCAwanggann.cc [95] [96])
-(./code/heavy_light_decomposition.cpp [97] [98]) [99]
-第六章
-(./code/KMP.cc) (./code/trie.cc [100
-
-]) (./code/SA.cc [101]) (./code/sais.cc
-[102]) [103] (./code/suffixAutomathine.cc [104]) (./code/manacher.cc)
-(./code/stringhash.cc [105] [106]) (./code/string_hashmap.cpp [107]) [108]
+(./code/inversionPair.cc [84] [85]) (./code/Heap.cc) (./code/RMQ.cc [86])
+(./code/RMQ2.cc) (./code/segmentTree.cc [87]) [88] (./code/ZKWsegmentTree.cc)
+(./code/SegmentTreeBeats.cc [89] [90] [91]) (./code/scanningLine.cc [92]
+[93] [94] [95]) (./code/linescanMaxSquareCover.cc [96]) [97]
+(./code/2dsegtree1.cc [98]) [99] (./code/2dsegtree2.cc [100])
+(./code/chairmantree.cc [101] [102]) (./code/BITchairmanTree.cc [103] [104]
+[105]) (./code/treap.cc [106]) (./code/fhq_treap.cc [107] [108]) [109]
+(./code/splay.cc [110] [111] [112] [113]
+Missing character: There is no ␣ in font Consolas/OT:script=latn;language=DFLT;
+!
+Missing character: There is no ␣ in font Consolas/OT:script=latn;language=DFLT;
+!
+) (./code/splay2.cc [114] [115]
+[116]) (./code/splayTree.cc [117] [118]) (./code/pointDC.cc [119]) [120]
+(./code/dsu_on_tree.cc) (./code/interval_xor_max.cc [121] [122])
+(./code/tree_xor_max.cc [123] [124]) (./code/mo.cc [125]) (./code/LCAonline.cc
+[126]) (./code/LCAoffline.cc [127]) (./code/LCAwanggann.cc [128] [129] [130])
+(./code/heavy_light_decomposition.cpp [131]) [132]
 第七章
-(./code/Planegeometry.txt [109
+(./code/KMP.cc) (./code/exKMP.cc [133
 
-]) [110]
+]) (./code/trie.cc [134])
+(./code/ACautomachine.cc [135]) (./code/SA.cc [136]) [137] (./code/sais.cc)
+[138] (./code/suffixAutomathine.cc [139]) (./code/manacher.cc) (./code/PAM.cc
+[140]) (./code/stringhash.cc [141] [142]) (./code/string_hashmap.cpp [143])
+[144]
 第八章
-(./code/point.cc) (./code/Fraction.cc [111
+(./code/Planegeometry.txt [145
 
-]) (./code/Matrix.cc [112])
-(./code/Matrix01.cc [113]) [114]
+]) (./code/Graham.cc [146])
+(./code/fourPointPlane.cc [147]) (./code/polygonCore.cc [148])
+(./code/RotatingJam.cc [149] [150]) (./code/SimulatedAnnealing.cc [151])
+(./code/half_plane_inter_section.cc [152] [153]) (./code/SJTUgeometry.cc
+[154] [155] [156] [157] [158] [159] [160] [161] [162]) [163]
 第九章
-(./code/EnumSubset.cc) (./code/bitOperation.cc [115
+(./code/point.cc) (./code/Fraction.cc [164
 
-]) (./code/random.cc)
-(./code/ODT.cc [116]) (./code/CDQ.cc [117]) (./code/builtinBitFunction.txt
-[118]) (./code/0-1planning.cpp) (./code/BM.cc [119] [120] [121]))
+]) (./code/Matrix.cc [165])
+(./code/Matrix01.cc [166]) (./code/DataAnalysis.cc) [167] (./code/Bignum.cc
+[168] [169] [170] [171]) (./code/javaBigIntger.tex [172]) [173]
+第十章
+(./code/discretization.cc) (./code/EnumSubset.cc [174
+
+]) (./code/bitset.txt)
+(./code/bitOperation.cc [175]) (./code/DLX.cc [176]) (./code/KDTree.cc [177]
+[178]) (./code/random.cc) (./code/ODT.cc [179]) (./code/CDQ.cc [180])
+(./code/builtinBitFunction.txt [181]) (./code/0-1planning.cpp) (./code/BM.cc
+[182] [183] [184]))
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 109.
- [122]
+ [185]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 109.
-
-(./ntudocument.aux)
+ (./ntudocument.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 109.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 109.
 
@@ -1848,12 +1882,12 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
- 32039 strings out of 493005
- 587423 string characters out of 6134596
- 954219 words of memory out of 5000000
- 35350 multiletter control sequences out of 15000+600000
+ 33158 strings out of 493005
+ 604476 string characters out of 6134596
+ 955393 words of memory out of 5000000
+ 36357 multiletter control sequences out of 15000+600000
  10575 words of font info for 79 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  57i,12n,68p,10493b,1979s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ntudocument.xdv (123 pages, 5797072 bytes).
+Output written on ntudocument.xdv (186 pages, 9472548 bytes).
