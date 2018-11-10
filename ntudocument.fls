@@ -265,6 +265,15 @@ INPUT code/LCS.cc
 INPUT code/DPmin.cc
 INPUT code/DPmin.cc
 INPUT code/DPmin.cc
+INPUT code/dullQueueDP.cc
+INPUT code/dullQueueDP.cc
+INPUT code/dullQueueDP.cc
+INPUT code/intervalDP.cc
+INPUT code/intervalDP.cc
+INPUT code/intervalDP.cc
+INPUT code/PeriodofTimeDP.cc
+INPUT code/PeriodofTimeDP.cc
+INPUT code/PeriodofTimeDP.cc
 INPUT code/numDP.cc
 INPUT code/numDP.cc
 INPUT code/numDP.cc

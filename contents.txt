@@ -24,9 +24,13 @@ backpack.cc	背包问题
 LIS(nlogn).cc	最长单调子序列（nlogn)
 LCS.cc	最长公共子序列
 DPmin.cc	单调队列优化DP
+dullQueueDP.cc	单调队列DP
+intervalDP.cc	区间DP
+PeriodofTimeDP.cc	时间段DP
 numDP.cc	数位DP
 math_DP.cc	数位DP
 2dWIS.cc	上升子序列最大和(nlogn)
+
 
 [数论]
 bfisprime.cc	暴力判素数
@@ -117,7 +121,7 @@ segmentTree.cc	线段树
 ZKWsegmentTree.cc	ZKW线段树
 SegmentTreeBeats.cc	吉司机线段树
 scanningLine.cc	扫描线
-linescanMaxSquareCover.cc	扫描线最大矩形覆盖
+linescanMaxSquareCover.cc	固定大小矩形最大点覆盖
 2dsegtree1.cc	二维线段树(单点更新区间最值)
 2dsegtree2.cc	二维线段树(区间加值单点查询)
 chairmantree.cc	主席树	

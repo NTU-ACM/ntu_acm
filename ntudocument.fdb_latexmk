@@ -1,11 +1,11 @@
 # Fdb version 3
-["xdvipdfmx"] 1540917729 "ntudocument.xdv" "ntudocument.pdf" "ntudocument" 1540917732
-  "ntudocument.xdv" 1540917729 9472548 a837f73b1166626632aeeb248d32e22f "xelatex"
+["xdvipdfmx"] 1541129649 "ntudocument.xdv" "ntudocument.pdf" "ntudocument" 1541129652
+  "ntudocument.xdv" 1541129649 9561720 49d42571bf609794d4bdd6d32166e575 "xelatex"
   (generated)
   "ntudocument.pdf"
-["xelatex"] 1540917699 "ntudocument.tex" "ntudocument.xdv" "ntudocument" 1540917732
+["xelatex"] 1541129619 "ntudocument.tex" "ntudocument.xdv" "ntudocument" 1541129652
   "/Library/Fonts/Songti.ttc" 1534542990 66933252 bc432ad7628283e59cc866a2cb6e3437 ""
-  "/dev/null" 1540917731 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "/dev/null" 1541129597 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1480098689 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
@@ -169,6 +169,7 @@
   "code/NumofCo-prime.cc" 1538226348 492 3899029b83bb14e2395e3145d516d9b3 ""
   "code/ODT.cc" 1538450664 888 17ca4aa872eafe94292ae84a029d9264 ""
   "code/PAM.cc" 1539255998 1161 d1d03b4ab12b6dc3fb5b88da9162d22a ""
+  "code/PeriodofTimeDP.cc" 1541080458 494 afb9f0caf6b6fa9be025e458319ff8bf ""
   "code/Planegeometry.txt" 1527568206 2185 0e07893bd5e600ad053135831b79fc09 ""
   "code/PriorStar.cc" 1538469560 599 c0b75ac3fde7a02de4b0f18beb28d548 ""
   "code/QuadraticResidue.cc" 1539259673 735 c8ba4a9d31d8cd83a5b4739da9b0ff1d ""
@@ -200,6 +201,7 @@
   "code/dijkstra.cc" 1527568206 996 2de551534164349d599e248dab77624d ""
   "code/discretization.cc" 1540902345 821 928deef212f82f6a3505ad9f1dbe3cb2 ""
   "code/dsu_on_tree.cc" 1539065826 885 4ab14bb6dc678e8c063e4e1e965b5509 ""
+  "code/dullQueueDP.cc" 1541081740 1132 8caf897b36f0e81460bf9bb91e4e810e ""
   "code/eulerSieve.cc" 1527568206 363 b4cae925b6f60ca0bd16463865e01488 ""
   "code/euler_circuit.cc" 1534433635 578 120f775012bc9368573cc17c1ebf3b9b ""
   "code/exCRT.cc" 1540917430 446 5f44234f3a32824a42ed0b1d40e1cd70 ""
@@ -223,6 +225,7 @@
   "code/heavy_light_decomposition.cpp" 1538226443 1663 e3671b1b4f08c8dc6c883b6273f63ce2 ""
   "code/hungary.cc" 1540471998 487 0b1e7d84d95afbe40b3284d2d389f67b ""
   "code/int128.cc" 1536766644 500 69940cc66939258c9ea656ce28f65f8c ""
+  "code/intervalDP.cc" 1541086130 290 13fa9dbaed6c9b56ed424c754f23780f ""
   "code/interval_xor_max.cc" 1540916753 1674 abc55aee17ab74879138dd60f594a2b9 ""
   "code/inv.cc" 1527570017 249 2411998d231102aa83aa0b16bda5b601 ""
   "code/inversionPair.cc" 1540901801 942 8468c71c20d6338d2541611db5efbf0d ""
@@ -271,14 +274,14 @@
   "code/upperlowerFlow.cc" 1539086418 11370 c28aa049d5ffb4de172fa845709fd921 ""
   "code/zhuliucount.cc" 1538745186 2528 929f93017edf744e5831003c9098ae30 ""
   "code/zkwCostFlow.cc" 1537433053 1538 6cacfd86c33d2a27aa6bd314504ad80e ""
-  "contents.tex" 1540917669 15358 721207d489ec69255f2288f133b467df ""
-  "ntudocument.aux" 1540917729 30924 245020071c1959df6049cd7fe1687672 ""
-  "ntudocument.out" 1540917729 16861 cc74e1aef60121e40ed82869988e9028 ""
+  "contents.tex" 1541129585 15651 a192ab8e9c20f96bb7589756d1d2191c ""
+  "ntudocument.aux" 1541129649 31466 2fda5643f380fe5911406f49bd5477d1 ""
+  "ntudocument.out" 1541129649 17148 b16182f3a735e5f9a1214774ae529f22 ""
   "ntudocument.tex" 1540917590 2784 61504e120034d93cc070058b22e9a833 ""
-  "ntudocument.toc" 1540917729 12858 57fe5d525c4d66a053b50167abd5fa81 ""
+  "ntudocument.toc" 1541129649 13078 167304bc8ad4e967ac5f25daccf71508 ""
   (generated)
-  "ntudocument.toc"
-  "ntudocument.aux"
   "ntudocument.xdv"
+  "ntudocument.aux"
   "ntudocument.out"
+  "ntudocument.toc"
   "ntudocument.log"
