@@ -1,8 +1,8 @@
 #include <vector> 
 #include <algorithm> 
 
-#define maxm 1000
-#define maxn 1000
+const int maxn = "Edit";
+const int maxm = "Edit";
 
 class Kruskal { 
 	struct UdEdge {

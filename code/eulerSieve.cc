@@ -1,6 +1,6 @@
 #include <iostream>
 
-const int maxn = 1234;
+const int maxn = "Edit";
 int flag[maxn], primes[maxn], totPrimes;
 
 void euler_sieve(int n) {
