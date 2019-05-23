@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  2 NOV 2018 11:33
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2018.4.12)  20 MAY 2019 16:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1771,7 +1771,7 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (./code/mobius.cc) (./code/Dujiao.cc) (./code/formula.tex [23]
 Missing character: There is no ⋅ in font [lmroman10-regular]:mapping=tex-text;!
  [24])
-(./code/my_formula.tex
+(./code/my_formula.tex [25]
 Overfull \hbox (24.66277pt too wide) in paragraph at lines 4--6
 []\TU/STSong(0)/m/n/10.53937 小 于 \TU/lmr/m/n/10.53937 n \TU/STSong(0)/m/n/10.53
 937 的 \TU/lmr/m/n/10.53937 i,j, \TU/STSong(0)/m/n/10.53937 且 \TU/lmr/m/n/10.539
@@ -1784,7 +1784,7 @@ OT1/cmr/m/n/10.53937 [\OML/cmm/m/it/10.53937 gcd\OT1/cmr/m/n/10.53937 (\OML/cmm
 cmm/m/it/10.53937 i; j\OT1/cmr/m/n/10.53937 ) =
  []
 
-[25]
+
 Underfull \hbox (badness 10000) in paragraph at lines 7--9
 
  []
@@ -1883,12 +1883,12 @@ LaTeX Font Warning: Size substitutions with differences
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 109.
  ) 
 Here is how much of TeX's memory you used:
- 33169 strings out of 493005
- 604651 string characters out of 6134596
+ 33167 strings out of 493005
+ 604631 string characters out of 6134596
  955394 words of memory out of 5000000
- 36359 multiletter control sequences out of 15000+600000
+ 36357 multiletter control sequences out of 15000+600000
  10575 words of font info for 79 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  57i,12n,68p,10493b,1979s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ntudocument.xdv (187 pages, 9561720 bytes).
+Output written on ntudocument.xdv (187 pages, 9568576 bytes).

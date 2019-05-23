@@ -40,8 +40,8 @@
 \contentsline {section}{\numberline {3.18} 二次剩余}{22}{section.3.18}
 \contentsline {section}{\numberline {3.19}计算莫比乌斯函数}{23}{section.3.19}
 \contentsline {section}{\numberline {3.20}杜教筛}{23}{section.3.20}
-\contentsline {section}{\numberline {3.21}常用公式}{23}{section.3.21}
-\contentsline {section}{\numberline {3.22}数论公式}{25}{section.3.22}
+\contentsline {section}{\numberline {3.21}常用公式}{24}{section.3.21}
+\contentsline {section}{\numberline {3.22}数论公式}{26}{section.3.22}
 \contentsline {chapter}{\numberline {第四章\hspace {.3em}}数学}{27}{chapter.4}
 \contentsline {section}{\numberline {4.1}C(n,m) mod p (n很大p可以很大）}{27}{section.4.1}
 \contentsline {section}{\numberline {4.2}Lucas定理}{27}{section.4.2}
