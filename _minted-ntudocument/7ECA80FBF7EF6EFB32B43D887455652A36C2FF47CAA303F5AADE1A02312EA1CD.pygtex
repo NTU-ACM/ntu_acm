@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{Author: Simon}
+\PYG{c+cm}{其实顾名思义，素数就是因子只有两个的数，那么反素数，就是因子最多的数（并且因子个数相同的时候值最小），所以反素数是相对于一个集合来说的。}
+\PYG{c+cm}{反素数的特点。}
+\PYG{c+cm}{1. 反素数肯定是从2开始的连续素数的幂次形式的乘积。}
+\PYG{c+cm}{2. 数值小的素数的幂次大于等于数值大的素数的幂次，即}
+\PYG{c+cm}{	e1\PYGZgt{}=e2\PYGZgt{}=e3\PYGZgt{}=……\PYGZgt{}=ek}
+\PYG{c+cm}{*/}
+\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{l+m+mi}{16}\PYG{p}{]}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{,}\PYG{l+m+mi}{7}\PYG{p}{,}\PYG{l+m+mi}{11}\PYG{p}{,}\PYG{l+m+mi}{13}\PYG{p}{,}\PYG{l+m+mi}{17}\PYG{p}{,}\PYG{l+m+mi}{19}\PYG{p}{,}\PYG{l+m+mi}{23}\PYG{p}{,}\PYG{l+m+mi}{29}\PYG{p}{,}\PYG{l+m+mi}{31}\PYG{p}{,}\PYG{l+m+mi}{37}\PYG{p}{,}\PYG{l+m+mi}{41}\PYG{p}{,}\PYG{l+m+mi}{43}\PYG{p}{,}\PYG{l+m+mi}{47}\PYG{p}{,}\PYG{l+m+mi}{53}\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{//给定因子数n，求满足因子数个数等于n的最小数。}
+\PYG{k+kt}{void} \PYG{n}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{dep}\PYG{c+cm}{/*第dep个素数*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{sum}\PYG{c+cm}{/*当前的数*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{num}\PYG{c+cm}{/*因子个数*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{up}\PYG{c+cm}{/*上个素数的幂*/}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{dep}\PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{16}\PYG{o}{||}\PYG{n}{num}\PYG{o}{\PYGZgt{}}\PYG{n}{n}\PYG{p}{)} \PYG{k}{return} \PYG{p}{;}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{num}\PYG{o}{==}\PYG{n}{n}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{ans}\PYG{o}{=}\PYG{n}{min}\PYG{p}{(}\PYG{n}{ans}\PYG{p}{,}\PYG{n}{sum}\PYG{p}{);}
+		\PYG{k}{return} \PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{up}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{//由性质2可知，数值大的素数的幂次小于等于数值小的素数的幂次}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{sum}\PYG{o}{*}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{[}\PYG{n}{dep}\PYG{p}{],}\PYG{n}{i}\PYG{p}{)}\PYG{o}{\PYGZgt{}}\PYG{n}{ans}\PYG{p}{)} \PYG{k}{break}\PYG{p}{;}
+		\PYG{n}{dfs}\PYG{p}{(}\PYG{n}{dep}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{sum}\PYG{o}{*}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{[}\PYG{n}{dep}\PYG{p}{],}\PYG{n}{i}\PYG{p}{),}\PYG{n}{num}\PYG{o}{*}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{),}\PYG{n}{i}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{//求小于等于n的因子数最多的数。与上面做法相同，只是dfs结束条件改一下。}
+\end{Verbatim}

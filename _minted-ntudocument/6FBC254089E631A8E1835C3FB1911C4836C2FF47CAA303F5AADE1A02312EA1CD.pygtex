@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{unique}\PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{n}{v}\PYG{p}{.}\PYG{n}{end}\PYG{p}{());} 
+\PYG{c+c1}{//去重}
+\PYG{c+c1}{//比较相邻元素 一样的放到后面 用前一般先排序}
+\PYG{c+c1}{//返回去重完毕的下一个iterator}
+
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stable\PYGZus{}sort}\PYG{p}{(}\PYG{n}{v}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{n}{v}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),} \PYG{n}{cmp}\PYG{p}{);}
+\PYG{c+c1}{//stable\PYGZus{}sort 和 sort的区别在于 前者作排序可以使原来的\PYGZdq{}相同\PYGZdq{}的值在序列中的相对位置不变}
+
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{sort}\PYG{p}{(}\PYG{n}{iter\PYGZus{}begin}\PYG{p}{,} \PYG{n}{iter\PYGZus{}end}\PYG{p}{,} \PYG{n}{std}\PYG{o}{::}\PYG{n}{greater}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}}\PYG{p}{());}
+\PYG{c+c1}{//从大到小排序}
+\end{Verbatim}

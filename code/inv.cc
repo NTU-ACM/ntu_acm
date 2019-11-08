@@ -1,6 +1,6 @@
-LL Inv(LL a, LL n){
+ll Inv(ll a, ll n){
 	return PowMod(a, EulerPhi(n) - 1, n); 
-	//return PowMod(a,n−2,n); //n为素数
+	//return PowMod(a,n-2,n); //n为素数
 }
 
 int Inv(int a, int n) {

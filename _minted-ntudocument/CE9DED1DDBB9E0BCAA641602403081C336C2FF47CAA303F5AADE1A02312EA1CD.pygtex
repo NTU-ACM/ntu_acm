@@ -1,0 +1,74 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{typedef} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{ll}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{];}
+\PYG{n}{ll} \PYG{n}{dp}\PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{][}\PYG{n}{state}\PYG{p}{];}\PYG{c+c1}{//不同题目状态不同}
+\PYG{n}{ll} \PYG{n+nf}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{pos}\PYG{p}{,}\PYG{c+cm}{/*state变量*/}\PYG{p}{,}\PYG{k+kt}{bool} \PYG{n}{lead}\PYG{c+cm}{/*前导零*/}\PYG{p}{,}\PYG{k+kt}{bool} \PYG{n}{limit}\PYG{c+cm}{/*数位上界变量*/}\PYG{p}{)}\PYG{c+c1}{//不是每个题都要判断前导零}
+\PYG{p}{\PYGZob{}}
+	\PYG{c+c1}{//递归边界，既然是按位枚举，最低位是0，那么pos==\PYGZhy{}1说明这个数我枚举完了}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{pos}\PYG{o}{==\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+cm}{/*这里一般返回1，表示你枚举的这个数是合法的，那么这里就需要你在枚举时必须每一位都要满足题目条件，也就是说当前枚举到pos位，一定要保证前面已经枚举的数位是合法的。不过具体题目不同或者写法不同的话不一定要返回1 */}
+	\PYG{c+c1}{//第二个就是记忆化(在此前可能不同题目还能有一些剪枝)}
+	\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{limit} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{lead} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{][}\PYG{n}{state}\PYG{p}{]}\PYG{o}{!=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{return} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{][}\PYG{n}{state}\PYG{p}{];}
+	\PYG{c+cm}{/*常规写法都是在没有限制的条件记忆化，这里与下面记录状态是对应，具体为什么是有条件的记忆化后面会讲*/}
+	\PYG{k+kt}{int} \PYG{n}{up}\PYG{o}{=}\PYG{n}{limit}\PYG{o}{?}\PYG{n}{a}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{]}\PYG{o}{:}\PYG{l+m+mi}{9}\PYG{p}{;}\PYG{c+c1}{//根据limit判断枚举的上界up;这个的例子前面用213讲过了}
+	\PYG{n}{ll} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{c+c1}{//开始计数}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{up}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}\PYG{c+c1}{//枚举，然后把不同情况的个数加到ans就可以了}
+	\PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{()} \PYG{p}{...}
+		\PYG{k}{else} \PYG{k}{if}\PYG{p}{()...}
+		\PYG{n}{ans}\PYG{o}{+=}\PYG{n}{dfs}\PYG{p}{(}\PYG{n}{pos}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{c+cm}{/*状态转移*/}\PYG{p}{,}\PYG{n}{lead} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{i}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{limit} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{i}\PYG{o}{==}\PYG{n}{a}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{])} \PYG{c+c1}{//最后两个变量传参都是这样写的}
+		\PYG{c+cm}{/*这里还算比较灵活，不过做几个题就觉得这里也是套路了}
+\PYG{c+cm}{		大概就是说，我当前数位枚举的数是i，然后根据题目的约束条件分类讨论}
+\PYG{c+cm}{		去计算不同情况下的个数，还有要根据state变量来保证i的合法性，比如题目}
+\PYG{c+cm}{		要求数位上不能有62连续出现,那么就是state就是要保存前一位pre,然后分类，}
+\PYG{c+cm}{		前一位如果是6那么这意味就不能是2，这里一定要保存枚举的这个数是合法*/}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{c+c1}{//计算完，记录状态}
+	\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{limit} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{n}{lead}\PYG{p}{)} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{][}\PYG{n}{state}\PYG{p}{]}\PYG{o}{=}\PYG{n}{ans}\PYG{p}{;}
+	\PYG{c+cm}{/*这里对应上面的记忆化，在一定条件下时记录，保证一致性，当然如果约束条件不需要考虑lead，这里就是lead就完全不用考虑了*/}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{ll} \PYG{n+nf}{solve}\PYG{p}{(}\PYG{n}{ll} \PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{pos}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}\PYG{c+c1}{//把数位都分解出来}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{a}\PYG{p}{[}\PYG{n}{pos}\PYG{o}{++}\PYG{p}{]}\PYG{o}{=}\PYG{n}{x}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{10}\PYG{p}{;}\PYG{c+c1}{//个人老是喜欢编号为[0,pos),看不惯的就按自己习惯来，反正注意数位边界就行}
+		\PYG{n}{x}\PYG{o}{/=}\PYG{l+m+mi}{10}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{dfs}\PYG{p}{(}\PYG{n}{pos}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{c+cm}{/*从最高位开始枚举*/}\PYG{p}{,}\PYG{c+cm}{/*一系列状态 */}\PYG{p}{,}\PYG{n+nb}{true}\PYG{p}{,}\PYG{n+nb}{true}\PYG{p}{);}\PYG{c+c1}{//刚开始最高位都是有限制并且有前导零的，显然比最高位还要高的一位视为0嘛}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{ll} \PYG{n}{le}\PYG{p}{,}\PYG{n}{ri}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}lld\PYGZpc{}lld\PYGZdq{}}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{le}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{ri}\PYG{p}{))}
+	\PYG{p}{\PYGZob{}}
+		\PYG{c+c1}{//初始化dp数组为\PYGZhy{}1,这里还有更加优美的优化,后面讲}
+		\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}lld}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{solve}\PYG{p}{(}\PYG{n}{ri}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{solve}\PYG{p}{(}\PYG{n}{le}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{));}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+
+\PYG{c+c1}{//模板2}
+\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{bit}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}\PYG{c+c1}{//a为分解整数数组，bit数组为10\PYGZca{}(i\PYGZhy{}1)}
+\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{][}\PYG{l+m+mi}{2000}\PYG{p}{];}\PYG{c+c1}{//first=满足条件的数个数，second=满足条件的数的和}
+\PYG{k+kt}{bool} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{][}\PYG{l+m+mi}{2000}\PYG{p}{];}
+\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{pos}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{sta}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{num}\PYG{p}{,}\PYG{k+kt}{bool} \PYG{n}{lead}\PYG{p}{,}\PYG{k+kt}{bool} \PYG{n}{limit}\PYG{p}{)\PYGZob{}}\PYG{c+c1}{//求满足条件的所有数的和}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{pos}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{n}{make\PYGZus{}pair}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{);}\PYG{c+c1}{//计数}
+	\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{limit}\PYG{o}{\PYGZam{}\PYGZam{}!}\PYG{n}{lead}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{][}\PYG{n}{sta}\PYG{p}{])} \PYG{k}{return} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{][}\PYG{n}{sta}\PYG{p}{];}
+	\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{limit}\PYG{o}{\PYGZam{}\PYGZam{}!}\PYG{n}{lead}\PYG{p}{)} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{][}\PYG{n}{sta}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{up}\PYG{o}{=}\PYG{n}{limit}\PYG{o}{?}\PYG{n}{a}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{]}\PYG{o}{:}\PYG{l+m+mi}{9}\PYG{p}{,}\PYG{n}{t}\PYG{p}{,}\PYG{n}{tt}\PYG{p}{;} \PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}}\PYG{n}{tmp}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{up}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{num}\PYG{o}{\PYGZgt{}=}\PYG{n}{k}\PYG{o}{\PYGZam{}\PYGZam{}!}\PYG{p}{(}\PYG{n}{sta}\PYG{o}{\PYGZam{}}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{i}\PYG{p}{)))} \PYG{k}{continue}\PYG{p}{;}\PYG{c+c1}{//不满足条件，跳出}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{lead}\PYG{o}{\PYGZam{}\PYGZam{}!}\PYG{n}{i}\PYG{p}{)} \PYG{n}{t}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{tt}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{else} \PYG{n}{t}\PYG{o}{=}\PYG{p}{(}\PYG{n}{sta}\PYG{o}{|}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{i}\PYG{p}{)),}\PYG{n}{tt}\PYG{o}{=}\PYG{p}{(}\PYG{n}{sta}\PYG{o}{\PYGZam{}}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{i}\PYG{p}{))}\PYG{o}{?}\PYG{n+nl}{num}\PYG{p}{:}\PYG{n}{num}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{n}{tmp}\PYG{o}{=}\PYG{n}{dfs}\PYG{p}{(}\PYG{n}{pos}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{t}\PYG{p}{,}\PYG{n}{tt}\PYG{p}{,}\PYG{n}{lead}\PYG{o}{\PYGZam{}\PYGZam{}!}\PYG{n}{i}\PYG{p}{,}\PYG{n}{limit}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{i}\PYG{o}{==}\PYG{n}{up}\PYG{p}{);}
+		\PYG{n}{ans}\PYG{p}{.}\PYG{n}{first}\PYG{o}{+=}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{first}\PYG{p}{;}\PYG{n}{ans}\PYG{p}{.}\PYG{n}{first}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}\PYG{c+c1}{//满足条件的数的个数}
+		\PYG{n}{ans}\PYG{p}{.}\PYG{n}{second}\PYG{o}{+=}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{first}\PYG{o}{*}\PYG{n}{bit}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{o}{*}\PYG{n}{i}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{o}{+}\PYG{n}{tmp}\PYG{p}{.}\PYG{n}{second}\PYG{p}{;}\PYG{n}{ans}\PYG{p}{.}\PYG{n}{second}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}\PYG{c+c1}{//满足条件的数的和 10+11+...+19=9*(10*1)+45}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{limit}\PYG{o}{\PYGZam{}\PYGZam{}!}\PYG{n}{lead}\PYG{p}{)} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{][}\PYG{n}{sta}\PYG{p}{]}\PYG{o}{=}\PYG{n}{ans}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

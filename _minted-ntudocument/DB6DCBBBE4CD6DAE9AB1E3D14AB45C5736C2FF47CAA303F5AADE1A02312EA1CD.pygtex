@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{typedef} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{ull}\PYG{p}{;}
+\PYG{k}{const} \PYG{n}{ull} \PYG{n}{base} \PYG{o}{=} \PYG{l+m+mi}{163}\PYG{p}{;}
+\PYG{k+kt}{char} \PYG{n}{s}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{n}{ull} \PYG{n}{hash}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+    \PYG{n}{p}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+    \PYG{n}{hash}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{s} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{);}
+   \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=}\PYG{l+m+mi}{100000}\PYG{p}{;} \PYG{n}{i} \PYG{o}{++}\PYG{p}{)}\PYG{n}{p}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=}\PYG{n}{p}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{*} \PYG{n}{base}\PYG{p}{;}
+   \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i} \PYG{o}{++}\PYG{p}{)}\PYG{n}{hash}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{hash}\PYG{p}{[}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{*} \PYG{n}{base} \PYG{o}{+} \PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{ull} \PYG{n+nf}{get}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,} \PYG{n}{ull} \PYG{n}{g}\PYG{p}{[])} \PYG{p}{\PYGZob{}}
+    \PYG{k}{return} \PYG{n}{g}\PYG{p}{[}\PYG{n}{r}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{g}\PYG{p}{[}\PYG{n}{l} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{*} \PYG{n}{p}\PYG{p}{[}\PYG{n}{r} \PYG{o}{\PYGZhy{}} \PYG{n}{l} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{];}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{struct} \PYG{n}{HASHMAP} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{size}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{head}\PYG{p}{[}\PYG{n}{maxh}\PYG{p}{],} \PYG{n}{next}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{f}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}	\PYG{c+c1}{// maxh 为hash链表最大长度}
+	\PYG{n}{ull} \PYG{n}{state}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+	\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+		\PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{n}{memset}\PYG{p}{(}\PYG{n}{head}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{head}\PYG{p}{));}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n+nf}{insert}\PYG{p}{(}\PYG{n}{ull} \PYG{n}{val}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{id}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{h} \PYG{o}{=} \PYG{n}{val} \PYG{o}{\PYGZpc{}} \PYG{n}{maxh}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{head}\PYG{p}{[}\PYG{n}{h}\PYG{p}{];} \PYG{n}{i} \PYG{o}{!=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{=} \PYG{n}{next}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{val} \PYG{o}{==} \PYG{n}{state}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{k}{return} \PYG{n}{f}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+		\PYG{n}{f}\PYG{p}{[}\PYG{n}{size}\PYG{p}{]} \PYG{o}{=} \PYG{n}{id}\PYG{p}{;}
+		\PYG{n}{state}\PYG{p}{[}\PYG{n}{size}\PYG{p}{]} \PYG{o}{=} \PYG{n}{val}\PYG{p}{;}
+		\PYG{n}{next}\PYG{p}{[}\PYG{n}{size}\PYG{p}{]} \PYG{o}{=} \PYG{n}{head}\PYG{p}{[}\PYG{n}{h}\PYG{p}{];}
+		\PYG{n}{head}\PYG{p}{[}\PYG{n}{h}\PYG{p}{]} \PYG{o}{=} \PYG{n}{size}\PYG{p}{;}
+		\PYG{k}{return} \PYG{n}{f}\PYG{p}{[}\PYG{n}{size}\PYG{o}{++}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

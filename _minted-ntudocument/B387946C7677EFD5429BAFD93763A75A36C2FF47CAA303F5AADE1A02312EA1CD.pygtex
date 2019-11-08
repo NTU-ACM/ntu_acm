@@ -1,0 +1,49 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon}
+\PYG{c+cm}{ * 复杂度：O(n)}
+\PYG{c+cm}{ * 功能：已知多项式前n+1项，求第k项。}
+\PYG{c+cm}{ * n次多项式的前缀和是n+1次多项式。}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int} \PYG{n}{inv}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{]}\PYG{c+cm}{/*阶乘逆元*/}\PYG{p}{,}\PYG{n}{bit}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{]}\PYG{c+cm}{/*阶乘*/}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{ubit}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{subit}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{()\PYGZob{}}
+	\PYG{n}{bit}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{maxn}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{bit}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1LL} \PYG{o}{*} \PYG{n}{bit}\PYG{p}{[}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{*} \PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+	\PYG{n}{inv}\PYG{p}{[}\PYG{n}{maxn} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{fpow}\PYG{p}{(}\PYG{n}{bit}\PYG{p}{[}\PYG{n}{maxn} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{mod} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{mod}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{maxn} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)} \PYG{n}{inv}\PYG{p}{[}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1LL} \PYG{o}{*} \PYG{n}{inv}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{*} \PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{Lagrangian}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{[]}\PYG{c+cm}{/*值域*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{n}\PYG{c+cm}{/*变量*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{k}\PYG{c+cm}{/*待求y(k)}\PYG{err}{*/} \PYG{p}{)\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{k}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{)} \PYG{k}{return} \PYG{n}{y}\PYG{p}{[}\PYG{n}{k}\PYG{p}{];}
+	\PYG{n}{ubit}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=}\PYG{n}{subit}\PYG{p}{[}\PYG{n}{n}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{ubit}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1LL}\PYG{o}{*}\PYG{n}{ubit}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{*}\PYG{p}{((}\PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{))}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{;}\PYG{c+cm}{/* ubit[i]=prod\PYGZus{}\PYGZob{}j\PYGZbs{}in [0,i\PYGZhy{}1]\PYGZcb{}(n\PYGZhy{}j) */}
+		\PYG{n}{subit}\PYG{p}{[}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1LL}\PYG{o}{*}\PYG{n}{subit}\PYG{p}{[}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{*}\PYG{p}{((}\PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{n}{n}\PYG{o}{+}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{))}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{;} \PYG{c+cm}{/*subit[i]=prod\PYGZus{}\PYGZob{}j\PYGZbs{}in[i+1,n]\PYGZcb{}(n\PYGZhy{}j) */}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{s1}\PYG{o}{=}\PYG{l+m+mi}{1LL}\PYG{o}{*}\PYG{n}{y}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{o}{*}\PYG{n}{ubit}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{o}{*}\PYG{n}{subit}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{;}\PYG{c+cm}{/*分子*/}
+		\PYG{k+kt}{int} \PYG{n}{s2}\PYG{o}{=}\PYG{l+m+mi}{1LL}\PYG{o}{*}\PYG{n}{inv}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{o}{*}\PYG{n}{inv}\PYG{p}{[}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{;} \PYG{c+cm}{/*分母 */}
+		\PYG{n}{ans}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{1LL}\PYG{o}{*}\PYG{n}{ans}\PYG{o}{+}\PYG{l+m+mi}{1LL}\PYG{o}{*}\PYG{p}{((}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{)}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{o}{?\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{*}\PYG{n}{s1}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{o}{*}\PYG{n}{s2}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{ans}\PYG{o}{+}\PYG{n}{mod}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon}
+\PYG{c+cm}{ * 复杂度：O(n\PYGZca{}2)}
+\PYG{c+cm}{ * 功能：已知多项式任意n项，求第k项}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int} \PYG{n+nf}{Lagrangian}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{[]}\PYG{c+cm}{/*值域*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{[]}\PYG{c+cm}{/*变量*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{k}\PYG{c+cm}{/*待求y\PYGZus{}k*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{mod}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{s1}\PYG{o}{=}\PYG{n}{y}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{,}\PYG{n}{s2}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{i}\PYG{o}{==}\PYG{n}{j}\PYG{p}{)} \PYG{k}{continue}\PYG{p}{;}
+			\PYG{p}{(}\PYG{n}{s1}\PYG{o}{*=}\PYG{p}{((}\PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{))}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}
+			\PYG{p}{(}\PYG{n}{s2}\PYG{o}{*=}\PYG{p}{((}\PYG{n}{x}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{x}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{))}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{p}{(}\PYG{n}{ans}\PYG{o}{+=}\PYG{n}{s1}\PYG{o}{*}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{s2}\PYG{p}{,}\PYG{n}{mod}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{mod}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}} 
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{ans}\PYG{o}{+}\PYG{n}{mod}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

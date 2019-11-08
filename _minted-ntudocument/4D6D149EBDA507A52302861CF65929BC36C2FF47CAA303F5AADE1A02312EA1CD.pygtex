@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}bitset\PYGZgt{} }
+\PYG{c+cp}{\PYGZsh{}define maxn 1000}
+\PYG{k}{struct} \PYG{n}{Matrix01}\PYG{p}{\PYGZob{}} 
+	\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,}\PYG{n}{m}\PYG{p}{;}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{bitset}\PYG{o}{\PYGZlt{}}\PYG{n}{maxn}\PYG{o}{\PYGZgt{}} \PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+	\PYG{k+kt}{void} \PYG{n+nf}{Resize}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)\PYGZob{}} 
+		\PYG{n}{n}\PYG{o}{=}\PYG{n}{x}\PYG{p}{;}
+		\PYG{n}{m}\PYG{o}{=}\PYG{n}{y}\PYG{p}{;} 
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{bitset}\PYG{o}{\PYGZlt{}}\PYG{n}{maxn}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{k}{operator} \PYG{p}{[]} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)} \PYG{p}{\PYGZob{}} 
+		\PYG{k}{return} \PYG{n}{a}\PYG{p}{[}\PYG{n}{n}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{void} \PYG{n}{print}\PYG{p}{()\PYGZob{}} 
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} 
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}} 
+\PYG{p}{\PYGZcb{};}
+
+\PYG{n}{Matrix01} \PYG{k}{operator} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{n}{Matrix01} \PYG{o}{\PYGZam{}}\PYG{n}{a}\PYG{p}{,}\PYG{n}{Matrix01} \PYG{o}{\PYGZam{}}\PYG{n}{b}\PYG{p}{)\PYGZob{}} \PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{k}\PYG{p}{;}
+	\PYG{n}{Matrix01} \PYG{n}{c}\PYG{p}{;} 
+	\PYG{n}{c}\PYG{p}{.}\PYG{n}{Resize}\PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{n}\PYG{p}{,}\PYG{n}{b}\PYG{p}{.}\PYG{n}{m}\PYG{p}{);} 
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{a}\PYG{p}{.}\PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{c}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{reset}\PYG{p}{();} 
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{])} 
+			\PYG{n}{c}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{|=}\PYG{n}{b}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{c}\PYG{p}{;} 
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

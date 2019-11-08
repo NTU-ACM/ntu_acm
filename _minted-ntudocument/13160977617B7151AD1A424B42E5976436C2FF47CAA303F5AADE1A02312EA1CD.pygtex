@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//去掉最后一位}
+ \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{1}
+\PYG{c+c1}{//在最后加一个0 }
+\PYG{n}{x} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}
+\PYG{c+c1}{//在最后加一个1  }
+\PYG{n}{x} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1} \PYG{o}{+} \PYG{l+m+mi}{1}
+\PYG{c+c1}{//把最后一位变成1 }
+ \PYG{n}{x} \PYG{o}{|} \PYG{l+m+mi}{1}
+\PYG{c+c1}{//把最后一位变成0  }
+\PYG{n}{x} \PYG{o}{|} \PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}
+\PYG{c+c1}{//最后一位取反  }
+ \PYG{n}{x} \PYG{o}{\PYGZca{}} \PYG{l+m+mi}{1}
+\PYG{c+c1}{//把右数第k位变成1  }
+ \PYG{n}{x} \PYG{o}{|} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{p}{(}\PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{))}
+\PYG{c+c1}{//把右数第k位变成0}
+ \PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{o}{\PYGZti{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{))}
+\PYG{c+c1}{//右数第k位取反  }
+\PYG{n}{x} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{))}
+\PYG{c+c1}{//取末三位  }
+\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{7}
+\PYG{c+c1}{//取末k位     }
+ \PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{c+c1}{//取右数第k位   }
+ \PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{p}{(}\PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1}
+\PYG{c+c1}{//把末k位变成1  }
+\PYG{n}{x} \PYG{o}{|}\PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{c+c1}{//末k位取反     }
+ \PYG{n}{x} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{k}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{c+c1}{//把右边连续的1变成0  }
+\PYG{n}{x} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{n}{x}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{c+c1}{//x个1}
+\PYG{p}{((}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{x}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{c+c1}{//二进制里1的数量}
+\PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{l+m+mi}{16}\PYG{p}{)}\PYG{o}{+}\PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZam{}}\PYG{p}{((}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{16}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{))}
+\end{Verbatim}

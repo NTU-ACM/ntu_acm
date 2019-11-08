@@ -8,28 +8,35 @@
 #文件名.后缀	算法名称
 
 
-[输入输出]
-sync_with_stdio.cc 	取消同步
-out_float.cc 	浮点数输出格式
-fastInInt.cc	整型快速输入
-fastInString.cc	字符串快速输入
-fastOutInt.cc	整型快速输出
-fastOutString.cc	字符串快速输出
+[语言相关]
+vim.txt	vim配置
+复杂模板.cc	模板
+取消同步.cc	取消同步
+浮点数输出.cc	浮点数输出格式
+整型快读.cc	整型快速输入
+字符串快读.cc	字符串快速输入
 pythonInput.py	python 输入
 read.java	java 输入
 int128.cc	int128输入输出
+进制输出.cc	进制输出
+algorithm库.cc	algorithm
+bitset.txt	bitset
+string.cc	string
+bitOperation.cc	位运算
+builtinBitFunction.txt	内置位运算函数
+random.cc	随机
+set_symmetric_difference.cc	归并求有序集合异或
+priority_queue.cc	优先队列
 
 [动态规划]
-backpack.cc	背包问题
+背包.cc	背包问题
+树形背包.cc	树形背包
 LIS(nlogn).cc	最长单调子序列（nlogn)
 LCS.cc	最长公共子序列
-DPmin.cc	单调队列优化DP
-dullQueueDP.cc	单调队列DP
-intervalDP.cc	区间DP
-PeriodofTimeDP.cc	时间段DP
-numDP.cc	数位DP
-math_DP.cc	数位DP
-2dWIS.cc	上升子序列最大和(nlogn)
+单调队列.cc	单调队列优化DP
+区间DP.cc	区间DP
+数位DP.cc	数位DP
+SOSDP.cc	SOSDP
 
 
 [数论]
@@ -37,44 +44,59 @@ bfisprime.cc	暴力判素数
 Miller_Rabin.cc	米勒罗宾素性检测
 Eratosthenes.cc	埃氏筛
 eulerSieve.cc	欧拉筛
+区间筛.cc		区间筛	
 factorization.cc	分解质因数
+pollard_rho质因数分解.cc	PollardRho质因数分解
+反素数.cc		反素数
 gcd.cc	最大公约数
 lcm.cc	最小公倍数
 exGcd.cc	扩展欧几里得
 crt.cc	中国剩余定理
 exCRT.cc	扩展CRT
 EulerPhi.cc	欧拉函数
+原根.cc	原根
 inv.cc	求逆元
 mul.cc	快速乘法取模
 powMod.cc	快速幂取模
 NumofCo-prime.cc	互质对数计数
 Bsgs.cc	BSGS
+pohlig_hellman.cc	Pohlig Hellman
 Stern-BrocotTree.cc	二分分数树（Stern-Brocot Tree)
-QuadraticResidue.cc		二次剩余
+QuadraticResidue.cc	二次剩余
+二次剩余.cc	二次剩余
+超级乘方.cc	超级乘方
 mobius.cc	计算莫比乌斯函数
+区间中与p互质的数之和.cc	区间中与p互质的数之和
 Dujiao.cc	杜教筛
+min25筛.cc	min25筛
 formula.tex	常用公式
 my_formula.tex	数论公式
 
 [数学]
+杨辉三角求组合数.cc	杨辉三角求组合数
 Cnmmodp.cc	C(n,m) mod p (n很大p可以很大）
 lucas.cc	Lucas定理
 nC0tonCp.cc	计算从C(n, 0)到C(n, p)的值
 FirstStirling.cc	计算第一类斯特林数
+Bell数.cc	Bell数
 AdaptiveSimpson.cc	自适应辛普森
 game.txt	博弈论
+SG函数.cc	SG函数
 LinearBasis.cc	异或线性基
 BigIntegerSqrt.java	java大数开方
 simplex.cc	单纯形法
 rongchi.cc	容斥
+矩阵快速幂.cc	矩阵快速幂
+线性基.cc		线性基
 fft_namespace.cc	多项式乘法/平方/取模
+拉格朗日插值.cc	拉格朗日插值
 fft.cc	快速傅里叶变换
 ntt.cc	快速数论变换
 fwt.cc	快速沃尔什变换
 CDQfft.cc	分治fft
 polya_necklace.cc	polya项链染色
 colorPolynomial.txt	染色多项式
-derangements.cc		错位排列递推公式
+derangements.cc	错位排列递推公式
 BBP.cc	BBP公式求pi十六进制的第k位
 
 [图论]
@@ -86,6 +108,7 @@ MST_Prim.cc	Prim最小生成树
 SPFA.cc	SPFA 最短路
 dijkstra.cc	dijkstra 最短路
 Floyd.cc	Floyd 任意两点间最短路
+拓扑排序.cc	拓扑排序
 TwoSAT.cc	2-SAT问题
 tarjan.cc	tarjan强连通分量
 Kosaraju.cc	Kosaraju强连通分量
@@ -101,7 +124,7 @@ SMST_Kruskal.cc	次小生成树(Kruskal)
 determinant.cc	最小生成树计数
 zhuliucount.cc	最小树形图计数
 Dinic.cc	Dinic 最大流
-ISAP.cc		ISAP 最大流
+ISAP.cc	ISAP 最大流
 mincost_maxflow.cc	最小费用最大流
 zkwCostFlow.cc	ZKW费用流
 upperlowerFlow.cc	上下界网络流
@@ -112,13 +135,15 @@ KM.cc	二分图最大权匹配KM算法
 [数据结构]
 BIT.cc	树状数组
 differenceArray.cc	差分数组
+序列自动机.cc	序列自动机
+单调栈单调队列.cc	单调栈单调队列
 2DBIT.cc	二维树状数组
 inversionPair.cc	树状数组求逆序对
 Heap.cc	堆
 RMQ.cc	RMQ
 RMQ2.cc	RMQ
 segmentTree.cc	线段树
-ZKWsegmentTree.cc	ZKW线段树
+ZKW线段树.cc	ZKW线段树
 SegmentTreeBeats.cc	吉司机线段树
 scanningLine.cc	扫描线
 linescanMaxSquareCover.cc	固定大小矩形最大点覆盖
@@ -133,8 +158,8 @@ splay2.cc	Splay树
 splayTree.cc	Splay树
 pointDC.cc	点分治
 dsu_on_tree.cc	树上启发式合并
-interval_xor_max.cc		0-1trie区间异或最大值
-tree_xor_max.cc		0-1trie子树异或最大值
+interval_xor_max.cc	0-1trie区间异或最大值
+tree_xor_max.cc	0-1trie子树异或最大值
 mo.cc	莫队算法
 LCAonline.cc	最近公共祖先(在线)
 LCAoffline.cc	最近公共祖先(离线)
@@ -145,13 +170,16 @@ heavy_light_decomposition.cpp	树链剖分
 [字符串]
 KMP.cc	KMP
 exKMP.cc	扩展KMP
+exkmp2.cc	扩展KMP
 trie.cc	TRIE
 ACautomachine.cc	AC自动机
 SA.cc	后缀数组(倍增)
 sais.cc	后缀数组(sais)
 suffixAutomathine.cc	后缀自动机
 manacher.cc	最长回文子串
+manacher2.cc	manacher
 PAM.cc	回文树
+回文树.cc		回文树
 stringhash.cc	字符串哈希算法
 string_hashmap.cpp	字符串哈希表
 
@@ -174,16 +202,14 @@ DataAnalysis.cc 	简单大数
 Bignum.cc	大数
 javaBigIntger.tex	java大数
 
-[技巧与黑科技]
+[杂项]
 discretization.cc	离散化
 EnumSubset.cc	快速枚举子集
-bitset.txt	bitset
-bitOperation.cc	位运算
 DLX.cc	跳舞链
+A*启发式搜索.cc	A*启发式搜索
 KDTree.cc	K-D树
 random.cc	随机
 ODT.cc	珂朵莉树（Old Driver Tree)
 CDQ.cc	CDQ分治
-builtinBitFunction.txt	内置位运算函数
 0-1planning.cpp	0-1分数规划
 BM.cc	BM线性递推

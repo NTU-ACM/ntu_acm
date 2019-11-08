@@ -1,0 +1,65 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}Edit\PYGZdq{}}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{inf} \PYG{o}{=} \PYG{l+m+mf}{2e9}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{cost}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{][}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{lx}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{ly}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{match}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{slack}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{prev}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{bool} \PYG{n}{vy}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{augment}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{root}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{fill}\PYG{p}{(}\PYG{n}{vy} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{vy} \PYG{o}{+} \PYG{n}{n} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb}{false}\PYG{p}{);}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{fill}\PYG{p}{(}\PYG{n}{slack} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{slack} \PYG{o}{+} \PYG{n}{n} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{inf}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{py}\PYG{p}{;}
+	\PYG{n}{match}\PYG{p}{[}\PYG{n}{py} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{n}{root}\PYG{p}{;}
+	\PYG{k}{do} \PYG{p}{\PYGZob{}}
+		\PYG{n}{vy}\PYG{p}{[}\PYG{n}{py}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;}
+		\PYG{k+kt}{int} \PYG{n}{x} \PYG{o}{=} \PYG{n}{match}\PYG{p}{[}\PYG{n}{py}\PYG{p}{],} \PYG{n}{delta} \PYG{o}{=} \PYG{n}{inf}\PYG{p}{,} \PYG{n}{yy}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{y} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{y}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{vy}\PYG{p}{[}\PYG{n}{y}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{lx}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{+} \PYG{n}{ly}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{cost}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{slack}\PYG{p}{[}\PYG{n}{y}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+					\PYG{n}{slack}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]} \PYG{o}{=} \PYG{n}{lx}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{+} \PYG{n}{ly}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{cost}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{n}{y}\PYG{p}{];}
+					\PYG{n}{prev}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]} \PYG{o}{=} \PYG{n}{py}\PYG{p}{;}
+				\PYG{p}{\PYGZcb{}}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{slack}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{delta}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+					\PYG{n}{delta} \PYG{o}{=} \PYG{n}{slack}\PYG{p}{[}\PYG{n}{y}\PYG{p}{];}
+					\PYG{n}{yy} \PYG{o}{=} \PYG{n}{y}\PYG{p}{;}
+				\PYG{p}{\PYGZcb{}}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{y} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{y}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{vy}\PYG{p}{[}\PYG{n}{y}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+				\PYG{n}{lx}\PYG{p}{[}\PYG{n}{match}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]]} \PYG{o}{\PYGZhy{}=} \PYG{n}{delta}\PYG{p}{;}
+				\PYG{n}{ly}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{delta}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+				\PYG{n}{slack}\PYG{p}{[}\PYG{n}{y}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{n}{delta}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{py} \PYG{o}{=} \PYG{n}{yy}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}} \PYG{k}{while} \PYG{p}{(}\PYG{n}{match}\PYG{p}{[}\PYG{n}{py}\PYG{p}{]} \PYG{o}{!=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+	\PYG{k}{do} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{pre} \PYG{o}{=} \PYG{n}{prev}\PYG{p}{[}\PYG{n}{py}\PYG{p}{];}
+		\PYG{n}{match}\PYG{p}{[}\PYG{n}{py}\PYG{p}{]} \PYG{o}{=} \PYG{n}{match}\PYG{p}{[}\PYG{n}{pre}\PYG{p}{];}
+		\PYG{n}{py} \PYG{o}{=} \PYG{n}{pre}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}} \PYG{k}{while} \PYG{p}{(}\PYG{n}{py}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{KM}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{lx}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{ly}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{n}{match}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{j}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{lx}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{max}\PYG{p}{(}\PYG{n}{lx}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{cost}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]);}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n}{answer} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{root} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{root} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{root}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{augment}\PYG{p}{(}\PYG{n}{root}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{answer} \PYG{o}{+=} \PYG{n}{lx}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+		\PYG{n}{answer} \PYG{o}{+=} \PYG{n}{ly}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+		\PYG{c+c1}{//printf(\PYGZdq{}\PYGZpc{}d \PYGZpc{}d\PYGZbs{}n\PYGZdq{}, match[i], i);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{answer}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

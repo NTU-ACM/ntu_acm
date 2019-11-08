@@ -1,0 +1,63 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}ffs (unsigned int x)
+Returns one plus the index of the least significant 1\PYGZhy{}bit of x, or if x is zero, returns zero.
+返回右起第一个‘1’的位置。
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}clz (unsigned int x)
+Returns the number of leading 0\PYGZhy{}bits in x, starting at the most significant bit position. If x is 0, the result is undefined.
+返回左起第一个‘1’之前0的个数。
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}ctz (unsigned int x)
+Returns the number of trailing 0\PYGZhy{}bits in x, starting at the least significant bit position. If x is 0, the result is undefined.
+返回右起第一个‘1’之后的0的个数。
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}popcount (unsigned int x)
+Returns the number of 1\PYGZhy{}bits in x.
+返回‘1’的个数。
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}parity (unsigned int x)
+Returns the parity of x, i.e. the number of 1\PYGZhy{}bits in x modulo 2.
+返回‘1’的个数的奇偶性。
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}ffsl (unsigned long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}ffs, except the argument type is unsigned long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}clzl (unsigned long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}clz, except the argument type is unsigned long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}ctzl (unsigned long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}ctz, except the argument type is unsigned long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}popcountl (unsigned long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}popcount, except the argument type is unsigned long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}parityl (unsigned long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}parity, except the argument type is unsigned long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}ffsll (unsigned long long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}ffs, except the argument type is unsigned long long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}clzll (unsigned long long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}clz, except the argument type is unsigned long long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}ctzll (unsigned long long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}ctz, except the argument type is unsigned long long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}popcountll (unsigned long long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}popcount, except the argument type is unsigned long long. 
+
+— Built\PYGZhy{}in Function: int \PYGZus{}\PYGZus{}builtin\PYGZus{}parityll (unsigned long long)
+Similar to \PYGZus{}\PYGZus{}builtin\PYGZus{}parity, except the argument type is unsigned long long.
+
+
+
+随机数函数：
+default\PYGZus{}random\PYGZus{}engine：随机非负数（不建议单独使用）。
+uniform\PYGZus{}int\PYGZus{}distribution：指定范围的随机非负数。
+uniform\PYGZus{}real\PYGZus{}distribution：指定范围的随机实数。
+bernoulli\PYGZus{}distribution：指定概率的随机布尔值。
+
+示例:default\PYGZus{}random\PYGZus{}engine e;
+    uniform\PYGZus{}int\PYGZus{}distribution\PYGZlt{}int\PYGZgt{}u(0,9);
+    cout\PYGZlt{}\PYGZlt{}u(e)\PYGZlt{}\PYGZlt{}endl;
+\end{Verbatim}

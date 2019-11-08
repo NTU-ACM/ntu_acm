@@ -1,0 +1,59 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//解决如下问题：定义母串s和子串T，设s的长度为n,T的长度为m,求T与S的每一个后缀的最长公共前缀}
+\PYG{c+c1}{//extend[i]表示T与S[i,n\PYGZhy{}1]的最长公共前缀。（0\PYGZlt{}=i\PYGZlt{}n）}
+\PYG{c+c1}{//一个辅助工具为nxt[i]表示T[i,m\PYGZhy{}1]和T的最长公共前缀长度}
+\PYG{c+c1}{//下标都从0开始}
+
+\PYG{n}{O}\PYG{p}{(}\PYG{n}{n}\PYG{o}{+}\PYG{n}{m}\PYG{p}{)}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn}\PYG{o}{=}\PYG{l+m+mi}{100010}\PYG{p}{;}   \PYG{c+c1}{//字符串长度最大值}
+\PYG{k+kt}{int} \PYG{n}{nxt}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{ex}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];} \PYG{c+c1}{//ex数组即为extend数组}
+\PYG{c+c1}{//预处理计算next数组}
+\PYG{k+kt}{void} \PYG{n+nf}{GETNEXT}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{po}\PYG{p}{,}\PYG{n}{len}\PYG{o}{=}\PYG{n}{strlen}\PYG{p}{(}\PYG{n}{str}\PYG{p}{);}
+	\PYG{n}{nxt}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=}\PYG{n}{len}\PYG{p}{;}\PYG{c+c1}{//初始化next[0]}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{str}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{==}\PYG{n}{str}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{p}{)}\PYG{c+c1}{//计算next[1]}
+	\PYG{n}{i}\PYG{o}{++}\PYG{p}{;}
+	\PYG{n}{nxt}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}
+	\PYG{n}{po}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+c1}{//初始化po的位置}
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{po}\PYG{p}{]}\PYG{o}{+}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{po}\PYG{p}{]}\PYG{o}{+}\PYG{n}{po}\PYG{p}{)}\PYG{c+c1}{//第一种情况，可以直接得到next[i]的值}
+		\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{po}\PYG{p}{];}
+		\PYG{k}{else}\PYG{c+c1}{//第二种情况，要继续匹配才能得到next[i]的值}
+		\PYG{p}{\PYGZob{}}
+			\PYG{n}{j}\PYG{o}{=}\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{po}\PYG{p}{]}\PYG{o}{+}\PYG{n}{po}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{;}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//如果i\PYGZgt{}po+nxt[po],则要从头开始匹配}
+			\PYG{k}{while}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{str}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{==}\PYG{n}{str}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{n}{i}\PYG{p}{])}\PYG{c+c1}{//计算next[i]}
+			\PYG{n}{j}\PYG{o}{++}\PYG{p}{;}
+			\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{j}\PYG{p}{;}
+			\PYG{n}{po}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}\PYG{c+c1}{//更新po的位置}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{//计算extend数组}
+\PYG{k+kt}{void} \PYG{n+nf}{EXKMP}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{s1}\PYG{p}{,}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{s2}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{j}\PYG{p}{,}\PYG{n}{po}\PYG{p}{,}\PYG{n}{len}\PYG{o}{=}\PYG{n}{strlen}\PYG{p}{(}\PYG{n}{s1}\PYG{p}{),}\PYG{n}{l2}\PYG{o}{=}\PYG{n}{strlen}\PYG{p}{(}\PYG{n}{s2}\PYG{p}{);}
+	\PYG{n}{GETNEXT}\PYG{p}{(}\PYG{n}{s2}\PYG{p}{);}\PYG{c+c1}{//计算子串的next数组}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{s1}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{==}\PYG{n}{s2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{l2}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{p}{)}\PYG{c+c1}{//计算ex[0]}
+	\PYG{n}{i}\PYG{o}{++}\PYG{p}{;}
+	\PYG{n}{ex}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}
+	\PYG{n}{po}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//初始化po的位置}
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{po}\PYG{p}{]}\PYG{o}{+}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{ex}\PYG{p}{[}\PYG{n}{po}\PYG{p}{]}\PYG{o}{+}\PYG{n}{po}\PYG{p}{)}\PYG{c+c1}{//第一种情况，直接可以得到ex[i]的值}
+		\PYG{n}{ex}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{nxt}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{po}\PYG{p}{];}
+		\PYG{k}{else}\PYG{c+c1}{//第二种情况，要继续匹配才能得到ex[i]的值}
+		\PYG{p}{\PYGZob{}}
+			\PYG{n}{j}\PYG{o}{=}\PYG{n}{ex}\PYG{p}{[}\PYG{n}{po}\PYG{p}{]}\PYG{o}{+}\PYG{n}{po}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{;}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//如果i\PYGZgt{}ex[po]+po则要从头开始匹配}
+			\PYG{k}{while}\PYG{p}{(}\PYG{n}{i}\PYG{o}{+}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{len}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{l2}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{s1}\PYG{p}{[}\PYG{n}{j}\PYG{o}{+}\PYG{n}{i}\PYG{p}{]}\PYG{o}{==}\PYG{n}{s2}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])}\PYG{c+c1}{//计算ex[i]}
+			\PYG{n}{j}\PYG{o}{++}\PYG{p}{;}
+			\PYG{n}{ex}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{j}\PYG{p}{;}
+			\PYG{n}{po}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}\PYG{c+c1}{//更新po的位置}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

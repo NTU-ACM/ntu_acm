@@ -1,0 +1,81 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{// 树链剖分 点权}
+\PYG{c+cm}{/**}
+\PYG{c+cm}{* top[v] 表示v所在的重链的顶端节点}
+\PYG{c+cm}{* fa[v] 表示v的父节点}
+\PYG{c+cm}{* deep[v] 表示v的深度(根的深度为1)}
+\PYG{c+cm}{* snum[v] 表示以v为根的子树的节点数}
+\PYG{c+cm}{* p[v] 表示v所在(线段树中)的位置}
+\PYG{c+cm}{* fp[v] 与p[v]相反，表示对应位置的节点}
+\PYG{c+cm}{* son[v] 表示v的重儿子}
+\PYG{c+cm}{* Edge 存树边}
+\PYG{c+cm}{**/}
+
+\PYG{k}{struct} \PYG{n}{Edge} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{to}\PYG{p}{,} \PYG{n}{next}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}\PYG{n}{edge}\PYG{p}{[}\PYG{n}{maxn} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{];}
+
+\PYG{k+kt}{int} \PYG{n}{pos}\PYG{p}{,} \PYG{n}{n}\PYG{p}{,} \PYG{n}{m}\PYG{p}{,} \PYG{n}{tot}\PYG{p}{;}	\PYG{c+c1}{// n 为节点数}
+\PYG{k+kt}{int} \PYG{n}{head}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{top}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{fa}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{deep}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{num}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{p}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{fp}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{son}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{n}{tot} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{pos} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{n}{memset}\PYG{p}{(}\PYG{n}{head}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{head}\PYG{p}{));}
+	\PYG{n}{memset}\PYG{p}{(}\PYG{n}{son}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{son}\PYG{p}{));}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+		\PYG{n}{v}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{addedge}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{edge}\PYG{p}{[}\PYG{n}{tot}\PYG{p}{].}\PYG{n}{to} \PYG{o}{=} \PYG{n}{v}\PYG{p}{;}
+	\PYG{n}{edge}\PYG{p}{[}\PYG{n}{tot}\PYG{p}{].}\PYG{n}{next} \PYG{o}{=} \PYG{n}{head}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];}
+	\PYG{n}{head}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{tot}\PYG{o}{++}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{dfs1}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{pre}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{d}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{deep}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{d}\PYG{p}{;}
+	\PYG{n}{fa}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{pre}\PYG{p}{;}
+	\PYG{n}{num}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{head}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];} \PYG{n}{i} \PYG{o}{!=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{next}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{to} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{to}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{to} \PYG{o}{!=} \PYG{n}{pre}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{dfs1}\PYG{p}{(}\PYG{n}{to}\PYG{p}{,} \PYG{n}{u}\PYG{p}{,} \PYG{n}{d} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{);}
+			\PYG{n}{num}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{num}\PYG{p}{[}\PYG{n}{to}\PYG{p}{];}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{son}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{o}{||} \PYG{n}{num}\PYG{p}{[}\PYG{n}{to}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{num}\PYG{p}{[}\PYG{n}{son}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]])}
+				\PYG{n}{son}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{to}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{dfs2}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{sp}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{top}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{sp}\PYG{p}{;}
+	\PYG{n}{p}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{pos}\PYG{o}{++}\PYG{p}{;}
+	\PYG{n}{fp}\PYG{p}{[}\PYG{n}{p}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]]} \PYG{o}{=} \PYG{n}{u}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{son}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{return}\PYG{p}{;}
+	\PYG{n}{dfs2}\PYG{p}{(}\PYG{n}{son}\PYG{p}{[}\PYG{n}{u}\PYG{p}{],} \PYG{n}{sp}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{head}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];} \PYG{n}{i} \PYG{o}{!=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{next}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{to} \PYG{o}{=} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{to}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{to} \PYG{o}{!=} \PYG{n}{son}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{to} \PYG{o}{!=} \PYG{n}{fa}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])}
+			\PYG{n}{dfs2}\PYG{p}{(}\PYG{n}{to}\PYG{p}{,} \PYG{n}{to}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*}
+\PYG{c+cm}{// 使用范例}
+\PYG{c+cm}{int getsum(int a, int b) \PYGZob{}}
+\PYG{c+cm}{	int f1 = top[a], f2 = top[b];}
+\PYG{c+cm}{	int ret = 0;}
+\PYG{c+cm}{	while (f1 != f2) \PYGZob{}}
+\PYG{c+cm}{		if (deep[f1] \PYGZlt{} deep[f2]) \PYGZob{}}
+\PYG{c+cm}{			swap(f1, f2);}
+\PYG{c+cm}{			swap(a, b);}
+\PYG{c+cm}{		\PYGZcb{}}
+\PYG{c+cm}{		ret += query(p[f1], p[a], 1, n \PYGZhy{} 1, 1);}
+\PYG{c+cm}{		a = fa[f1]; f1 = top[a];}
+\PYG{c+cm}{	\PYGZcb{}}
+\PYG{c+cm}{	if (a == b) return ret;}
+\PYG{c+cm}{	if (deep[a] \PYGZgt{} deep[b]) swap(a, b);}
+\PYG{c+cm}{	return ret + query(p[son[a]], p[b], 1, n \PYGZhy{} 1, 1);}
+\PYG{c+cm}{\PYGZcb{}}
+\PYG{c+cm}{*/}
+\end{Verbatim}

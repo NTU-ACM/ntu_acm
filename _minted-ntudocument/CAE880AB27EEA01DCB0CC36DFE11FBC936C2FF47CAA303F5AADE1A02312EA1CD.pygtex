@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{PI} \PYG{o}{=} \PYG{n}{acos}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{1.0}\PYG{p}{);}
+\PYG{c+c1}{//复数结构体}
+\PYG{k}{struct} \PYG{n}{Complex} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{double} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{;} \PYG{c+c1}{//实部和虚部 x+yi}
+	\PYG{n}{Complex}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{\PYGZus{}x} \PYG{o}{=} \PYG{l+m+mf}{0.0}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{\PYGZus{}y} \PYG{o}{=} \PYG{l+m+mf}{0.0}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n}{x} \PYG{o}{=} \PYG{n}{\PYGZus{}x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{n}{\PYGZus{}y}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+	\PYG{n}{Complex} \PYG{k}{operator}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Complex}\PYG{o}{\PYGZam{}} \PYG{n}{b}\PYG{p}{)} \PYG{k}{const} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{Complex}\PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);} \PYG{p}{\PYGZcb{}}
+	\PYG{n}{Complex} \PYG{k}{operator}\PYG{o}{+}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Complex}\PYG{o}{\PYGZam{}} \PYG{n}{b}\PYG{p}{)} \PYG{k}{const} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{Complex}\PYG{p}{(}\PYG{n}{x} \PYG{o}{+} \PYG{n}{b}\PYG{p}{.}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y} \PYG{o}{+} \PYG{n}{b}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);} \PYG{p}{\PYGZcb{}}
+	\PYG{n}{Complex} \PYG{k}{operator}\PYG{o}{*}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Complex}\PYG{o}{\PYGZam{}} \PYG{n}{b}\PYG{p}{)} \PYG{k}{const} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{Complex}\PYG{p}{(}\PYG{n}{x} \PYG{o}{*} \PYG{n}{b}\PYG{p}{.}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{y} \PYG{o}{*} \PYG{n}{b}\PYG{p}{.}\PYG{n}{y}\PYG{p}{,} \PYG{n}{x} \PYG{o}{*} \PYG{n}{b}\PYG{p}{.}\PYG{n}{y} \PYG{o}{+} \PYG{n}{y} \PYG{o}{*} \PYG{n}{b}\PYG{p}{.}\PYG{n}{x}\PYG{p}{);} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\PYG{c+cm}{/*}
+\PYG{c+cm}{* 进行FFT和IFFT前的反转变换。}
+\PYG{c+cm}{* 位置i和 （i二进制反转后位置）互换}
+\PYG{c+cm}{* len必须取2的幂}
+\PYG{c+cm}{*/}
+\PYG{k+kt}{void} \PYG{n+nf}{change}\PYG{p}{(}\PYG{n}{Complex} \PYG{n}{y}\PYG{p}{[],} \PYG{k+kt}{int} \PYG{n}{len}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j} \PYG{o}{=} \PYG{n}{len} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{len} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{j}\PYG{p}{)} \PYG{n}{std}\PYG{o}{::}\PYG{n}{swap}\PYG{p}{(}\PYG{n}{y}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{y}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]);}
+		\PYG{c+c1}{//交换互为小标反转的元素，i\PYGZlt{}j保证交换一次}
+		\PYG{c+c1}{//i做正常的+1，j左反转类型的+1,始终保持i和j是反转的}
+		\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{n}{len} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZgt{}=} \PYG{n}{k}\PYG{p}{)} \PYG{n}{j} \PYG{o}{\PYGZhy{}=} \PYG{n}{k}\PYG{p}{,} \PYG{n}{k} \PYG{o}{/=} \PYG{l+m+mi}{2}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{k}\PYG{p}{)} \PYG{n}{j} \PYG{o}{+=} \PYG{n}{k}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+cm}{/*}
+\PYG{c+cm}{* 做FFT}
+\PYG{c+cm}{* len必须为2\PYGZca{}k形式，}
+\PYG{c+cm}{* on==1时是DFT，on==\PYGZhy{}1时是IDFT}
+\PYG{c+cm}{*/}
+\PYG{k+kt}{void} \PYG{n+nf}{fft}\PYG{p}{(}\PYG{n}{Complex} \PYG{n}{y}\PYG{p}{[],} \PYG{k+kt}{int} \PYG{n}{len}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{on}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{change}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{len}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{h} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{h} \PYG{o}{\PYGZlt{}=} \PYG{n}{len}\PYG{p}{;} \PYG{n}{h} \PYG{o}{\PYGZlt{}\PYGZlt{}=} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{Complex} \PYG{n}{wn}\PYG{p}{(}\PYG{n}{cos}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{on} \PYG{o}{*} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{PI} \PYG{o}{/} \PYG{n}{h}\PYG{p}{),} \PYG{n}{sin}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{n}{on} \PYG{o}{*} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{PI} \PYG{o}{/} \PYG{n}{h}\PYG{p}{));}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{len}\PYG{p}{;} \PYG{n}{j} \PYG{o}{+=} \PYG{n}{h}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{Complex} \PYG{n}{w}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{n}{j}\PYG{p}{;} \PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{n}{j} \PYG{o}{+} \PYG{n}{h} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{k}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{n}{Complex} \PYG{n}{u} \PYG{o}{=} \PYG{n}{y}\PYG{p}{[}\PYG{n}{k}\PYG{p}{];}
+				\PYG{n}{Complex} \PYG{n}{t} \PYG{o}{=} \PYG{n}{w} \PYG{o}{*} \PYG{n}{y}\PYG{p}{[}\PYG{n}{k} \PYG{o}{+} \PYG{n}{h} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{];}
+				\PYG{n}{y}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]} \PYG{o}{=} \PYG{n}{u} \PYG{o}{+} \PYG{n}{t}\PYG{p}{,} \PYG{n}{y}\PYG{p}{[}\PYG{n}{k} \PYG{o}{+} \PYG{n}{h} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{=} \PYG{n}{u} \PYG{o}{\PYGZhy{}} \PYG{n}{t}\PYG{p}{;}
+				\PYG{n}{w} \PYG{o}{=} \PYG{n}{w} \PYG{o}{*} \PYG{n}{wn}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{on} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{len}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{y}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{x} \PYG{o}{/=} \PYG{n}{len}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

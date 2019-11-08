@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kt}{int} \PYG{n}{arr}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{n}\PYG{p}{;}
+
+\PYG{k}{template}\PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{Cmp}\PYG{o}{\PYGZgt{}}  
+\PYG{k+kt}{int} \PYG{n}{LIS} \PYG{p}{(}\PYG{n}{Cmp} \PYG{n}{cmp}\PYG{p}{)} \PYG{p}{\PYGZob{}}  
+	\PYG{k}{static} \PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,} \PYG{n}{end}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}  
+	\PYG{n}{m} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}  
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}  
+		\PYG{k+kt}{int} \PYG{n}{pos} \PYG{o}{=} \PYG{n}{lower\PYGZus{}bound}\PYG{p}{(}\PYG{n}{end}\PYG{p}{,} \PYG{n}{end}\PYG{o}{+}\PYG{n}{m}\PYG{p}{,} \PYG{n}{arr}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{cmp}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{n}{end}\PYG{p}{;}  
+		\PYG{n}{end}\PYG{p}{[}\PYG{n}{pos}\PYG{p}{]} \PYG{o}{=} \PYG{n}{arr}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{m} \PYG{o}{+=} \PYG{n}{pos}\PYG{o}{==}\PYG{n}{m}\PYG{p}{;}  
+	\PYG{p}{\PYGZcb{}}  
+	\PYG{k}{return} \PYG{n}{m}\PYG{p}{;}  
+\PYG{p}{\PYGZcb{}}  
+
+\PYG{k+kt}{bool} \PYG{n}{greater1}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{value}\PYG{p}{)} \PYG{p}{\PYGZob{}}  
+	\PYG{k}{return} \PYG{n}{value} \PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{1}\PYG{p}{;}  
+\PYG{p}{\PYGZcb{}}  
+
+\PYG{c+cm}{/*********}
+\PYG{c+cm}{	std::cout \PYGZlt{}\PYGZlt{} LIS(std::less\PYGZlt{}int\PYGZgt{}()) \PYGZlt{}\PYGZlt{} std::endl;         //严格上升  }
+\PYG{c+cm}{    std::cout \PYGZlt{}\PYGZlt{} LIS(std::less\PYGZus{}equal\PYGZlt{}int\PYGZgt{}()) \PYGZlt{}\PYGZlt{} std::endl;   //非严格上升  }
+\PYG{c+cm}{    std::cout \PYGZlt{}\PYGZlt{} LIS(std::greater\PYGZlt{}int\PYGZgt{}()) \PYGZlt{}\PYGZlt{} std::endl;      //严格下降  }
+\PYG{c+cm}{    std::cout \PYGZlt{}\PYGZlt{} LIS(std::greater\PYGZus{}equal\PYGZlt{}int\PYGZgt{}()) \PYGZlt{}\PYGZlt{} std::endl;//非严格下降  }
+\PYG{c+cm}{    std::cout \PYGZlt{}\PYGZlt{} count\PYGZus{}if(a,a+7,std::greater1) \PYGZlt{}\PYGZlt{} std::endl; //计数  }
+\PYG{c+cm}{**********/}
+\end{Verbatim}

@@ -1,0 +1,95 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{// RS Hash Function}
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{RSHash}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{b} \PYG{o}{=} \PYG{l+m+mi}{378551}\PYG{p}{;}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{a} \PYG{o}{=} \PYG{l+m+mi}{63689}\PYG{p}{;}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{hash} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{hash} \PYG{o}{=} \PYG{n}{hash} \PYG{o}{*} \PYG{n}{a} \PYG{o}{+} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{);}
+		\PYG{n}{a} \PYG{o}{*=} \PYG{n}{b}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// JS Hash Function}
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{JSHash}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{hash} \PYG{o}{=} \PYG{l+m+mi}{1315423911}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{hash} \PYG{o}{\PYGZca{}=} \PYG{p}{((}\PYG{n}{hash} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{5}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{2}\PYG{p}{));}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// P. J. Weinberger Hash Function}
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{PJWHash}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{BitsInUnignedInt} \PYG{o}{=} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int}\PYG{p}{)(}\PYG{k}{sizeof}\PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int}\PYG{p}{)} \PYG{o}{*} \PYG{l+m+mi}{8}\PYG{p}{);}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{ThreeQuarters}    \PYG{o}{=} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int}\PYG{p}{)((}\PYG{n}{BitsInUnignedInt}  \PYG{o}{*} \PYG{l+m+mi}{3}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{4}\PYG{p}{);}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{OneEighth}        \PYG{o}{=} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int}\PYG{p}{)(}\PYG{n}{BitsInUnignedInt} \PYG{o}{/} \PYG{l+m+mi}{8}\PYG{p}{);}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{HighBits}         \PYG{o}{=} \PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int}\PYG{p}{)(}\PYG{l+m+mh}{0xFFFFFFFF}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{n}{BitsInUnignedInt} \PYG{o}{\PYGZhy{}} \PYG{n}{OneEighth}\PYG{p}{);}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{hash}             \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{test}             \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{hash} \PYG{o}{=} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{OneEighth}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{);}
+		\PYG{k}{if} \PYG{p}{((}\PYG{n}{test} \PYG{o}{=} \PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{n}{HighBits}\PYG{p}{)} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{hash} \PYG{o}{=} \PYG{p}{((}\PYG{n}{hash} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{n}{test} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{ThreeQuarters}\PYG{p}{))} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{HighBits}\PYG{p}{));}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// ELF Hash Function}
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{ELFHash}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{hash} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{x}    \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{hash} \PYG{o}{=} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{4}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{);}
+		\PYG{k}{if} \PYG{p}{((}\PYG{n}{x} \PYG{o}{=} \PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0xF0000000L}\PYG{p}{)} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{hash} \PYG{o}{\PYGZca{}=} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{24}\PYG{p}{);}
+			\PYG{n}{hash} \PYG{o}{\PYGZam{}=} \PYG{o}{\PYGZti{}}\PYG{n}{x}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// BKDR Hash Function}
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{BKDRHash}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{seed} \PYG{o}{=} \PYG{l+m+mi}{131}\PYG{p}{;} \PYG{c+c1}{// 31 131 1313 13131 131313 etc..}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{hash} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{hash} \PYG{o}{=} \PYG{n}{hash} \PYG{o}{*} \PYG{n}{seed} \PYG{o}{+} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// SDBM Hash Function}
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{SDBMHash}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{hash} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{hash} \PYG{o}{=} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{6}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{16}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{hash}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// DJB Hash Function}
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{DJBHash}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{hash} \PYG{o}{=} \PYG{l+m+mi}{5381}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{hash} \PYG{o}{+=} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{5}\PYG{p}{)} \PYG{o}{+} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// AP Hash Function}
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{APHash}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{hash} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{o}{*}\PYG{n}{str}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{((}\PYG{n}{i} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{hash} \PYG{o}{\PYGZca{}=} \PYG{p}{((}\PYG{n}{hash} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{7}\PYG{p}{)} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{)} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{3}\PYG{p}{));}
+		\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+			\PYG{n}{hash} \PYG{o}{\PYGZca{}=} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{p}{((}\PYG{n}{hash} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{11}\PYG{p}{)} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{o}{*}\PYG{n}{str}\PYG{o}{++}\PYG{p}{)} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{5}\PYG{p}{)));}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{hash} \PYG{o}{\PYGZam{}} \PYG{l+m+mh}{0x7FFFFFFF}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

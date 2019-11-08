@@ -1,0 +1,106 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdlib\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}ctime\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{MAXN}\PYG{o}{=}\PYG{l+m+mi}{100001}\PYG{p}{;}
+\PYG{k}{static} \PYG{k+kt}{void} \PYG{n+nf}{read}\PYG{p}{(}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{n}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{char} \PYG{n}{c}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}+\PYGZsq{}}\PYG{p}{;}\PYG{k+kt}{int} \PYG{n}{x}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{k+kt}{bool} \PYG{n}{flag}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZlt{}}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{o}{||}\PYG{n}{c}\PYG{o}{\PYGZgt{}}\PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{p}{)\PYGZob{}}\PYG{n}{c}\PYG{o}{=}\PYG{n}{getchar}\PYG{p}{();}\PYG{k}{if}\PYG{p}{(}\PYG{n}{c}\PYG{o}{==}\PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{)}\PYG{n}{flag}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;\PYGZcb{}}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZgt{}=}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{c}\PYG{o}{\PYGZlt{}=}\PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{p}{)\PYGZob{}}\PYG{n}{x}\PYG{o}{=}\PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{+}\PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{o}{+}\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{48}\PYG{p}{);}\PYG{n}{c}\PYG{o}{=}\PYG{n}{getchar}\PYG{p}{();\PYGZcb{}}
+	\PYG{n}{flag}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{o}{?}\PYG{n}{n}\PYG{o}{=\PYGZhy{}}\PYG{n+nl}{x}\PYG{p}{:}\PYG{n}{n}\PYG{o}{=}\PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n}{ch}\PYG{p}{[}\PYG{n}{MAXN}\PYG{p}{][}\PYG{l+m+mi}{3}\PYG{p}{];}\PYG{c+c1}{// 0左孩子 1右孩子}
+\PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{[}\PYG{n}{MAXN}\PYG{p}{];}\PYG{c+c1}{// 每一个点的权值}
+\PYG{k+kt}{int} \PYG{n}{pri}\PYG{p}{[}\PYG{n}{MAXN}\PYG{p}{];}\PYG{c+c1}{// 随机生成的附件权值}
+\PYG{k+kt}{int} \PYG{n}{siz}\PYG{p}{[}\PYG{n}{MAXN}\PYG{p}{];}\PYG{c+c1}{// 以i为节点的树的节点数量}
+\PYG{k+kt}{int} \PYG{n}{sz}\PYG{p}{;}\PYG{c+c1}{// 总结点的数量 }
+\PYG{k+kt}{void} \PYG{n+nf}{update}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{siz}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{siz}\PYG{p}{[}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]]}\PYG{o}{+}\PYG{n}{siz}\PYG{p}{[}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]];}
+\PYG{p}{\PYGZcb{}} 
+\PYG{k+kt}{int} \PYG{n+nf}{new\PYGZus{}node}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{siz}\PYG{p}{[}\PYG{o}{++}\PYG{n}{sz}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+c1}{// 新开辟一个节点}
+	\PYG{n}{val}\PYG{p}{[}\PYG{n}{sz}\PYG{p}{]}\PYG{o}{=}\PYG{n}{v}\PYG{p}{;}
+	\PYG{n}{pri}\PYG{p}{[}\PYG{n}{sz}\PYG{p}{]}\PYG{o}{=}\PYG{n}{rand}\PYG{p}{();} 
+	\PYG{k}{return} \PYG{n}{sz}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{merge}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{// 合并 }
+	\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{x}\PYG{o}{||!}\PYG{n}{y}\PYG{p}{)}    \PYG{k}{return} \PYG{n}{x}\PYG{o}{+}\PYG{n}{y}\PYG{p}{;}\PYG{c+c1}{// x和y中必定有一个是0}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{pri}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{\PYGZlt{}}\PYG{n}{pri}\PYG{p}{[}\PYG{n}{y}\PYG{p}{])}\PYG{c+c1}{// 把x加到左边的树上 }
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{ch}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{x}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{y}\PYG{p}{);}\PYG{c+c1}{// 不懂的看GIF图 }
+		\PYG{n}{update}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+		\PYG{k}{return} \PYG{n}{x}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}} 
+	\PYG{k}{else}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{ch}\PYG{p}{[}\PYG{n}{y}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{y}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]);}
+		\PYG{n}{update}\PYG{p}{(}\PYG{n}{y}\PYG{p}{);}
+		\PYG{k}{return} \PYG{n}{y}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n+nf}{split}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{now}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{k}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{y}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{now}\PYG{p}{)} \PYG{n}{x}\PYG{o}{=}\PYG{n}{y}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{// 到达叶子节点}
+	\PYG{k}{else} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{val}\PYG{p}{[}\PYG{n}{now}\PYG{p}{]}\PYG{o}{\PYGZlt{}=}\PYG{n}{k}\PYG{p}{)}\PYG{c+c1}{// 分离右子树    }
+			\PYG{n}{x}\PYG{o}{=}\PYG{n}{now}\PYG{p}{,}\PYG{n}{split}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{k}\PYG{p}{,}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{y}\PYG{p}{);}
+		\PYG{k}{else} 
+			\PYG{n}{y}\PYG{o}{=}\PYG{n}{now}\PYG{p}{,}\PYG{n}{split}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{n}{k}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]);}
+		\PYG{n}{update}\PYG{p}{(}\PYG{n}{now}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}} 
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{kth}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{now}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{k}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{// 查询排名 }
+	\PYG{k}{while}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{k}\PYG{o}{\PYGZlt{}=}\PYG{n}{siz}\PYG{p}{[}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]])}
+			\PYG{n}{now}\PYG{o}{=}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{];}\PYG{c+c1}{// 在左子树中，且数量小于左子树的大小，迭代寻找}
+		\PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{k}\PYG{o}{==}\PYG{n}{siz}\PYG{p}{[}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]]}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{)}
+			\PYG{k}{return} \PYG{n}{now}\PYG{p}{;}\PYG{c+c1}{// 找到了}
+		\PYG{k}{else} 
+			\PYG{n}{k}\PYG{o}{\PYGZhy{}=}\PYG{n}{siz}\PYG{p}{[}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{]]}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{now}\PYG{o}{=}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{];}\PYG{c+c1}{// 去右子树找 }
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{n}{srand}\PYG{p}{((}\PYG{k+kt}{unsigned}\PYG{p}{)}\PYG{n}{time}\PYG{p}{(}\PYG{n+nb}{NULL}\PYG{p}{));}
+	\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{;}
+	\PYG{n}{read}\PYG{p}{(}\PYG{n}{n}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{root}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{,}\PYG{n}{z}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{how}\PYG{p}{,}\PYG{n}{a}\PYG{p}{;}
+		\PYG{n}{read}\PYG{p}{(}\PYG{n}{how}\PYG{p}{);}\PYG{n}{read}\PYG{p}{(}\PYG{n}{a}\PYG{p}{);}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{how}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{// 插入 }
+			\PYG{n}{split}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+			\PYG{n}{root}\PYG{o}{=}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{new\PYGZus{}node}\PYG{p}{(}\PYG{n}{a}\PYG{p}{)),}\PYG{n}{y}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{how}\PYG{o}{==}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{//删除x }
+		\PYG{p}{\PYGZob{}}
+			\PYG{n}{split}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{z}\PYG{p}{);}
+			\PYG{n}{split}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{a}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+			\PYG{n}{y}\PYG{o}{=}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{y}\PYG{p}{][}\PYG{l+m+mi}{0}\PYG{p}{],}\PYG{n}{ch}\PYG{p}{[}\PYG{n}{y}\PYG{p}{][}\PYG{l+m+mi}{1}\PYG{p}{]);}
+			\PYG{n}{root}\PYG{o}{=}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{),}\PYG{n}{z}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{how}\PYG{o}{==}\PYG{l+m+mi}{3}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{//查询x的排名 }
+			\PYG{n}{split}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,}\PYG{n}{a}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+			\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{siz}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{);}
+			\PYG{n}{root}\PYG{o}{=}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{how}\PYG{o}{==}\PYG{l+m+mi}{4}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{// 查询排名为x的数 }
+			\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{val}\PYG{p}{[}\PYG{n}{kth}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,}\PYG{n}{a}\PYG{p}{)]);}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{how}\PYG{o}{==}\PYG{l+m+mi}{5}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{// 求x的前驱 }
+			\PYG{n}{split}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,}\PYG{n}{a}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+			\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{val}\PYG{p}{[}\PYG{n}{kth}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{siz}\PYG{p}{[}\PYG{n}{x}\PYG{p}{])]);}
+			\PYG{n}{root}\PYG{o}{=}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{else} \PYG{k}{if}\PYG{p}{(}\PYG{n}{how}\PYG{o}{==}\PYG{l+m+mi}{6}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{// 求x的后继 }
+			\PYG{n}{split}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+			\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{val}\PYG{p}{[}\PYG{n}{kth}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)]);}
+			\PYG{n}{root}\PYG{o}{=}\PYG{n}{merge}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

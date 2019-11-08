@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{Author: Simon}
+\PYG{c+cm}{平均复杂度O(loglog(p))}
+\PYG{c+cm}{若不存在原根则返回\PYGZhy{}1}
+\PYG{c+cm}{对于所有素数p\PYGZgt{}2,正整数e，当前仅当n=1，2，4，p\PYGZca{}e,2p\PYGZca{}e有原根}
+\PYG{c+cm}{若g是p的原根，对于1\PYGZlt{}=i\PYGZlt{}p, g\PYGZca{}i mod p，互不相同，即唯一。}
+\PYG{c+cm}{*/}
+\PYG{k+kt}{int} \PYG{n+nf}{proot}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{//fac为（p\PYGZhy{}1）的所有质因子。}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{n}{a}\PYG{o}{\PYGZlt{}}\PYG{n}{p}\PYG{p}{;}\PYG{n}{a}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{bool} \PYG{n}{flag}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{v}\PYG{o}{=}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{v}\PYG{p}{,}\PYG{n}{p}\PYG{p}{)}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{//如果存在d，a\PYGZca{}\PYGZob{}p\PYGZhy{}1/d\PYGZcb{} \PYGZpc{}p=1则a不是p的原根。}
+				\PYG{n}{flag}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{k}{break}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{flag}\PYG{p}{)} \PYG{k}{return} \PYG{n}{a}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

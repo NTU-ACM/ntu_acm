@@ -1,0 +1,89 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//Author: XieNaoban}
+\PYG{c+c1}{//在求桥的基础上修改}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}vector\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}set\PYGZgt{}}
+
+\PYG{k}{class} \PYG{n+nc}{CutEdge} \PYG{p}{\PYGZob{}}
+\PYG{k}{private}\PYG{o}{:}
+	\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{clk}\PYG{p}{,} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{Maxn}\PYG{p}{];}
+
+	\PYG{k+kt}{int} \PYG{n+nf}{DFS}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{lowu} \PYG{o}{=} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{o}{++}\PYG{n}{clk}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k}{auto} \PYG{n}{e} \PYG{o}{=} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{begin}\PYG{p}{();} \PYG{n}{e} \PYG{o}{!=} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{end}\PYG{p}{();} \PYG{o}{++}\PYG{n}{e}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{v} \PYG{o}{=} \PYG{o}{*}\PYG{n}{e}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{v}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+				\PYG{k+kt}{int} \PYG{n}{lowv} \PYG{o}{=} \PYG{n}{DFS}\PYG{p}{(}\PYG{n}{v}\PYG{p}{,} \PYG{n}{u}\PYG{p}{);}
+				\PYG{n}{lowu} \PYG{o}{=} \PYG{n}{min}\PYG{p}{(}\PYG{n}{lowu}\PYG{p}{,} \PYG{n}{lowv}\PYG{p}{);}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{lowv} \PYG{o}{\PYGZgt{}} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+					\PYG{n}{Cut}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+					\PYG{n}{Cut}\PYG{p}{[}\PYG{n}{v}\PYG{p}{].}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{u}\PYG{p}{);}
+				\PYG{p}{\PYGZcb{}}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{v}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+				\PYG{k+kt}{int} \PYG{n}{cnt} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{c+c1}{//重复边的处理}
+				\PYG{k}{for} \PYG{p}{(}\PYG{k}{const} \PYG{k}{auto} \PYG{o}{\PYGZam{}}\PYG{n+nl}{e} \PYG{p}{:} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])} \PYG{k}{if} \PYG{p}{(}\PYG{n}{e} \PYG{o}{==} \PYG{n}{v}\PYG{p}{)} \PYG{o}{++}\PYG{n}{cnt}\PYG{p}{;}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{cnt} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{1} \PYG{o}{||} \PYG{n}{v} \PYG{o}{!=} \PYG{n}{f}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+					\PYG{n}{lowu} \PYG{o}{=} \PYG{n}{min}\PYG{p}{(}\PYG{n}{lowu}\PYG{p}{,} \PYG{n}{pre}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]);}
+				\PYG{p}{\PYGZcb{}}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{return} \PYG{n}{lowu}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n+nf}{DFS2}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{id}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{ID}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{id}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k}{const} \PYG{k}{auto} \PYG{o}{\PYGZam{}}\PYG{n+nl}{v} \PYG{p}{:} \PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])} \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{ID}\PYG{p}{[}\PYG{n}{v}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{Cut}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{count}\PYG{p}{(}\PYG{n}{v}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+				\PYG{o}{++}\PYG{n}{Num}\PYG{p}{;}
+				\PYG{n}{G2}\PYG{p}{[}\PYG{n}{id}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{Num}\PYG{p}{);}
+				\PYG{n}{G2}\PYG{p}{[}\PYG{n}{Num}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{id}\PYG{p}{);}
+				\PYG{n}{DFS2}\PYG{p}{(}\PYG{n}{v}\PYG{p}{,} \PYG{n}{Num}\PYG{p}{);}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{k}{else} \PYG{n}{DFS2}\PYG{p}{(}\PYG{n}{v}\PYG{p}{,} \PYG{n}{id}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{public}\PYG{o}{:}
+	\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{G}\PYG{p}{[}\PYG{n}{Maxn}\PYG{p}{];}
+	\PYG{n}{set}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{Cut}\PYG{p}{[}\PYG{n}{Maxn}\PYG{p}{];}
+
+	\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{G2}\PYG{p}{[}\PYG{n}{Maxn}\PYG{p}{];} \PYG{c+c1}{//缩点后的图（以ID为结点）}
+	\PYG{k+kt}{int} \PYG{n}{ID}\PYG{p}{[}\PYG{n}{Maxn}\PYG{p}{];} \PYG{c+c1}{//每个点所在的子图}
+	\PYG{k+kt}{int} \PYG{n}{Num}\PYG{p}{;} \PYG{c+c1}{//ID个数}
+
+	\PYG{k+kt}{void} \PYG{n+nf}{Clear}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{N} \PYG{o}{=} \PYG{n}{n}\PYG{p}{;}
+		\PYG{n}{memset}\PYG{p}{(}\PYG{n}{ID}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{ID}\PYG{p}{));}
+		\PYG{n}{memset}\PYG{p}{(}\PYG{n}{pre}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{pre}\PYG{p}{));}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{G}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+			\PYG{n}{G2}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+			\PYG{n}{Cut}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{clear}\PYG{p}{();}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{clk} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{n}{Num} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n+nf}{AddEdge}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{G}\PYG{p}{[}\PYG{n}{u}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{v}\PYG{p}{);}
+		\PYG{n}{G}\PYG{p}{[}\PYG{n}{v}\PYG{p}{].}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{u}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n+nf}{Find}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+			\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{pre}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+				\PYG{n}{DFS}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{c+c1}{//求边双联通部分}
+	\PYG{k+kt}{int} \PYG{n+nf}{BCC}\PYG{p}{()} \PYG{p}{\PYGZob{}} \PYG{c+c1}{//要求先运行Find}
+		\PYG{n}{DFS2}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{Num}\PYG{p}{);}
+		\PYG{k}{return} \PYG{n}{Num}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

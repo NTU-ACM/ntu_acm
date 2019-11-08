@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//C(n, m) mod p(n 很大 p 较小(不知道能不能为非素数）}
+\PYG{n}{LL} \PYG{n+nf}{Lucas}\PYG{p}{(}\PYG{n}{LL} \PYG{n}{n}\PYG{p}{,} \PYG{n}{LL} \PYG{n}{m}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{pr}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{m} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{C}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZpc{}} \PYG{n}{pr}\PYG{p}{,} \PYG{n}{m} \PYG{o}{\PYGZpc{}} \PYG{n}{pr}\PYG{p}{,} \PYG{n}{pr}\PYG{p}{)} \PYG{o}{*} \PYG{n}{Lucas}\PYG{p}{(}\PYG{n}{n} \PYG{o}{/} \PYG{n}{pr}\PYG{p}{,} \PYG{n}{m} \PYG{o}{/} \PYG{n}{pr}\PYG{p}{,} \PYG{n}{pr}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{pr}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

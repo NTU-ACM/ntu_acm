@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kt}{bool} \PYG{n+nf}{is\PYGZus{}prime}\PYG{p}{(}\PYG{k+kt}{int}  \PYG{n}{u}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{u} \PYG{o}{==}  \PYG{l+m+mi}{0} \PYG{o}{||} \PYG{n}{u} \PYG{o}{==}  \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{u} \PYG{o}{==}  \PYG{l+m+mi}{2}\PYG{p}{)}      \PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{u}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{2} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}      \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=}  \PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{u}\PYG{p}{)} \PYG{p}{;} \PYG{n}{i}\PYG{o}{+=}\PYG{l+m+mi}{2}\PYG{p}{)}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{u}\PYG{o}{\PYGZpc{}}\PYG{n}{i}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)}      \PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

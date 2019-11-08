@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon}
+\PYG{c+cm}{ * 功能: 树形依赖背包问题}
+\PYG{c+cm}{ * 定义dp[u][i]表示，以u为根节点的子树中保留i条树枝所获得的最大权值}
+\PYG{c+cm}{ * 则转移方程为dp[u][i]=max(dp[u][i],dp[left[u]][i\PYGZhy{}j\PYGZhy{}1]+left[u].w+dp[right[u]][j\PYGZhy{}1]+right[u].w)}
+\PYG{c+cm}{ * 表示u的右儿子保留j\PYGZhy{}1条边，u的左儿子保留剩下的i\PYGZhy{}j\PYGZhy{}1条边，此时总共有i\PYGZhy{}2条边，还要加上u\PYGZhy{}left[u],u\PYGZhy{}right[u]这两条边。}
+\PYG{c+cm}{ * 另外一种转移状态dp[u][i]=max(dp[u][i],dp[u][i\PYGZhy{}j]+dp[v][j\PYGZhy{}1]+w)}
+\PYG{c+cm}{ * 跟上面类似，只不过将u与其中一个儿子节点的状态放在一起。此时需要倒序枚举i来保证只选择一次（类似01背包）。}
+\PYG{c+cm}{ * 没有访问过的子树不会保存在dp[u][i]中，所以不会出现重复计算的情况。}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{void} \PYG{n+nf}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{p}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{sz}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k}{auto} \PYG{n+nl}{t}\PYG{p}{:}\PYG{n}{g}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{v}\PYG{o}{=}\PYG{n}{t}\PYG{p}{.}\PYG{n}{first}\PYG{p}{,}\PYG{o}{\PYGZam{}}\PYG{n}{w}\PYG{o}{=}\PYG{n}{t}\PYG{p}{.}\PYG{n}{second}\PYG{p}{;}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{v}\PYG{o}{==}\PYG{n}{p}\PYG{p}{)} \PYG{k}{continue}\PYG{p}{;}
+		\PYG{n}{dfs}\PYG{p}{(}\PYG{n}{v}\PYG{p}{,}\PYG{n}{u}\PYG{p}{);}\PYG{n}{sz}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]}\PYG{o}{+=}\PYG{n}{sz}\PYG{p}{[}\PYG{n}{v}\PYG{p}{];}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{n}{min}\PYG{p}{(}\PYG{n}{q}\PYG{p}{,}\PYG{n}{sz}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]);}\PYG{n}{i}\PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+			\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}=}\PYG{n}{min}\PYG{p}{(}\PYG{n}{sz}\PYG{p}{[}\PYG{n}{v}\PYG{p}{],}\PYG{n}{i}\PYG{p}{);}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+				\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{max}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{p}{],}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{u}\PYG{p}{][}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{j}\PYG{p}{]}\PYG{o}{+}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{v}\PYG{p}{][}\PYG{n}{j}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{+}\PYG{n}{w}\PYG{p}{);}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

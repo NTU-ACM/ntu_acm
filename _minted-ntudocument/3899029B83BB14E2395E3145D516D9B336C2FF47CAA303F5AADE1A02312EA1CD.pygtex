@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//Written by Simon}
+\PYG{c+c1}{//求r以内与n不互质的数的个数}
+\PYG{k+kt}{int} \PYG{n+nf}{solve}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{sum}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{());}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{//枚举质因数的每一种组合}
+		\PYG{k+kt}{int} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{num}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{//求当前组和的积}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZam{}}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{j}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+				\PYG{n}{ans} \PYG{o}{*=} \PYG{n}{fac}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+				\PYG{n}{num}\PYG{o}{++}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{num}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{sum}\PYG{o}{+=}\PYG{n}{r}\PYG{o}{/}\PYG{n}{ans}\PYG{p}{;}\PYG{c+c1}{//如果当前组合个数为奇数个，加上r以内能被ans整除的数的个数}
+		\PYG{k}{else} \PYG{n}{sum}\PYG{o}{\PYGZhy{}=}\PYG{n}{r}\PYG{o}{/}\PYG{n}{ans}\PYG{p}{;}\PYG{c+c1}{//否则减去r以内能被ans整除的数的个数}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{sum}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

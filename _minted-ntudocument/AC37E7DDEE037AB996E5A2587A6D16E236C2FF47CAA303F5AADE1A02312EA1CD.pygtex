@@ -1,0 +1,39 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon}
+\PYG{c+cm}{ * 复杂度: O(log(max(a,b)))}
+\PYG{c+cm}{ * 功能: 求解a*x+b*y=c}
+\PYG{c+cm}{ */}
+
+\PYG{c+cm}{/*解a*x+b*y=gcd(a,b)*/}
+\PYG{k+kt}{int} \PYG{n+nf}{exgcd}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,} \PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{y}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{b} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{x} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{return} \PYG{n}{a}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n}{g} \PYG{o}{=} \PYG{n}{exgcd}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{a} \PYG{o}{\PYGZpc{}} \PYG{n}{b}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{x}\PYG{p}{);}
+	\PYG{n}{y} \PYG{o}{\PYGZhy{}=} \PYG{n}{a} \PYG{o}{/} \PYG{n}{b} \PYG{o}{*} \PYG{n}{x}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{g}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * 解a*x+b*y=c}
+\PYG{c+cm}{ * 假设有一对特解x=n,y=m}
+\PYG{c+cm}{ * 则其通解为：x=n\PYGZhy{}b*t or y=m+a*t}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{void} \PYG{n+nf}{solve}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{A}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{B}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{C}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{g} \PYG{o}{=} \PYG{n}{exgcd}\PYG{p}{(}\PYG{n}{A}\PYG{p}{,} \PYG{n}{B}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{);}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{C} \PYG{o}{\PYGZpc{}} \PYG{n}{g} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}\PYGZhy{}1\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}
+		\PYG{k}{return}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{A} \PYG{o}{/=} \PYG{n}{g}\PYG{p}{,} \PYG{n}{B} \PYG{o}{/=} \PYG{n}{g}\PYG{p}{,} \PYG{n}{C} \PYG{o}{/=} \PYG{n}{g}\PYG{p}{;}
+	\PYG{n}{x} \PYG{o}{*=} \PYG{n}{C} \PYG{o}{\PYGZpc{}} \PYG{n}{B}\PYG{p}{;}
+	\PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{n}{B} \PYG{o}{+} \PYG{n}{B}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{B}\PYG{p}{;} \PYG{n}{y} \PYG{o}{=} \PYG{p}{(}\PYG{n}{C} \PYG{o}{\PYGZhy{}} \PYG{n}{A} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)} \PYG{o}{/} \PYG{n}{B}\PYG{p}{;} \PYG{c+cm}{/*求最小非负整数x，则y=(c\PYGZhy{}a*x)/b */}
+	\PYG{c+c1}{// y *= C \PYGZpc{} A;}
+	\PYG{c+c1}{// y = (y \PYGZpc{} A + A) \PYGZpc{} A; x = (C \PYGZhy{} B * y) / A; /*求最小非负整数y，则x=(c\PYGZhy{}b*y)/a */}
+	\PYG{c+cm}{/*}
+\PYG{c+cm}{		具体题目}
+\PYG{c+cm}{	*/}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,145 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon }
+\PYG{c+cm}{ * 功能: 求解a\PYGZca{}x=b(mod p),其中p可达1e18,但p的质因数个数很少。}
+\PYG{c+cm}{ * 复杂度: 复杂度O(k·e\PYGZus{}i·log(p\PYGZus{}i\PYGZca{}\PYGZob{}e\PYGZus{}i\PYGZcb{})+k·log(p\PYGZus{}i\PYGZca{}\PYGZob{}e\PYGZus{}i\PYGZcb{}))}
+\PYG{c+cm}{ * 其中k为p\PYGZhy{}1的质因子的个数，e\PYGZus{}i为p\PYGZhy{}1的质因子的最高幂次。p\PYGZus{}i最高幂次对应的质因子。}
+\PYG{c+cm}{ */}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{int} \PYG{n}{Int}\PYG{p}{;}
+\PYG{c+cp}{\PYGZsh{}define int \PYGZus{}\PYGZus{}int128\PYGZus{}t  }
+\PYG{c+cp}{\PYGZsh{}define INF 0x3f3f3f3f}
+\PYG{c+cp}{\PYGZsh{}define maxn 200005}
+\PYG{k}{struct} \PYG{n}{Istream} \PYG{p}{\PYGZob{}}
+	\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T}\PYG{o}{\PYGZgt{}}
+	\PYG{n}{Istream} \PYG{o}{\PYGZam{}}\PYG{k}{operator} \PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{p}{(}\PYG{n}{T} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{static} \PYG{k+kt}{char} \PYG{n}{ch}\PYG{p}{;}\PYG{k}{static} \PYG{k+kt}{bool} \PYG{n}{neg}\PYG{p}{;}
+		\PYG{k}{for}\PYG{p}{(}\PYG{n}{ch}\PYG{o}{=}\PYG{n}{neg}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{ch}\PYG{o}{\PYGZlt{}}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}} \PYG{o}{||} \PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{o}{\PYGZlt{}}\PYG{n}{ch}\PYG{p}{;}\PYG{n}{neg}\PYG{o}{|=}\PYG{n}{ch}\PYG{o}{==}\PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{,}\PYG{n}{ch}\PYG{o}{=}\PYG{n}{getchar}\PYG{p}{());}
+		\PYG{k}{for}\PYG{p}{(}\PYG{n}{x}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{o}{\PYGZlt{}=}\PYG{n}{ch} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{ch}\PYG{o}{\PYGZlt{}=}\PYG{l+s+sc}{\PYGZsq{}9\PYGZsq{}}\PYG{p}{;(}\PYG{n}{x}\PYG{o}{*=}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{o}{+=}\PYG{n}{ch}\PYG{o}{\PYGZhy{}}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{,}\PYG{n}{ch}\PYG{o}{=}\PYG{n}{getchar}\PYG{p}{());}
+		\PYG{n}{x}\PYG{o}{=}\PYG{n}{neg}\PYG{o}{?\PYGZhy{}}\PYG{n+nl}{x}\PYG{p}{:}\PYG{n}{x}\PYG{p}{;}
+		\PYG{k}{return} \PYG{o}{*}\PYG{k}{this}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{n}{fin}\PYG{p}{;}
+\PYG{k}{struct} \PYG{n}{Ostream} \PYG{p}{\PYGZob{}}
+	\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T}\PYG{o}{\PYGZgt{}}
+	\PYG{n}{Ostream} \PYG{o}{\PYGZam{}}\PYG{k}{operator} \PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{p}{(}\PYG{n}{T} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{x}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{putchar}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{),}\PYG{n}{x}\PYG{o}{=\PYGZhy{}}\PYG{n}{x}\PYG{p}{);}
+		\PYG{k}{static} \PYG{k+kt}{char} \PYG{n}{stack}\PYG{p}{[}\PYG{l+m+mi}{233}\PYG{p}{];}\PYG{k}{static} \PYG{k+kt}{int} \PYG{n}{top}\PYG{p}{;}
+		\PYG{k}{for}\PYG{p}{(}\PYG{n}{top}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{x}\PYG{p}{;}\PYG{n}{stack}\PYG{p}{[}\PYG{o}{++}\PYG{n}{top}\PYG{p}{]}\PYG{o}{=}\PYG{n}{x}\PYG{o}{\PYGZpc{}}\PYG{l+m+mi}{10}\PYG{o}{+}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{,}\PYG{n}{x}\PYG{o}{/=}\PYG{l+m+mi}{10}\PYG{p}{);}
+		\PYG{k}{for}\PYG{p}{(}\PYG{n}{top}\PYG{o}{==}\PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{stack}\PYG{p}{[}\PYG{n}{top}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{);}\PYG{n}{top}\PYG{p}{;}\PYG{n}{putchar}\PYG{p}{(}\PYG{n}{stack}\PYG{p}{[}\PYG{n}{top}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{]));}
+		\PYG{k}{return} \PYG{o}{*}\PYG{k}{this}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{n}{Ostream} \PYG{o}{\PYGZam{}}\PYG{k}{operator} \PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{ch}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{putchar}\PYG{p}{(}\PYG{n}{ch}\PYG{p}{);}
+		\PYG{k}{return} \PYG{o}{*}\PYG{k}{this}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{n}{fout}\PYG{p}{;}
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZgt{}}\PYG{n}{fac}\PYG{p}{;}
+\PYG{k+kt}{void} \PYG{n+nf}{solve}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)\PYGZob{}} \PYG{c+cm}{/*求解质因数 */}
+	\PYG{n}{fac}\PYG{p}{.}\PYG{n}{clear}\PYG{p}{();}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{n}{i}\PYG{o}{*}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{tmp}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZpc{}}\PYG{n}{i}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+			\PYG{k}{while}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZpc{}}\PYG{n}{i}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{n}\PYG{o}{/=}\PYG{n}{i}\PYG{p}{,}\PYG{n}{tmp}\PYG{o}{++}\PYG{p}{;}
+			\PYG{n}{fac}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(\PYGZob{}}\PYG{n}{i}\PYG{p}{,}\PYG{n}{tmp}\PYG{p}{\PYGZcb{});}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{n}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{fac}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(\PYGZob{}}\PYG{n}{n}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{\PYGZcb{});}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{fpow}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{mod}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{a}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{b}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{(}\PYG{n}{ans}\PYG{o}{*=}\PYG{n}{a}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}
+		\PYG{p}{(}\PYG{n}{a}\PYG{o}{*=}\PYG{n}{a}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}
+		\PYG{n}{b}\PYG{o}{\PYGZgt{}\PYGZgt{}=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{proot}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{//求原根}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{n}{a}\PYG{o}{\PYGZlt{}}\PYG{n}{p}\PYG{p}{;}\PYG{n}{a}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{bool} \PYG{n}{flag}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{v}\PYG{o}{=}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{first}\PYG{p}{;}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{v}\PYG{p}{,}\PYG{n}{p}\PYG{p}{)}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{p}{)\PYGZob{}}
+				\PYG{n}{flag}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{k}{break}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{flag}\PYG{p}{)} \PYG{k}{return} \PYG{n}{a}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{cal}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{,}\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}}\PYG{n}{fac}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{t}\PYG{o}{=}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{first}\PYG{p}{;}
+	\PYG{n}{map}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}}\PYG{n}{mp}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{first}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{mp}\PYG{p}{[}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{i}\PYG{o}{*}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{t}\PYG{p}{,}\PYG{n}{p}\PYG{p}{)]}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{second}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{c}\PYG{o}{=}\PYG{n}{mp}\PYG{p}{[}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{t}\PYG{p}{,}\PYG{n}{p}\PYG{p}{)];}
+		\PYG{p}{(}\PYG{n}{ans}\PYG{o}{+=}\PYG{n}{c}\PYG{o}{*}\PYG{n}{t}\PYG{o}{/}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{first}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{p}\PYG{p}{;}
+		\PYG{p}{(}\PYG{n}{b}\PYG{o}{*=}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{c}\PYG{o}{*}\PYG{n}{t}\PYG{o}{/}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{first}\PYG{p}{,}\PYG{n}{p}\PYG{p}{),}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{n}{p}\PYG{p}{))}\PYG{o}{\PYGZpc{}=}\PYG{n}{p}\PYG{p}{;}
+		\PYG{p}{(}\PYG{n}{t}\PYG{o}{*=}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{first}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{p}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{exgcd}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{y}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{x}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{y}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{return} \PYG{n}{a}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n}{g}\PYG{o}{=}\PYG{n}{exgcd}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,}\PYG{n}{a}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{,}\PYG{n}{y}\PYG{p}{,}\PYG{n}{x}\PYG{p}{);}
+	\PYG{n}{y}\PYG{o}{\PYGZhy{}=}\PYG{n}{a}\PYG{o}{/}\PYG{n}{b}\PYG{o}{*}\PYG{n}{x}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{g}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{excrt}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{mi}\PYG{p}{[],}\PYG{k+kt}{int} \PYG{n}{ai}\PYG{p}{[],}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{//扩展中国剩余定理}
+	\PYG{k+kt}{int} \PYG{n}{M}\PYG{o}{=}\PYG{n}{mi}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{ans}\PYG{o}{=}\PYG{n}{ai}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{a}\PYG{o}{=}\PYG{n}{M}\PYG{p}{,}\PYG{n}{b}\PYG{o}{=}\PYG{n}{mi}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],}\PYG{n}{c}\PYG{o}{=}\PYG{p}{((}\PYG{n}{ai}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{ans}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{o}{+}\PYG{n}{b}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{;}
+		\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{;}
+		\PYG{k+kt}{int} \PYG{n}{gcd}\PYG{o}{=}\PYG{n}{exgcd}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZpc{}}\PYG{n}{gcd}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{n}{a}\PYG{o}{/=}\PYG{n}{gcd}\PYG{p}{,}\PYG{n}{b}\PYG{o}{/}\PYG{n}{gcd}\PYG{p}{;}
+		\PYG{p}{(}\PYG{n}{x}\PYG{o}{*=}\PYG{p}{(}\PYG{n}{c}\PYG{o}{/}\PYG{n}{gcd}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{b}\PYG{p}{;} \PYG{n}{x}\PYG{o}{=}\PYG{p}{(}\PYG{n}{x}\PYG{o}{+}\PYG{n}{b}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{;}
+		\PYG{n}{ans}\PYG{o}{+=}\PYG{n}{x}\PYG{o}{*}\PYG{n}{M}\PYG{p}{;}
+		\PYG{n}{M}\PYG{o}{*=}\PYG{n}{b}\PYG{p}{;}
+		\PYG{n}{ans}\PYG{o}{\PYGZpc{}=}\PYG{n}{M}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{ans}\PYG{o}{+}\PYG{n}{M}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{M}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{pohlig\PYGZus{}hellman}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{,}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZgt{}}\PYG{n}{fac}\PYG{p}{)\PYGZob{}} \PYG{c+cm}{/*求解a\PYGZca{}x=b(mod p),a为p的原根 */}
+	\PYG{k+kt}{int} \PYG{n}{mi}\PYG{p}{[}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{()}\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{},}\PYG{n}{ai}\PYG{p}{[}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{()}\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{]}\PYG{o}{=}\PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{};}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{mi}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{first}\PYG{p}{,}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{second}\PYG{p}{,}\PYG{n}{p}\PYG{p}{);} \PYG{c+cm}{/*pi\PYGZca{}\PYGZob{}ei\PYGZcb{} */}
+		\PYG{n}{ai}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{n}{cal}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{p}\PYG{p}{,}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);} \PYG{c+cm}{/*求解xi=x (mod pi\PYGZca{}\PYGZob{}ei\PYGZcb{}) */}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{excrt}\PYG{p}{(}\PYG{n}{mi}\PYG{p}{,}\PYG{n}{ai}\PYG{p}{,}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{());} \PYG{c+cm}{/*扩展中国剩余定理合并同余方程 */}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{Int} \PYG{n+nf}{main}\PYG{p}{()\PYGZob{}}
+	\PYG{n}{Int} \PYG{n}{T}\PYG{p}{;}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{T}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{;}\PYG{n}{fin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{p}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{a}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{b}\PYG{p}{;} \PYG{c+cm}{/*求a\PYGZca{}x=b(mod p) */}
+		\PYG{n}{solve}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);} \PYG{c+cm}{/*求得p\PYGZhy{}1的质因数，及其幂次 */}
+		\PYG{k+kt}{int} \PYG{n}{root}\PYG{o}{=}\PYG{n}{proot}\PYG{p}{(}\PYG{n}{p}\PYG{p}{);} \PYG{c+cm}{/*求得p的原根 */}
+		\PYG{k+kt}{int} \PYG{n}{pa}\PYG{o}{=}\PYG{n}{pohlig\PYGZus{}hellman}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,}\PYG{n}{a}\PYG{p}{,}\PYG{n}{p}\PYG{p}{,}\PYG{n}{fac}\PYG{p}{)}\PYG{c+cm}{/*g\PYGZca{}\PYGZob{}pa\PYGZcb{}=a(mod p) */}\PYG{p}{,}\PYG{n}{pb}\PYG{o}{=}\PYG{n}{pohlig\PYGZus{}hellman}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{p}\PYG{p}{,}\PYG{n}{fac}\PYG{p}{);}\PYG{c+cm}{/*g\PYGZca{}\PYGZob{}pb\PYGZcb{}=b(mod p) */}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{pa}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}} \PYG{c+cm}{/*转换为求g\PYGZca{}\PYGZob{}pa·x\PYGZcb{}=g\PYGZca{}\PYGZob{}pb\PYGZcb{}(mod p),由欧拉定理得pa·x=pb(mod (p\PYGZhy{}1))*/}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{pb}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{fout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+			\PYG{k}{else} \PYG{n}{fout}\PYG{o}{\PYGZlt{}\PYGZlt{}\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{else}\PYG{p}{\PYGZob{}} \PYG{c+cm}{/*求解 pa·x=pb(mod (p\PYGZhy{}1)) */}
+			\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{gcd}\PYG{o}{=}\PYG{n}{exgcd}\PYG{p}{(}\PYG{n}{pa}\PYG{p}{,}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{pb}\PYG{o}{\PYGZpc{}}\PYG{n}{gcd}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+				\PYG{n}{fout}\PYG{o}{\PYGZlt{}\PYGZlt{}\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+				\PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+				\PYG{k}{continue}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{k+kt}{int} \PYG{n}{B}\PYG{o}{=}\PYG{p}{(}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{gcd}\PYG{p}{;}\PYG{n}{pa}\PYG{o}{/=}\PYG{n}{gcd}\PYG{p}{;}
+			\PYG{n}{x}\PYG{o}{*=}\PYG{n}{pb}\PYG{o}{/}\PYG{n}{gcd}\PYG{p}{;}
+			\PYG{n}{fout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{p}{((}\PYG{n}{x}\PYG{o}{\PYGZpc{}}\PYG{n}{B}\PYG{o}{+}\PYG{n}{B}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{B}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{cin}\PYG{p}{.}\PYG{n}{get}\PYG{p}{(),}\PYG{n}{cin}\PYG{p}{.}\PYG{n}{get}\PYG{p}{();}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

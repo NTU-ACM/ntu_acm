@@ -1,0 +1,49 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//Author:marsed}
+\PYG{c+cm}{/*}
+\PYG{c+cm}{*将区间分成左右两部分 递归处理}
+\PYG{c+cm}{一层递归计算当前左区间的修改操作对右区间的查询操作的影响}
+\PYG{c+cm}{当flag为1代表修改操作 为0代表查询操作}
+\PYG{c+cm}{*/}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}define mid (l + r)/2}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}Edit\PYGZdq{}}\PYG{p}{;}
+
+\PYG{k}{struct} \PYG{n}{Node} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{id}\PYG{p}{,} \PYG{n}{x1}\PYG{p}{,}\PYG{n}{x2}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{k}{operator}\PYG{o}{\PYGZlt{}}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Node} \PYG{o}{\PYGZam{}}\PYG{n}{b}\PYG{p}{)} \PYG{p}{\PYGZob{}}   \PYG{c+c1}{//按照参数的优先级排序}
+		\PYG{k}{return} \PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{n}{Node} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{tmp}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{cdq}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{l} \PYG{o}{==} \PYG{n}{r}\PYG{p}{)} \PYG{k}{return}\PYG{p}{;}
+	\PYG{n}{cdq}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,} \PYG{n}{mid}\PYG{p}{);} \PYG{n}{cdq}\PYG{p}{(}\PYG{n}{mid} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{r}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{p} \PYG{o}{=} \PYG{n}{l}\PYG{p}{,} \PYG{n}{q} \PYG{o}{=} \PYG{n}{mid} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{cnt} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{p} \PYG{o}{\PYGZlt{}=} \PYG{n}{mid}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{q} \PYG{o}{\PYGZlt{}=} \PYG{n}{r}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{nod}\PYG{p}{[}\PYG{n}{p}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{q}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{nod}\PYG{p}{[}\PYG{n}{p}\PYG{p}{].}\PYG{n}{flag}\PYG{p}{)} \PYG{p}{;}    \PYG{c+c1}{//左区间里的修改操作会对右区间的查询操作有影响 计算影响}
+			\PYG{n}{tmp}\PYG{p}{[}\PYG{n}{cnt}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{p}\PYG{o}{++}\PYG{p}{];}
+		\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+			\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{nod}\PYG{p}{[}\PYG{n}{q}\PYG{p}{].}\PYG{n}{flag}\PYG{p}{)} \PYG{p}{;}\PYG{c+c1}{//计算右区间的查询操作的值}
+			\PYG{n}{tmp}\PYG{p}{[}\PYG{n}{cnt}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{q}\PYG{o}{++}\PYG{p}{];}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{p} \PYG{o}{\PYGZlt{}=} \PYG{n}{mid}\PYG{p}{)} \PYG{n}{tmp}\PYG{p}{[}\PYG{n}{cnt}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{p}\PYG{o}{++}\PYG{p}{];}
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{q} \PYG{o}{\PYGZlt{}=} \PYG{n}{r}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{nod}\PYG{p}{[}\PYG{n}{q}\PYG{p}{].}\PYG{n}{flag}\PYG{p}{)} \PYG{p}{;}
+		\PYG{n}{tmp}\PYG{p}{[}\PYG{n}{cnt}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{q}\PYG{o}{++}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{l}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{r}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+		\PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{tmp}\PYG{p}{[}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{n}{l}\PYG{p}{];}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{cdq}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{q}\PYG{p}{);}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

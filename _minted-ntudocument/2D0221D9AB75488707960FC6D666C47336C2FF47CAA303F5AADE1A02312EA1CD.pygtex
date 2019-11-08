@@ -1,0 +1,35 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon}
+\PYG{c+cm}{ * 功能: 单调栈求某子序列中的最小值乘以子序列所有元素和最大}
+\PYG{c+cm}{ * 最基础的应用就是给定一组数，针对每个数，寻找它和它右边第一个比它大的数之间有多少个数。}
+\PYG{c+cm}{ * 给定一序列，寻找某一子序列，使得子序列中的最小值乘以子序列的长度最大。}
+\PYG{c+cm}{ * 给定一序列，寻找某一子序列，使得子序列中的最小值乘以子序列所有元素和最大。}
+\PYG{c+cm}{ * 给定一序列，在限定每个字母出现次数的情况下，求其字典序最小的k长子序列。可求后缀和，}
+\PYG{c+cm}{ *      当一个字母出栈时，判断此后位置当前字母的个数是否满足限制条件，若满足出栈，否则不出栈。}
+\PYG{c+cm}{ * 复杂度: O(n)}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int} \PYG{n}{Stack}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{lft}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{top}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{n}{a}\PYG{p}{[}\PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{n}{INF}\PYG{p}{;}
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{t}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}\PYG{n}{lft}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{top}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZlt{}}\PYG{n}{a}\PYG{p}{[}\PYG{n}{Stack}\PYG{p}{[}\PYG{n}{top}\PYG{p}{]])\PYGZob{}}
+		\PYG{n}{t}\PYG{o}{=}\PYG{n}{Stack}\PYG{p}{[}\PYG{n}{top}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{];}
+		\PYG{n}{ans}\PYG{o}{=}\PYG{n}{max}\PYG{p}{(}\PYG{n}{ans}\PYG{p}{,(}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{lft}\PYG{p}{[}\PYG{n}{t}\PYG{p}{])}\PYG{o}{*}\PYG{n}{a}\PYG{p}{[}\PYG{n}{t}\PYG{p}{]);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{Stack}\PYG{p}{[}\PYG{o}{++}\PYG{n}{top}\PYG{p}{]}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}
+	\PYG{n}{lft}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{lft}\PYG{p}{[}\PYG{n}{t}\PYG{p}{];}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon}
+\PYG{c+cm}{ * 功能: 求区间长度小于k的区间最小值}
+\PYG{c+cm}{ * 复杂度: O(n)}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int} \PYG{n}{q}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{l}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{r}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{l}\PYG{o}{\PYGZlt{}=}\PYG{n}{r}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZlt{}=}\PYG{n}{a}\PYG{p}{[}\PYG{n}{q}\PYG{p}{[}\PYG{n}{r}\PYG{p}{]])} \PYG{n}{r}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;} \PYG{c+c1}{//维护单调递增区间}
+	\PYG{n}{q}\PYG{p}{[}\PYG{o}{++}\PYG{n}{r}\PYG{p}{]}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{l}\PYG{o}{\PYGZlt{}=}\PYG{n}{r}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{q}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]}\PYG{o}{\PYGZgt{}=}\PYG{n}{k}\PYG{p}{)} \PYG{n}{l}\PYG{o}{++}\PYG{p}{;} \PYG{c+c1}{//维护不大于k的区间长度}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{k}\PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{n}{a}\PYG{p}{[}\PYG{n}{q}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]];}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

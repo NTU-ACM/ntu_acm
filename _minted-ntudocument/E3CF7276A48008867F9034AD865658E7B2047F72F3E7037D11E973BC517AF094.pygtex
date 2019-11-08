@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kn}{import} \PYG{n+nn}{java.math.BigInteger}\PYG{o}{;}
+
+\PYG{k+kd}{public} \PYG{k+kd}{class} \PYG{n+nc}{Main} \PYG{o}{\PYGZob{}}
+	\PYG{k+kd}{static} \PYG{n}{BigInteger} \PYG{n}{n}\PYG{o}{,}\PYG{n}{mod}\PYG{o}{;}
+	\PYG{k+kd}{public} \PYG{k+kd}{static} \PYG{n}{BigInteger} \PYG{n+nf}{Sqrt}\PYG{o}{(}\PYG{n}{BigInteger} \PYG{n}{c}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{k}{if}\PYG{o}{(}\PYG{n}{c}\PYG{o}{.}\PYG{n+na}{compareTo}\PYG{o}{(}\PYG{n}{BigInteger}\PYG{o}{.}\PYG{n+na}{ONE}\PYG{o}{)\PYGZlt{}=}\PYG{l+m+mi}{0}\PYG{o}{)}
+			\PYG{k}{return} \PYG{n}{c}\PYG{o}{;}
+		\PYG{n}{BigInteger} \PYG{n}{temp}\PYG{o}{=}\PYG{k+kc}{null}\PYG{o}{,}\PYG{n}{x}\PYG{o}{;}
+		\PYG{n}{x}\PYG{o}{=}\PYG{n}{c}\PYG{o}{.}\PYG{n+na}{shiftRight}\PYG{o}{((}\PYG{n}{c}\PYG{o}{.}\PYG{n+na}{bitLength}\PYG{o}{()+}\PYG{l+m+mi}{1}\PYG{o}{)/}\PYG{l+m+mi}{2}\PYG{o}{);}
+		\PYG{k}{while}\PYG{o}{(}\PYG{k+kc}{true}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+			\PYG{n}{temp}\PYG{o}{=}\PYG{n}{x}\PYG{o}{;}
+			\PYG{n}{x}\PYG{o}{=}\PYG{n}{x}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{n}{c}\PYG{o}{.}\PYG{n+na}{divide}\PYG{o}{(}\PYG{n}{x}\PYG{o}{)).}\PYG{n+na}{shiftRight}\PYG{o}{(}\PYG{l+m+mi}{1}\PYG{o}{);}
+			\PYG{k}{if}\PYG{o}{(}\PYG{n}{temp}\PYG{o}{.}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{x}\PYG{o}{)||}\PYG{n}{x}\PYG{o}{.}\PYG{n+na}{add}\PYG{o}{(}\PYG{n}{BigInteger}\PYG{o}{.}\PYG{n+na}{ONE}\PYG{o}{).}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{temp}\PYG{o}{))} \PYG{k}{break}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+		\PYG{k}{return} \PYG{n}{x}\PYG{o}{;}
+	\PYG{o}{\PYGZcb{}}
+	\PYG{k+kd}{public} \PYG{k+kd}{static} \PYG{k+kt}{boolean} \PYG{n+nf}{judge}\PYG{o}{(}\PYG{n}{BigInteger} \PYG{n}{c}\PYG{o}{)} \PYG{o}{\PYGZob{}}
+		\PYG{n}{BigInteger} \PYG{n}{x}\PYG{o}{=}\PYG{n}{Sqrt}\PYG{o}{(}\PYG{n}{c}\PYG{o}{);}
+		\PYG{k}{if}\PYG{o}{(}\PYG{n}{x}\PYG{o}{.}\PYG{n+na}{multiply}\PYG{o}{(}\PYG{n}{x}\PYG{o}{).}\PYG{n+na}{equals}\PYG{o}{(}\PYG{n}{c}\PYG{o}{))} \PYG{o}{\PYGZob{}}
+			\PYG{k}{return} \PYG{k+kc}{true}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}} \PYG{k}{else} \PYG{o}{\PYGZob{}}
+			\PYG{k}{return} \PYG{k+kc}{false}\PYG{o}{;}
+		\PYG{o}{\PYGZcb{}}
+	\PYG{o}{\PYGZcb{}}
+\PYG{o}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import subprocess
 code_dir = "code"
+
 title = "NTU ACM-ICPC Team Notebook"
 
 def get_sections():
@@ -38,7 +39,7 @@ def get_style(filename):
     elif ext in ['tex']:
         return 'tex'
     else:
-        return 'txt'
+        return 'text'
 
 # TODO:  check if this is everything we need
 def texify(s):
@@ -49,16 +50,18 @@ def texify(s):
 def get_tex(sections):
     tex = ''
     for (section_name, subsections) in sections:
-        tex += '\\chapter{%s}\n' % texify(section_name)
+        tex += '\\section{%s} \n' % texify(section_name)
         for (filename, subsection_name) in subsections:
-            tex += '\\section{%s}\n' % texify(subsection_name)
+            tex += '\\subsection{%s} \n' % texify(subsection_name)
             filetype = get_style(filename)
+            tex += '\n'
             if filetype == 'tex':
-                tex += '\\raggedbottom\\input %s/%s\n' % (code_dir, filename)
+                tex += '\\input{%s/%s}\n' % (code_dir, filename)
+                tex += '\n'
             else:
-                tex += '\\raggedbottom\\lstinputlisting[style=%s]{%s/%s}\n' % (get_style(filename), code_dir, filename)
-            tex += '\\hrulefill\n'
-        tex += '\n'
+                tex += '\\inputminted{%s}{%s/%s}\n' % (get_style(filename), code_dir, filename)
+                tex += '\n'
+        tex += '\\newpage'
     return tex
 
 if __name__ == "__main__":
@@ -66,5 +69,5 @@ if __name__ == "__main__":
     tex = get_tex(sections)
     with open('contents.tex', 'w') as f:
         f.write(tex)
-    latexmk_options = ["latexmk", "-xelatex", "ntudocument.tex"]
+    latexmk_options = ["latexmk", "-xelatex", "-shell-escape", "ntudocument.tex"]
     subprocess.call(latexmk_options)

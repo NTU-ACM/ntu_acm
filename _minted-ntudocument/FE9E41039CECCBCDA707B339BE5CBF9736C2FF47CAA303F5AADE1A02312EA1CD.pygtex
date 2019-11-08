@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kt}{char} \PYG{n}{tmp}\PYG{p}{[}\PYG{n}{maxn}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{1}\PYG{p}{];}\PYG{c+c1}{//转换后的字符串}
+\PYG{k+kt}{int} \PYG{n}{Len}\PYG{p}{[}\PYG{n}{maxn}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+m+mi}{1}\PYG{p}{];}
+\PYG{c+c1}{//转换原始串}
+\PYG{k+kt}{int} \PYG{n+nf}{init}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{st}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,}\PYG{n}{len}\PYG{o}{=}\PYG{n}{strlen}\PYG{p}{(}\PYG{n}{st}\PYG{p}{);}
+	\PYG{n}{tmp}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}@\PYGZsq{}}\PYG{p}{;}\PYG{c+c1}{//字符串开头增加一个特殊字符，防止越界}
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{len}\PYG{p}{;} \PYG{n}{i}\PYG{o}{+=}\PYG{l+m+mi}{2}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{tmp}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}\PYGZsh{}\PYGZsq{}}\PYG{p}{;}
+		\PYG{n}{tmp}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{n}{st}\PYG{p}{[}\PYG{n}{i}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{tmp}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{len}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}\PYGZsh{}\PYGZsq{}}\PYG{p}{;}
+	\PYG{n}{tmp}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{len}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{=}\PYG{l+s+sc}{\PYGZsq{}\PYGZdl{}\PYGZsq{}}\PYG{p}{;}\PYG{c+c1}{//字符串结尾加一个字符，防止越界}
+	\PYG{n}{tmp}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{len}\PYG{o}{+}\PYG{l+m+mi}{3}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{return} \PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{len}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+c1}{//返回转换字符串的长度}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{//Manacher算法计算过程}
+\PYG{n}{ll} \PYG{n+nf}{manacher}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{st}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{len}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{mx}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{po}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//mx即为当前计算回文串最右边字符的最大值}
+	\PYG{n}{ll} \PYG{n}{num}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{len}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{mx}\PYG{o}{\PYGZgt{}}\PYG{n}{i}\PYG{p}{)}
+			\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{n}{min}\PYG{p}{(}\PYG{n}{mx}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{,}\PYG{n}{Len}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{po}\PYG{o}{\PYGZhy{}}\PYG{n}{i}\PYG{p}{]);}\PYG{c+c1}{//在Len[j]和mx\PYGZhy{}i中取个小}
+		\PYG{k}{else}
+			\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+c1}{//如果i\PYGZgt{}=mx，要从头开始匹配}
+		\PYG{k}{while}\PYG{p}{(}\PYG{n}{st}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]]}\PYG{o}{==}\PYG{n}{st}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]])}
+			\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{++}\PYG{p}{;}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{+}\PYG{n}{i}\PYG{o}{\PYGZgt{}}\PYG{n}{mx}\PYG{p}{)} \PYG{p}{\PYGZob{}}\PYG{c+c1}{//若新计算的回文串右端点位置大于mx，要更新po和mx的值}
+			\PYG{n}{mx}\PYG{o}{=}\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{+}\PYG{n}{i}\PYG{p}{;}
+			\PYG{n}{po}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k+kt}{int} \PYG{n}{l}\PYG{o}{=}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{;}
+		\PYG{k+kt}{int} \PYG{n}{r}\PYG{o}{=}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{o}{+}\PYG{p}{(}\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{;}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+			\PYG{n}{r}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+		\PYG{n}{num}\PYG{o}{+=}\PYG{p}{((}\PYG{n}{r}\PYG{o}{\PYGZhy{}}\PYG{n}{l}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{p}{);}
+		\PYG{n}{ans}\PYG{o}{=}\PYG{n}{max}\PYG{p}{(}\PYG{n}{ans}\PYG{p}{,}\PYG{n}{Len}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{num}\PYG{p}{;}  \PYG{c+c1}{//返回回文子串的个数}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+c1}{//返回Len[i]中的最大值\PYGZhy{}1即为原串的最长回文子串额长度}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

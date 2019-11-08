@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//单调队列求区间最小值}
+\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{q}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{num}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{0}\PYG{p}{\PYGZcb{};}
+\PYG{k+kt}{int} \PYG{n}{Fmin}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{k}\PYG{p}{,} \PYG{n}{n}\PYG{p}{,} \PYG{n}{head}\PYG{p}{,} \PYG{n}{tail}\PYG{p}{;}
+
+\PYG{k+kt}{void} \PYG{n+nf}{DPmin}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{n}{head} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{tail} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{num}\PYG{p}{[}\PYG{n}{head}\PYG{p}{]} \PYG{o}{\PYGZlt{}} \PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{k}\PYG{o}{+}\PYG{l+m+mi}{1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{head} \PYG{o}{\PYGZlt{}=} \PYG{n}{tail}\PYG{p}{)} \PYG{n}{head}\PYG{o}{++}\PYG{p}{;}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZlt{}=} \PYG{n}{q}\PYG{p}{[}\PYG{n}{tail}\PYG{p}{]} \PYG{c+cm}{/*区间最大值此处改为\PYGZgt{}=*/} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{head} \PYG{o}{\PYGZlt{}=} \PYG{n}{tail}\PYG{p}{)} \PYG{n}{tail}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{;}
+		\PYG{n}{num}\PYG{p}{[}\PYG{o}{++}\PYG{n}{tail}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;} 
+		\PYG{n}{q}\PYG{p}{[}\PYG{n}{tail}\PYG{p}{]} \PYG{o}{=} \PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+		\PYG{n}{Fmin}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{q}\PYG{p}{[}\PYG{n}{head}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

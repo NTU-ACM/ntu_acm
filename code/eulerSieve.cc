@@ -1,5 +1,3 @@
-#include <iostream>
-
 const int maxn = "Edit";
 int flag[maxn], primes[maxn], totPrimes;
 

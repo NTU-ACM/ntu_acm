@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n}{ll} \PYG{n+nf}{gcd}\PYG{p}{(}\PYG{n}{ll} \PYG{n}{a}\PYG{p}{,} \PYG{n}{ll} \PYG{n}{b}\PYG{p}{)} \PYG{p}{\PYGZob{}} 
+	\PYG{n}{ll} \PYG{n}{t}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{b} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}} 
+		\PYG{n}{t}\PYG{o}{=}\PYG{n}{a}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{;}
+		\PYG{n}{a}\PYG{o}{=}\PYG{n}{b}\PYG{p}{;}
+		\PYG{n}{b}\PYG{o}{=}\PYG{n}{t}\PYG{p}{;} 
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{a}\PYG{p}{;} 
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

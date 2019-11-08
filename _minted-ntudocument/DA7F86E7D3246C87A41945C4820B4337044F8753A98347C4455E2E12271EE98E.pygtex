@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+完全图: t(t\PYGZhy{}1)(t\PYGZhy{}2)...(t\PYGZhy{}(n\PYGZhy{}1))
+有n个顶点的树: t(t\PYGZhy{}1)\PYGZca{}(n\PYGZhy{}1)
+环: (t\PYGZhy{}1)\PYGZca{}n + (\PYGZhy{}1)\PYGZca{}n(t\PYGZhy{}1)
+加边减边: P(G)=P(G+e)+P(G•e)
+\end{Verbatim}

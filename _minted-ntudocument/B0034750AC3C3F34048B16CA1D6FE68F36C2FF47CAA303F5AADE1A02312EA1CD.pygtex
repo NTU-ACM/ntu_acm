@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n}{ll} \PYG{n+nf}{C}\PYG{p}{(}\PYG{k}{const} \PYG{n}{ll} \PYG{o}{\PYGZam{}}\PYG{n}{n}\PYG{p}{,} \PYG{k}{const} \PYG{n}{ll} \PYG{o}{\PYGZam{}}\PYG{n}{m}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{pr}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{ll} \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{m}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{ll} \PYG{n}{a} \PYG{o}{=} \PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZhy{}} \PYG{n}{m} \PYG{o}{+} \PYG{n}{i}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{pr}\PYG{p}{;}
+		\PYG{n}{ll} \PYG{n}{b} \PYG{o}{=} \PYG{n}{i} \PYG{o}{\PYGZpc{}} \PYG{n}{pr}\PYG{p}{;}
+		\PYG{n}{ans} \PYG{o}{=} \PYG{p}{(}\PYG{n}{ans} \PYG{o}{*} \PYG{p}{(}\PYG{n}{a} \PYG{o}{*} \PYG{n}{Inv}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{pr}\PYG{p}{))} \PYG{o}{\PYGZpc{}} \PYG{n}{pr}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{pr}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

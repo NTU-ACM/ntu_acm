@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//有序数列异或 ab可为两个vector}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{v\PYGZus{}symDifference}\PYG{p}{;}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{set\PYGZus{}symmetric\PYGZus{}difference}\PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{n}{a}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),} \PYG{n}{b}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{n}{b}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),}\PYG{n}{std}\PYG{o}{::}\PYG{n}{back\PYGZus{}inserter}\PYG{p}{(}\PYG{n}{v\PYGZus{}symDifference}\PYG{p}{));}
+\end{Verbatim}

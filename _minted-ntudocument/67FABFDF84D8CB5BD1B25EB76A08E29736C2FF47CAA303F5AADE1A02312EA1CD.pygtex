@@ -1,0 +1,44 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{// \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{// 模数P为费马素数，G为P的原根。}
+\PYG{c+c1}{// $G^{\frac{P-1}{n}}$具有和$w_n=e^{\frac{2i\pi}{n}}$相似的性质。}
+\PYG{c+c1}{// 具体的P和G可参考1.11}
+\PYG{c+c1}{// \PYGZhy{}\PYGZhy{}\PYGZhy{}}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{mod} \PYG{o}{=} \PYG{l+m+mi}{119} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{23} \PYG{o}{|} \PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{G} \PYG{o}{=} \PYG{l+m+mi}{3}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{wn}\PYG{p}{[}\PYG{l+m+mi}{20}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{getwn}\PYG{p}{()} \PYG{p}{\PYGZob{}} \PYG{c+c1}{//  千万不要忘记}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{20}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{wn}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Pow}\PYG{p}{(}\PYG{n}{G}\PYG{p}{,} \PYG{p}{(}\PYG{n}{mod} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{/} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i}\PYG{p}{),} \PYG{n}{mod}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{change}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{[],} \PYG{k+kt}{int} \PYG{n}{len}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j} \PYG{o}{=} \PYG{n}{len} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{len} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{j}\PYG{p}{)} \PYG{n}{swap}\PYG{p}{(}\PYG{n}{y}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{y}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]);}
+		\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{n}{len} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZgt{}=} \PYG{n}{k}\PYG{p}{)} \PYG{n}{j} \PYG{o}{\PYGZhy{}=} \PYG{n}{k}\PYG{p}{,} \PYG{n}{k} \PYG{o}{/=} \PYG{l+m+mi}{2}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{k}\PYG{p}{)} \PYG{n}{j} \PYG{o}{+=} \PYG{n}{k}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{ntt}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{[],} \PYG{k+kt}{int} \PYG{n}{len}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{on}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{change}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{len}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{h} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{id} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{h} \PYG{o}{\PYGZlt{}=} \PYG{n}{len}\PYG{p}{;} \PYG{n}{h} \PYG{o}{\PYGZlt{}\PYGZlt{}=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{id}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{len}\PYG{p}{;} \PYG{n}{j} \PYG{o}{+=} \PYG{n}{h}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{w} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{k} \PYG{o}{=} \PYG{n}{j}\PYG{p}{;} \PYG{n}{k} \PYG{o}{\PYGZlt{}} \PYG{n}{j} \PYG{o}{+} \PYG{n}{h} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{k}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{n}{y}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+				\PYG{k+kt}{int} \PYG{n}{t} \PYG{o}{=} \PYG{l+m+mi}{1LL} \PYG{o}{*} \PYG{n}{w} \PYG{o}{*} \PYG{p}{(}\PYG{n}{y}\PYG{p}{[}\PYG{n}{k} \PYG{o}{+} \PYG{n}{h} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+				\PYG{n}{y}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{u} \PYG{o}{+} \PYG{n}{t}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{,} \PYG{n}{y}\PYG{p}{[}\PYG{n}{k} \PYG{o}{+} \PYG{n}{h} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{=} \PYG{p}{((}\PYG{n}{u} \PYG{o}{\PYGZhy{}} \PYG{n}{t}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{mod} \PYG{o}{+} \PYG{n}{mod}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+				\PYG{n}{w} \PYG{o}{=} \PYG{l+m+mi}{1LL} \PYG{o}{*} \PYG{n}{w} \PYG{o}{*} \PYG{n}{wn}\PYG{p}{[}\PYG{n}{id}\PYG{p}{]} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}} \PYG{k}{if} \PYG{p}{(}\PYG{n}{on} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{c+c1}{//  原本的除法要用逆元}
+		\PYG{k+kt}{int} \PYG{n}{inv} \PYG{o}{=} \PYG{n}{Pow}\PYG{p}{(}\PYG{n}{len}\PYG{p}{,} \PYG{n}{mod} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{mod}\PYG{p}{);}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{len} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{swap}\PYG{p}{(}\PYG{n}{y}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{y}\PYG{p}{[}\PYG{n}{len} \PYG{o}{\PYGZhy{}} \PYG{n}{i}\PYG{p}{]);}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{len}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{y}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1LL} \PYG{o}{*} \PYG{n}{y}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{*} \PYG{n}{inv} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

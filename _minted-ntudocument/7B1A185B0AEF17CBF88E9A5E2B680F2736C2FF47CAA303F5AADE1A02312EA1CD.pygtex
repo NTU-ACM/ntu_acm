@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//author: wavator}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}vector\PYGZgt{}}
+
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T}\PYG{o}{\PYGZgt{}}
+\PYG{k}{struct} \PYG{n}{RMQ} \PYG{p}{\PYGZob{}}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T}\PYG{o}{\PYGZgt{}} \PYG{o}{\PYGZgt{}} \PYG{n}{rmq}\PYG{p}{;}
+	\PYG{c+c1}{// vector\PYGZlt{}T\PYGZgt{} rmq[20]; or T[100002][20] if need speed}
+	\PYG{c+c1}{//T kInf = numeric\PYGZus{}limits\PYGZlt{}T\PYGZgt{}::max(); // if need return a value when the interval fake}
+	\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{(}\PYG{k}{const} \PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{T}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{a}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{c+c1}{// 0 base}
+		\PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)}\PYG{n}{a}\PYG{p}{.}\PYG{n}{size}\PYG{p}{(),} \PYG{n}{base} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{depth} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{base} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{)}
+			\PYG{n}{base} \PYG{o}{\PYGZlt{}\PYGZlt{}=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{++}\PYG{n}{depth}\PYG{p}{;}
+		\PYG{n}{rmq}\PYG{p}{.}\PYG{n}{assign}\PYG{p}{((}\PYG{k+kt}{unsigned}\PYG{p}{)}\PYG{n}{depth}\PYG{p}{,} \PYG{n}{a}\PYG{p}{);}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{depth} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{n}{rmq}\PYG{p}{[}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{][}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{std}\PYG{o}{::}\PYG{n}{min}\PYG{p}{(}\PYG{n}{rmq}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{j}\PYG{p}{],} \PYG{n}{rmq}\PYG{p}{[}\PYG{n}{i}\PYG{p}{][}\PYG{n}{std}\PYG{o}{::}\PYG{n}{min}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{j} \PYG{o}{+} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i}\PYG{p}{))]);}
+			\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{T} \PYG{n+nf}{q}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{c+c1}{// [l, r)}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{l}\PYG{o}{\PYGZgt{}}\PYG{n}{r}\PYG{p}{)}\PYG{k}{return} \PYG{l+m+mh}{0x3f3f3f3f}\PYG{p}{;}
+		\PYG{k+kt}{int} \PYG{n}{dep} \PYG{o}{=} \PYG{l+m+mi}{31} \PYG{o}{\PYGZhy{}} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}clz}\PYG{p}{(}\PYG{n}{r} \PYG{o}{\PYGZhy{}} \PYG{n}{l}\PYG{p}{);} \PYG{c+c1}{// log(b \PYGZhy{} a)}
+		\PYG{k}{return} \PYG{n}{min}\PYG{p}{(}\PYG{n}{rmq}\PYG{p}{[}\PYG{n}{dep}\PYG{p}{][}\PYG{n}{l}\PYG{p}{],} \PYG{n}{rmq}\PYG{p}{[}\PYG{n}{dep}\PYG{p}{][}\PYG{n}{r} \PYG{o}{\PYGZhy{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{dep}\PYG{p}{)]);}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

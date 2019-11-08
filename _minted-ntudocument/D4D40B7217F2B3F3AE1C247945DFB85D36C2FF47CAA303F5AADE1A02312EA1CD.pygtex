@@ -1,0 +1,77 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{// 二维线段树区间加值+单点查询 树套树实现}
+\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{x2rt}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{y2rt}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k}{struct} \PYG{n}{Nodey} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{n}{r}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{struct} \PYG{n}{Nodex} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{n}{r}\PYG{p}{;}
+	\PYG{n}{Nodey} \PYG{n}{nodey}\PYG{p}{[}\PYG{n}{maxn} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{];}
+
+	\PYG{k+kt}{void} \PYG{n+nf}{build}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{rt}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{nodey}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{l} \PYG{o}{=} \PYG{n}{l}\PYG{p}{;}
+		\PYG{n}{nodey}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{r} \PYG{o}{=} \PYG{n}{r}\PYG{p}{;}
+		\PYG{n}{nodey}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{val} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{l} \PYG{o}{==} \PYG{n}{r}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{y2rt}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]} \PYG{o}{=} \PYG{n}{rt}\PYG{p}{;}
+			\PYG{k}{return}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k+kt}{int} \PYG{n}{mid} \PYG{o}{=} \PYG{p}{(}\PYG{n}{l} \PYG{o}{+} \PYG{n}{r}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{n}{build}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,} \PYG{n}{mid}\PYG{p}{,} \PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{);}
+		\PYG{n}{build}\PYG{p}{(}\PYG{n}{mid} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1} \PYG{o}{|} \PYG{l+m+mi}{1}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n+nf}{addVal}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{rt}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{L}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{R}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{nodey}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{l} \PYG{o}{==} \PYG{n}{L} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{nodey}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{r} \PYG{o}{==} \PYG{n}{R}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{nodey}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{val} \PYG{o}{+=} \PYG{n}{val}\PYG{p}{;}
+			\PYG{k}{return}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k+kt}{int} \PYG{n}{mid} \PYG{o}{=} \PYG{p}{(}\PYG{n}{nodey}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{l} \PYG{o}{+} \PYG{n}{nodey}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{r}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{R} \PYG{o}{\PYGZlt{}=} \PYG{n}{mid}\PYG{p}{)} \PYG{n}{addVal}\PYG{p}{(}\PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{L}\PYG{p}{,} \PYG{n}{R}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+		\PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{n}{L} \PYG{o}{\PYGZgt{}} \PYG{n}{mid}\PYG{p}{)} \PYG{n}{addVal}\PYG{p}{(}\PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1} \PYG{o}{|} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{L}\PYG{p}{,} \PYG{n}{R}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+		\PYG{k}{else} \PYG{p}{\PYGZob{}}
+			\PYG{n}{addVal}\PYG{p}{(}\PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{L}\PYG{p}{,} \PYG{n}{mid}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+			\PYG{n}{addVal}\PYG{p}{(}\PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1} \PYG{o}{|} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{mid} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{R}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{n}{nodex}\PYG{p}{[}\PYG{n}{maxn} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{build}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{rt}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{nodex}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{l} \PYG{o}{=} \PYG{n}{l}\PYG{p}{;}
+	\PYG{n}{nodex}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{r} \PYG{o}{=} \PYG{n}{r}\PYG{p}{;}
+	\PYG{n}{nodex}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{build}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{n}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{l} \PYG{o}{==} \PYG{n}{r}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{x2rt}\PYG{p}{[}\PYG{n}{l}\PYG{p}{]} \PYG{o}{=} \PYG{n}{rt}\PYG{p}{;}
+		\PYG{k}{return}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n}{mid} \PYG{o}{=} \PYG{p}{(}\PYG{n}{l} \PYG{o}{+} \PYG{n}{r}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{n}{build}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,} \PYG{n}{mid}\PYG{p}{,} \PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{);}
+	\PYG{n}{build}\PYG{p}{(}\PYG{n}{mid} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1} \PYG{o}{|} \PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{addVal}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{rt}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{x1}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{x2}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y1}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y2}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{nodex}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{l} \PYG{o}{==} \PYG{n}{x1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{nodex}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{r} \PYG{o}{==} \PYG{n}{x2}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{nodex}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{addVal}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{y1}\PYG{p}{,} \PYG{n}{y2}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+		\PYG{k}{return}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n}{mid} \PYG{o}{=} \PYG{p}{(}\PYG{n}{nodex}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{l} \PYG{o}{+} \PYG{n}{nodex}\PYG{p}{[}\PYG{n}{rt}\PYG{p}{].}\PYG{n}{r}\PYG{p}{)} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{x2} \PYG{o}{\PYGZlt{}=} \PYG{n}{mid}\PYG{p}{)} \PYG{n}{addVal}\PYG{p}{(}\PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x1}\PYG{p}{,} \PYG{n}{x2}\PYG{p}{,} \PYG{n}{y1}\PYG{p}{,} \PYG{n}{y2}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+	\PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{n}{x1} \PYG{o}{\PYGZgt{}} \PYG{n}{mid}\PYG{p}{)} \PYG{n}{addVal}\PYG{p}{(}\PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1} \PYG{o}{|} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x1}\PYG{p}{,} \PYG{n}{x2}\PYG{p}{,} \PYG{n}{y1}\PYG{p}{,} \PYG{n}{y2}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+	\PYG{k}{else} \PYG{p}{\PYGZob{}}
+		\PYG{n}{addVal}\PYG{p}{(}\PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x1}\PYG{p}{,} \PYG{n}{mid}\PYG{p}{,} \PYG{n}{y1}\PYG{p}{,} \PYG{n}{y2}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+		\PYG{n}{addVal}\PYG{p}{(}\PYG{n}{rt} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{1} \PYG{o}{|} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{mid} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x2}\PYG{p}{,} \PYG{n}{y1}\PYG{p}{,} \PYG{n}{y2}\PYG{p}{,} \PYG{n}{val}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{getVal}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{ret} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{x2rt}\PYG{p}{[}\PYG{n}{x}\PYG{p}{];} \PYG{n}{i}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{)}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{n}{y2rt}\PYG{p}{[}\PYG{n}{y}\PYG{p}{];} \PYG{n}{j}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{)}
+			\PYG{n}{ret} \PYG{o}{+=} \PYG{n}{nodex}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{nodey}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{val}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{ret}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

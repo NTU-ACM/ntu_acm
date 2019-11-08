@@ -1,0 +1,112 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{typedef} \PYG{k+kt}{int} \PYG{n}{value}\PYG{p}{;}
+
+\PYG{k}{enum} \PYG{p}{\PYGZob{}} \PYG{n}{LEFT}\PYG{p}{,} \PYG{n}{RIGHT} \PYG{p}{\PYGZcb{};}
+\PYG{k}{struct} \PYG{n}{node} \PYG{p}{\PYGZob{}}
+	\PYG{n}{node} \PYG{o}{*} \PYG{n}{child}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{],} \PYG{o}{*} \PYG{n}{parent}\PYG{p}{;}
+	\PYG{n}{value} \PYG{n}{v}\PYG{p}{,} \PYG{n}{subtree}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{size}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}} \PYG{n}{pool}\PYG{p}{[}\PYG{n}{MAXN}\PYG{p}{],} \PYG{o}{*} \PYG{n}{pool\PYGZus{}next} \PYG{o}{=} \PYG{n}{pool}\PYG{p}{;}
+
+\PYG{n}{node} \PYG{o}{*} \PYG{n+nf}{allocate}\PYG{p}{(}\PYG{k}{const} \PYG{n}{value} \PYG{o}{\PYGZam{}} \PYG{n}{v}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{node} \PYG{o}{*} \PYG{n}{x} \PYG{o}{=} \PYG{n}{pool\PYGZus{}next}\PYG{o}{++}\PYG{p}{;}
+	\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{parent} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{RIGHT}\PYG{p}{]} \PYG{o}{=} \PYG{k}{nullptr}\PYG{p}{;}
+	\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{v} \PYG{o}{=} \PYG{n}{v}\PYG{p}{;}
+	\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{struct} \PYG{n}{tree} \PYG{p}{\PYGZob{}}
+	\PYG{n}{node} \PYG{o}{*} \PYG{n}{root}\PYG{p}{;}
+	\PYG{n}{tree}\PYG{p}{()}\PYG{o}{:} \PYG{n}{root}\PYG{p}{(}\PYG{n}{allocate}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{))} \PYG{p}{\PYGZob{}\PYGZcb{}}
+
+	\PYG{k+kt}{bool} \PYG{n}{child\PYGZus{}dir}\PYG{p}{(}\PYG{k}{const} \PYG{n}{node} \PYG{o}{*} \PYG{n}{x}\PYG{p}{,} \PYG{k}{const} \PYG{n}{node} \PYG{o}{*} \PYG{n}{y}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]} \PYG{o}{==} \PYG{n}{y}\PYG{p}{)} \PYG{o}{?} \PYG{n+nl}{LEFT} \PYG{p}{:} \PYG{n}{RIGHT}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{bool} \PYG{n}{is\PYGZus{}child}\PYG{p}{(}\PYG{k}{const} \PYG{n}{node} \PYG{o}{*} \PYG{n}{x}\PYG{p}{,} \PYG{k}{const} \PYG{n}{node} \PYG{o}{*} \PYG{n}{y}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]} \PYG{o}{==} \PYG{n}{y} \PYG{o}{||} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{RIGHT}\PYG{p}{]} \PYG{o}{==} \PYG{n}{y}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n}{update}\PYG{p}{(}\PYG{n}{node} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{v}\PYG{p}{;}
+		\PYG{n}{FOR} \PYG{p}{(}\PYG{n}{d}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{d}\PYG{p}{]} \PYG{o}{!=} \PYG{k}{nullptr}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size} \PYG{o}{+=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{d}\PYG{p}{]}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{d} \PYG{o}{==} \PYG{n}{LEFT}\PYG{p}{)} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree} \PYG{o}{+} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree}\PYG{p}{;}
+			\PYG{k}{else} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree} \PYG{o}{+} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{RIGHT}\PYG{p}{]}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{node} \PYG{o}{*} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{bool} \PYG{n}{dir}\PYG{p}{,} \PYG{n}{node} \PYG{o}{*} \PYG{n}{y}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{((}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{dir}\PYG{p}{]} \PYG{o}{=} \PYG{n}{y}\PYG{p}{)} \PYG{o}{!=} \PYG{k}{nullptr}\PYG{p}{)} \PYG{n}{y}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{parent} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+		\PYG{n}{update}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{n}{node} \PYG{o}{*} \PYG{n}{rotate}\PYG{p}{(}\PYG{n}{node} \PYG{o}{*} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{bool} \PYG{n}{dir}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{node} \PYG{o}{*} \PYG{n}{parent} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{parent}\PYG{p}{,} \PYG{o}{*} \PYG{n}{y} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{dir}\PYG{p}{];}
+		\PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{dir}\PYG{p}{,} \PYG{n}{y}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{o}{!}\PYG{n}{dir}\PYG{p}{]);}
+		\PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{o}{!}\PYG{n}{dir}\PYG{p}{,} \PYG{n}{x}\PYG{p}{);}
+		\PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{parent}\PYG{p}{,} \PYG{n}{child\PYGZus{}dir}\PYG{p}{(}\PYG{n}{parent}\PYG{p}{,} \PYG{n}{x}\PYG{p}{),} \PYG{n}{y}\PYG{p}{);}
+		\PYG{k}{return} \PYG{n}{y}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{n}{node} \PYG{o}{*} \PYG{n}{splay}\PYG{p}{(}\PYG{n}{node} \PYG{o}{*} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{node} \PYG{o}{*} \PYG{n}{old\PYGZus{}p} \PYG{o}{=} \PYG{k}{nullptr}\PYG{p}{;}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{parent} \PYG{o}{!=} \PYG{k}{nullptr}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{node} \PYG{o}{*} \PYG{n}{p} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{parent}\PYG{p}{;}
+			\PYG{n}{x} \PYG{o}{=} \PYG{n}{rotate}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{child\PYGZus{}dir}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{x}\PYG{p}{));}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{old\PYGZus{}p} \PYG{o}{!=} \PYG{k}{nullptr} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{is\PYGZus{}child}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{old\PYGZus{}p}\PYG{p}{))} \PYG{n}{rotate}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{child\PYGZus{}dir}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{old\PYGZus{}p}\PYG{p}{));}
+			\PYG{n}{old\PYGZus{}p} \PYG{o}{=} \PYG{n}{p}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{return} \PYG{n}{x}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{n}{node} \PYG{o}{*} \PYG{n}{insert}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{order}\PYG{p}{,} \PYG{k}{const} \PYG{n}{value} \PYG{o}{\PYGZam{}} \PYG{n}{v}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{c+c1}{// order is 0\PYGZhy{}indexed}
+		\PYG{k+kt}{bool} \PYG{n}{dir} \PYG{o}{=} \PYG{n}{LEFT}\PYG{p}{;}
+		\PYG{n}{node} \PYG{o}{*} \PYG{n}{parent} \PYG{o}{=} \PYG{n}{root}\PYG{p}{,} \PYG{o}{*} \PYG{n}{x} \PYG{o}{=} \PYG{n}{parent}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{];}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{x} \PYG{o}{!=} \PYG{k}{nullptr}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{left\PYGZus{}size} \PYG{o}{=} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]} \PYG{o}{==} \PYG{k}{nullptr}\PYG{p}{)} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size}\PYG{p}{;}
+			\PYG{n}{parent} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{order} \PYG{o}{\PYGZlt{}=} \PYG{n}{left\PYGZus{}size}\PYG{p}{)} \PYG{n}{x} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{dir} \PYG{o}{=} \PYG{n}{LEFT}\PYG{p}{];}
+			\PYG{k}{else} \PYG{p}{\PYGZob{}}
+				\PYG{n}{order} \PYG{o}{\PYGZhy{}=} \PYG{n}{left\PYGZus{}size} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+				\PYG{n}{x} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{dir} \PYG{o}{=} \PYG{n}{RIGHT}\PYG{p}{];}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{parent}\PYG{p}{,} \PYG{n}{dir}\PYG{p}{,} \PYG{n}{x} \PYG{o}{=} \PYG{n}{allocate}\PYG{p}{(}\PYG{n}{v}\PYG{p}{));}
+		\PYG{k}{return} \PYG{n+nf}{splay}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{n}{node} \PYG{o}{*} \PYG{n}{find}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{order}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{node} \PYG{o}{*} \PYG{n}{x} \PYG{o}{=} \PYG{n}{root}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{];}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n+nb}{true}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{left\PYGZus{}size} \PYG{o}{=} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]} \PYG{o}{==} \PYG{k}{nullptr}\PYG{p}{)} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{order} \PYG{o}{\PYGZlt{}} \PYG{n}{left\PYGZus{}size}\PYG{p}{)} \PYG{n}{x} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{];}
+			\PYG{k}{else} \PYG{n+nf}{if} \PYG{p}{(}\PYG{n}{order} \PYG{o}{==} \PYG{n}{left\PYGZus{}size}\PYG{p}{)} \PYG{k}{break}\PYG{p}{;}
+			\PYG{k}{else} \PYG{p}{\PYGZob{}}
+				\PYG{n}{order} \PYG{o}{\PYGZhy{}=} \PYG{n}{left\PYGZus{}size} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+				\PYG{n}{x} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{RIGHT}\PYG{p}{];}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{return} \PYG{n}{splay}\PYG{p}{(}\PYG{n}{x}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n}{erase}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{int}\PYG{o}{\PYGZam{}} \PYG{n}{order}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{node} \PYG{o}{*} \PYG{n}{x} \PYG{o}{=} \PYG{n}{find}\PYG{p}{(}\PYG{n}{order}\PYG{p}{);}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]} \PYG{o}{==} \PYG{k}{nullptr}\PYG{p}{)} \PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,} \PYG{n}{LEFT}\PYG{p}{,} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{RIGHT}\PYG{p}{]);}
+		\PYG{k}{else} \PYG{n+nf}{if} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{RIGHT}\PYG{p}{]} \PYG{o}{==} \PYG{k}{nullptr}\PYG{p}{)} \PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,} \PYG{n}{LEFT}\PYG{p}{,} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]);}
+		\PYG{k}{else} \PYG{p}{\PYGZob{}}
+			\PYG{n}{node} \PYG{o}{*} \PYG{n}{y} \PYG{o}{=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{RIGHT}\PYG{p}{];}
+			\PYG{k}{while} \PYG{p}{(}\PYG{n}{y}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]} \PYG{o}{!=} \PYG{k}{nullptr}\PYG{p}{)} \PYG{n}{y} \PYG{o}{=} \PYG{n}{y}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{];}
+			\PYG{n}{y} \PYG{o}{=} \PYG{n}{splay}\PYG{p}{(}\PYG{n}{y}\PYG{p}{);}
+			\PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{y}\PYG{p}{,} \PYG{n}{LEFT}\PYG{p}{,} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]);}
+			\PYG{n}{set\PYGZus{}child}\PYG{p}{(}\PYG{n}{root}\PYG{p}{,} \PYG{n}{LEFT}\PYG{p}{,} \PYG{n}{y}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{n}{value} \PYG{n}{query}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{e}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{c+c1}{// e is the prefix length desired.}
+		\PYG{n}{node} \PYG{o}{*} \PYG{n}{x} \PYG{o}{=} \PYG{n}{root}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{];}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{e} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{e} \PYG{o}{\PYGZgt{}=} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{size}\PYG{p}{)} \PYG{k}{return} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree}\PYG{p}{;}
+		\PYG{n}{x} \PYG{o}{=} \PYG{n}{find}\PYG{p}{(}\PYG{n}{e} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{);}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]} \PYG{o}{!=} \PYG{k}{nullptr}\PYG{p}{)} \PYG{k}{return} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{child}\PYG{p}{[}\PYG{n}{LEFT}\PYG{p}{]}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{subtree} \PYG{o}{*} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{v}\PYG{p}{;}
+		\PYG{k}{else} \PYG{k}{return} \PYG{n}{x}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{v}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

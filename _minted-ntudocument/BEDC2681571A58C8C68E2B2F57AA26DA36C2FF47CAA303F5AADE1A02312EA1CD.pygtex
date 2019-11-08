@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{using} \PYG{n}{ll} \PYG{o}{=} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{;}
+
+\PYG{n}{ll} \PYG{n}{prime}\PYG{p}{[}\PYG{l+m+mi}{6}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{233}\PYG{p}{,} \PYG{l+m+mi}{331}\PYG{p}{\PYGZcb{};}
+
+\PYG{n}{ll} \PYG{n+nf}{qmul}\PYG{p}{(}\PYG{n}{ll} \PYG{n}{x}\PYG{p}{,} \PYG{n}{ll} \PYG{n}{y}\PYG{p}{,} \PYG{n}{ll} \PYG{n}{mod}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{c+c1}{// 乘法防止溢出， 如果p * p不爆ll的话可以直接乘； O(1)乘法或者转化成二进制加法}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{x} \PYG{o}{*} \PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{p}{(}\PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{)(}\PYG{n}{x} \PYG{o}{/} \PYG{p}{(}\PYG{k+kt}{long} \PYG{k+kt}{double}\PYG{p}{)}\PYG{n}{mod} \PYG{o}{*} \PYG{n}{y} \PYG{o}{+} \PYG{l+m+mf}{1e\PYGZhy{}3}\PYG{p}{)} \PYG{o}{*}\PYG{n}{mod} \PYG{o}{+} \PYG{n}{mod}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{mod}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{n}{ll} \PYG{n+nf}{qpow}\PYG{p}{(}\PYG{n}{ll} \PYG{n}{a}\PYG{p}{,} \PYG{n}{ll} \PYG{n}{n}\PYG{p}{,} \PYG{n}{ll} \PYG{n}{mod}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{ll} \PYG{n}{ret} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{n} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{ret} \PYG{o}{=} \PYG{n}{qmul}\PYG{p}{(}\PYG{n}{ret}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{mod}\PYG{p}{);}
+		\PYG{n}{a} \PYG{o}{=} \PYG{n}{qmul}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{mod}\PYG{p}{);}
+		\PYG{n}{n} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ret}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{bool} \PYG{n+nf}{Miller\PYGZus{}Rabin}\PYG{p}{(}\PYG{n}{ll} \PYG{n}{p}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{p} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{p} \PYG{o}{!=} \PYG{l+m+mi}{2} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{p} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{2} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{ll} \PYG{n}{s} \PYG{o}{=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{o}{!} \PYG{p}{(}\PYG{n}{s} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1}\PYG{p}{))} \PYG{n}{s} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{5}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{p} \PYG{o}{==} \PYG{n}{prime}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{n}{ll} \PYG{n}{t} \PYG{o}{=} \PYG{n}{s}\PYG{p}{,} \PYG{n}{m} \PYG{o}{=} \PYG{n}{qpow}\PYG{p}{(}\PYG{n}{prime}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],} \PYG{n}{s}\PYG{p}{,} \PYG{n}{p}\PYG{p}{);}
+		\PYG{k}{while}\PYG{p}{(}\PYG{n}{t} \PYG{o}{!=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{m} \PYG{o}{!=} \PYG{l+m+mi}{1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{m} \PYG{o}{!=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{m} \PYG{o}{=} \PYG{n}{qmul}\PYG{p}{(}\PYG{n}{m}\PYG{p}{,} \PYG{n}{m}\PYG{p}{,} \PYG{n}{p}\PYG{p}{);}
+			\PYG{n}{t} \PYG{o}{\PYGZlt{}\PYGZlt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{m} \PYG{o}{!=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{o}{!}\PYG{p}{(}\PYG{n}{t} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1}\PYG{p}{))} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

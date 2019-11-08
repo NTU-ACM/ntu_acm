@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kt}{bool} \PYG{n+nf}{quick\PYGZus{}in}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{p}\PYG{p}{)} \PYG{p}{\PYGZob{}} 
+	\PYG{k+kt}{char} \PYG{n}{c}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{((}\PYG{n}{c} \PYG{o}{=} \PYG{n}{getchar}\PYG{p}{())} \PYG{o}{!=} \PYG{n}{EOF} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{c} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}} \PYG{o}{||} \PYG{n}{c} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{));} 
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{c} \PYG{o}{==} \PYG{n}{EOF}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;} 
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{do} \PYG{p}{\PYGZob{}}
+		\PYG{o}{*}\PYG{n}{p}\PYG{o}{++} \PYG{o}{=} \PYG{n}{c}\PYG{p}{;} 
+	\PYG{p}{\PYGZcb{}} \PYG{k}{while}\PYG{p}{((}\PYG{n}{c}\PYG{o}{=}\PYG{n}{getchar}\PYG{p}{())} \PYG{o}{!=} \PYG{n}{EOF} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{c} \PYG{o}{!=} \PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{c} \PYG{o}{!=} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{);} 
+	\PYG{o}{*}\PYG{n}{p} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

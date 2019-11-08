@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{//容斥求 [0,m)内，a1,a2...ak的倍数的和，每个数只记一次}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{==}\PYG{n}{num}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{k}{continue}\PYG{p}{;}\PYG{c+c1}{// vis数组为 fac[i]这个数要用几次，这里vis[i]=1}
+	\PYG{k+kt}{int} \PYG{n}{n}\PYG{o}{=}\PYG{p}{(}\PYG{n}{m}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{o}{/}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+	\PYG{n}{ans}\PYG{o}{+=}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{n}\PYG{p}{)}\PYG{o}{*}\PYG{n}{n}\PYG{o}{/}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{*}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{num}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}\PYG{c+c1}{// num[i]数组为 fac[i]这个数已经用了几次，多了就要减去多用的次数}
+	\PYG{n}{n}\PYG{o}{=}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{num}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}         \PYG{c+c1}{//用于更新已经用的次数}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=}\PYG{n}{i}\PYG{p}{;}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{fac}\PYG{p}{.}\PYG{n}{size}\PYG{p}{();}\PYG{n}{j}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{\PYGZpc{}}\PYG{n}{fac}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+			\PYG{n}{num}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{+=}\PYG{n}{n}\PYG{p}{;} \PYG{c+c1}{//在此题中 将所有fac[i]的倍数 更新已使用次数}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

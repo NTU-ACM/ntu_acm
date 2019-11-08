@@ -1,0 +1,68 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon }
+\PYG{c+cm}{ * 功能: 求a\PYGZca{}a\PYGZca{}a\PYGZca{}a\PYGZca{}...\PYGZca{}a mod m,总共b个}
+\PYG{c+cm}{ * 复杂度: O(log(m))}
+\PYG{c+cm}{ */}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}bits/stdc++.h\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{typedef} \PYG{k+kt}{int} \PYG{n}{Int}\PYG{p}{;}
+\PYG{c+cp}{\PYGZsh{}define int long long}
+\PYG{c+cp}{\PYGZsh{}define INF 0x3f3f3f3f}
+\PYG{c+cp}{\PYGZsh{}define maxn 1000005}
+\PYG{k+kt}{int} \PYG{n+nf}{Phi}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{;} \PYG{n}{i} \PYG{o}{*} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{x}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{n}{i} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{ans} \PYG{o}{=} \PYG{n}{ans} \PYG{o}{/} \PYG{n}{i} \PYG{o}{*} \PYG{p}{(}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{);}
+			\PYG{k}{while} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{n}{i} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{x} \PYG{o}{/=} \PYG{n}{i}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{x} \PYG{o}{!=} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{ans} \PYG{o}{/} \PYG{n}{x} \PYG{o}{*} \PYG{p}{(}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{);}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{fpow}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{mod}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{a}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}\PYG{k+kt}{int} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{b}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{o}{\PYGZam{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{(}\PYG{n}{ans}\PYG{o}{*=}\PYG{n}{a}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}
+		\PYG{p}{(}\PYG{n}{a}\PYG{o}{*=}\PYG{n}{a}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{mod}\PYG{p}{;}
+		\PYG{n}{b}\PYG{o}{\PYGZgt{}\PYGZgt{}=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{o}{\PYGZpc{}}\PYG{n}{mod}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{gcd}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{return} \PYG{n}{b}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{o}{?}\PYG{n+nl}{a}\PYG{p}{:}\PYG{n}{gcd}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,}\PYG{n}{a}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*判断a\PYGZca{}b mod p 中b是否小于p */}
+\PYG{k+kt}{bool} \PYG{n+nf}{check}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{a}\PYG{o}{\PYGZgt{}=}\PYG{n}{p}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{b}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{ans}\PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{20}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+cm}{/*p最大1e6,所以ans\PYGZgt{}=20则肯定大于p */}
+		\PYG{n}{ans}\PYG{o}{=}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{ans}\PYG{p}{,}\PYG{l+m+mf}{1e18}\PYG{p}{);}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{ans}\PYG{o}{\PYGZgt{}=}\PYG{n}{p}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*递归欧拉降幂 */}
+\PYG{k+kt}{int} \PYG{n+nf}{f}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{m}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{o}{\PYGZlt{}=}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{return} \PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{m}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{p}\PYG{o}{=}\PYG{n}{Phi}\PYG{p}{(}\PYG{n}{m}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{t}\PYG{o}{=}\PYG{n}{f}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{p}\PYG{p}{);}\PYG{c+cm}{/*f(a,b,m)=a\PYGZca{}\PYGZob{}f(a,b\PYGZhy{}1,p) mod 待定\PYGZcb{} mod m */}
+	\PYG{k+kt}{int} \PYG{n}{g}\PYG{o}{=}\PYG{n}{gcd}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{m}\PYG{p}{);}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{g}\PYG{o}{==}\PYG{l+m+mi}{1}\PYG{c+cm}{/*gcd(a,m)=1 */}\PYG{o}{||}\PYG{n}{check}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{p}\PYG{p}{)}\PYG{c+cm}{/*f(a,b\PYGZhy{}1,INF)\PYGZlt{}p */}\PYG{p}{)} \PYG{k}{return} \PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{t}\PYG{p}{,}\PYG{n}{m}\PYG{p}{);} \PYG{c+c1}{//扩展欧拉定理}
+	\PYG{k}{else}\PYG{c+cm}{/*f(a,b\PYGZhy{}1,INF)\PYGZgt{}=p */} \PYG{k}{return} \PYG{n}{fpow}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{t}\PYG{o}{+}\PYG{n}{p}\PYG{p}{,}\PYG{n}{m}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{Int} \PYG{n+nf}{main}\PYG{p}{()\PYGZob{}}
+	\PYG{n}{ios}\PYG{o}{::}\PYG{n}{sync\PYGZus{}with\PYGZus{}stdio}\PYG{p}{(}\PYG{n+nb}{false}\PYG{p}{);}
+	\PYG{n}{cin}\PYG{p}{.}\PYG{n}{tie}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{T}\PYG{p}{;}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{T}\PYG{p}{;}
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{T}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{m}\PYG{p}{;}\PYG{n}{cin}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{a}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{b}\PYG{o}{\PYGZgt{}\PYGZgt{}}\PYG{n}{m}\PYG{p}{;}
+		\PYG{c+cm}{/*f(a,b,m)=a\PYGZca{}a\PYGZca{}a\PYGZca{}...\PYGZca{}a mod m,总共b个a */}
+		\PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{f}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{m}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{m}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

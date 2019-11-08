@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{N} \PYG{o}{=} \PYG{l+m+mi}{1000}\PYG{p}{;}
+
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{T}\PYG{o}{\PYGZgt{}}
+\PYG{k}{class} \PYG{n+nc}{Heap} \PYG{p}{\PYGZob{}}
+	\PYG{k}{private}\PYG{o}{:}
+		\PYG{n}{T} \PYG{n}{h}\PYG{p}{[}\PYG{n}{N}\PYG{p}{];}
+		\PYG{k+kt}{int} \PYG{n}{len}\PYG{p}{;}
+	\PYG{k}{public}\PYG{o}{:}
+		\PYG{n}{Heap}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+			\PYG{n}{len} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k+kr}{inline} \PYG{k+kt}{void} \PYG{n}{push}\PYG{p}{(}\PYG{k}{const} \PYG{n}{T}\PYG{o}{\PYGZam{}} \PYG{n}{x}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{h}\PYG{p}{[}\PYG{o}{++}\PYG{n}{len}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x}\PYG{p}{;}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{push\PYGZus{}heap}\PYG{p}{(}\PYG{n}{h}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{h}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{len}\PYG{p}{,} \PYG{n}{std}\PYG{o}{::}\PYG{n}{greater}\PYG{o}{\PYGZlt{}}\PYG{n}{T}\PYG{o}{\PYGZgt{}}\PYG{p}{());}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k+kr}{inline} \PYG{n}{T} \PYG{n}{pop}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{pop\PYGZus{}heap}\PYG{p}{(}\PYG{n}{h}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{h}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{o}{+}\PYG{n}{len}\PYG{p}{,} \PYG{n}{std}\PYG{o}{::}\PYG{n}{greater}\PYG{o}{\PYGZlt{}}\PYG{n}{T}\PYG{o}{\PYGZgt{}}\PYG{p}{());}
+			\PYG{k}{return} \PYG{n}{h}\PYG{p}{[}\PYG{n}{len}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{];}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k+kr}{inline} \PYG{n}{T}\PYG{o}{\PYGZam{}} \PYG{n}{top}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+			\PYG{k}{return} \PYG{n}{h}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k+kr}{inline} \PYG{k+kt}{bool} \PYG{n}{empty}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+			\PYG{k}{return} \PYG{n}{len} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

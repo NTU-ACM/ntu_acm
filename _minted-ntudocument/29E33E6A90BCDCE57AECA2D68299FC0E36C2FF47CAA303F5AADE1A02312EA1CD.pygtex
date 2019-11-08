@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon}
+\PYG{c+cm}{ * 复杂度: O(n·log(n))}
+\PYG{c+cm}{ * 1.求串S前缀0\PYGZti{}i内本质不同回文串的个数（两个串长度不同或者长度相同且至少有一个字符不同便是本质不同） }
+\PYG{c+cm}{ * 2.求串S内每一个本质不同回文串出现的次数 }
+\PYG{c+cm}{ * 3.求串S内回文串的个数（其实就是1和2结合起来） }
+\PYG{c+cm}{ * 4.求以下标i结尾的回文串的个数}
+\PYG{c+cm}{ */}
+\PYG{k}{struct} \PYG{n}{PAM}\PYG{p}{\PYGZob{}}
+\PYG{c+cm}{/*Int */}\PYG{k+kt}{int} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{][}\PYG{l+m+mi}{30}\PYG{p}{]}  \PYG{c+cm}{/*和字典树类似，指向的串为当前串两端加上同一个字符构成 */}\PYG{p}{,}
+		\PYG{n}{fail}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{]}      \PYG{c+cm}{/*失配后跳转到fail指针指向的节点,其为最长回文后缀 */}\PYG{p}{,}
+		\PYG{n}{cnt}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{]}       \PYG{c+cm}{/*表示节点i表示的回文串的个数 (建树时求出的不是完全的，最后count()函数跑一遍以后才是正确的) */}\PYG{p}{,}
+		\PYG{n}{num}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{]}       \PYG{c+cm}{/*表示以节点i表示的最长回文串的最右端点为回文串结尾的回文串个数 */}\PYG{p}{,}
+		\PYG{n}{len}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{]}       \PYG{c+cm}{/*len[i]表示节点i表示的回文串的长度（一个节点表示一个回文串） */}\PYG{p}{,}
+		\PYG{n}{s}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{]}         \PYG{c+cm}{/*存放添加的字符 */}\PYG{p}{,} \PYG{n}{lst}\PYG{c+cm}{/*指向新添加一个字母后所形成的最长回文串表示的节点。 */}\PYG{p}{,}
+		\PYG{n}{n}               \PYG{c+cm}{/*表示添加的字符个数。 */}\PYG{p}{,}\PYG{n}{p}\PYG{c+cm}{/*表示添加的节点个数。 */}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n+nf}{newNode}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{)\PYGZob{}}	\PYG{c+cm}{/*新增一个节点，其最长回文串长度为l */}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{26}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{p}\PYG{p}{][}\PYG{n}{i}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{n}{cnt}\PYG{p}{[}\PYG{n}{p}\PYG{p}{]}\PYG{o}{=}\PYG{n}{num}\PYG{p}{[}\PYG{n}{p}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{len}\PYG{p}{[}\PYG{n}{p}\PYG{p}{]}\PYG{o}{=}\PYG{n}{l}\PYG{p}{;}
+		\PYG{k}{return} \PYG{n}{p}\PYG{o}{++}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{void} \PYG{n+nf}{init}\PYG{p}{()\PYGZob{}}
+		\PYG{n}{n}\PYG{o}{=}\PYG{n}{p}\PYG{o}{=}\PYG{n}{lst}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{n}{newNode}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{c+cm}{/*偶节点 */}\PYG{p}{,}\PYG{n}{newNode}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{c+cm}{/*奇节点 */}\PYG{p}{;}
+		\PYG{n}{s}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{fail}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{c+cm}{/*偶节点失配指针指向奇节点 */}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n+nf}{getFail}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{while}\PYG{p}{(}\PYG{n}{s}\PYG{p}{[}\PYG{n}{n}\PYG{o}{\PYGZhy{}}\PYG{n}{len}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{!=}\PYG{n}{s}\PYG{p}{[}\PYG{n}{n}\PYG{p}{])} \PYG{n}{x}\PYG{o}{=}\PYG{n}{fail}\PYG{p}{[}\PYG{n}{x}\PYG{p}{];}
+		\PYG{k}{return} \PYG{n}{x}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{void} \PYG{n+nf}{add}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{c}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{c}\PYG{o}{\PYGZhy{}=}\PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{;} \PYG{n}{s}\PYG{p}{[}\PYG{o}{++}\PYG{n}{n}\PYG{p}{]}\PYG{o}{=}\PYG{n}{c}\PYG{p}{;}
+		\PYG{k+kt}{int} \PYG{n}{now}\PYG{o}{=}\PYG{n}{getFail}\PYG{p}{(}\PYG{n}{lst}\PYG{p}{);}\PYG{c+cm}{/*找到最长的回文子串，并且前后添加c字符后还是回文子串 */}
+		\PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{tree}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{n}{c}\PYG{p}{])\PYGZob{}}\PYG{c+cm}{/*如果树中未存在此回文串 */}
+			\PYG{k+kt}{int} \PYG{n}{next}\PYG{o}{=}\PYG{n}{newNode}\PYG{p}{(}\PYG{n}{len}\PYG{p}{[}\PYG{n}{now}\PYG{p}{]}\PYG{o}{+}\PYG{l+m+mi}{2}\PYG{p}{);}\PYG{c+cm}{/*为此串建立新节点 */}
+			\PYG{n}{fail}\PYG{p}{[}\PYG{n}{next}\PYG{p}{]}\PYG{o}{=}\PYG{n}{tree}\PYG{p}{[}\PYG{n}{getFail}\PYG{p}{(}\PYG{n}{fail}\PYG{p}{[}\PYG{n}{now}\PYG{p}{])][}\PYG{n}{c}\PYG{p}{];}\PYG{c+cm}{/*为新节点添加失配指针的指向 */}
+			\PYG{n}{tree}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{n}{c}\PYG{p}{]}\PYG{o}{=}\PYG{n}{next}\PYG{p}{;}\PYG{c+cm}{/*记录新串指向的节点 */}
+			\PYG{n}{num}\PYG{p}{[}\PYG{n}{next}\PYG{p}{]}\PYG{o}{=}\PYG{n}{num}\PYG{p}{[}\PYG{n}{fail}\PYG{p}{[}\PYG{n}{next}\PYG{p}{]]}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{c+cm}{/*更新num数组（num数组含义在上面） */}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{lst}\PYG{o}{=}\PYG{n}{tree}\PYG{p}{[}\PYG{n}{now}\PYG{p}{][}\PYG{n}{c}\PYG{p}{];}\PYG{c+cm}{/*c字母所形成的最长回文子串所在的节点为lst */}
+		\PYG{n}{cnt}\PYG{p}{[}\PYG{n}{lst}\PYG{p}{]}\PYG{o}{++}\PYG{p}{;}\PYG{c+cm}{/*统计此回文串出现的次数 */}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{void} \PYG{n+nf}{count}\PYG{p}{()\PYGZob{}}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{n}{p}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZgt{}=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{)} \PYG{n}{cnt}\PYG{p}{[}\PYG{n}{fail}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]]}\PYG{o}{+=}\PYG{n}{cnt}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}\PYG{c+cm}{/*节点i表示的回文串的个数要加上包含此回文串的串的个数，cnt[aa]+=cnt[baab] */}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}\PYG{n}{pam}\PYG{p}{;}
+\end{Verbatim}

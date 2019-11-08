@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//Author:CookiC}
+\PYG{c+c1}{//未做模板调整，请自行调整}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}define LL long long}
+\PYG{c+cp}{\PYGZsh{}define LD long double}
+
+\PYG{k+kt}{void} \PYG{n+nf}{SternBrocot}\PYG{p}{(}\PYG{n}{LD} \PYG{n}{X}\PYG{p}{,} \PYG{n}{LL} \PYG{o}{\PYGZam{}}\PYG{n}{A}\PYG{p}{,} \PYG{n}{LL} \PYG{o}{\PYGZam{}}\PYG{n}{B}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{A}\PYG{o}{=}\PYG{n}{X}\PYG{o}{+}\PYG{l+m+mf}{0.5}\PYG{p}{;}
+	\PYG{n}{B}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{A}\PYG{o}{==}\PYG{n}{X}\PYG{p}{)}
+		\PYG{k}{return}\PYG{p}{;}
+	\PYG{n}{LL} \PYG{n}{la}\PYG{o}{=}\PYG{n}{X}\PYG{p}{,} \PYG{n}{lb}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{ra}\PYG{o}{=}\PYG{n}{X}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{rb}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k+kt}{long} \PYG{k+kt}{double} \PYG{n}{C}\PYG{o}{=}\PYG{n}{A}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{;}
+	\PYG{k}{do} \PYG{p}{\PYGZob{}}
+		\PYG{n}{a} \PYG{o}{=} \PYG{n}{la}\PYG{o}{+}\PYG{n}{ra}\PYG{p}{;}
+		\PYG{n}{b} \PYG{o}{=} \PYG{n}{lb}\PYG{o}{+}\PYG{n}{rb}\PYG{p}{;}
+		\PYG{n}{c} \PYG{o}{=} \PYG{n}{a}\PYG{o}{/}\PYG{n}{b}\PYG{p}{;}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{C}\PYG{o}{\PYGZhy{}}\PYG{n}{X}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZhy{}}\PYG{n}{X}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+			\PYG{n}{A}\PYG{o}{=}\PYG{n}{a}\PYG{p}{;}
+			\PYG{n}{B}\PYG{o}{=}\PYG{n}{b}\PYG{p}{;}
+			\PYG{n}{C}\PYG{o}{=}\PYG{n}{c}\PYG{p}{;}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{X}\PYG{o}{\PYGZhy{}}\PYG{n}{C}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mf}{1e\PYGZhy{}10}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{k}{break}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{X}\PYG{o}{\PYGZlt{}}\PYG{n}{c}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{ra}\PYG{o}{=}\PYG{n}{a}\PYG{p}{;}
+			\PYG{n}{rb}\PYG{o}{=}\PYG{n}{b}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+			\PYG{n}{la}\PYG{o}{=}\PYG{n}{a}\PYG{p}{;}
+			\PYG{n}{lb}\PYG{o}{=}\PYG{n}{b}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}} \PYG{k}{while}\PYG{p}{(}\PYG{n}{lb}\PYG{o}{+}\PYG{n}{rb}\PYG{o}{\PYGZlt{}=}\PYG{l+m+mf}{1e5}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

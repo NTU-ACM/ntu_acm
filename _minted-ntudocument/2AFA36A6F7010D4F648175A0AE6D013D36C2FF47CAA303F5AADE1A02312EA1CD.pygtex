@@ -1,0 +1,70 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//Author:CookiC}
+\PYG{c+c1}{//返回下标最大的匹配串}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{getFail}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{P}\PYG{p}{,} \PYG{k+kt}{int} \PYG{o}{*}\PYG{n}{f}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{;}
+	\PYG{n}{f}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{f}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{P}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{j} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+		\PYG{k}{while}\PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{P}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{!=}\PYG{n}{P}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+			\PYG{n}{j} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{f}\PYG{p}{[}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{=} \PYG{n}{P}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{==}\PYG{n}{P}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{?} \PYG{n}{j}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{o}{:} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{kmp}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{T}\PYG{p}{,} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{P}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{ans} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{T}\PYG{p}{),} \PYG{n}{m} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{P}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+	\PYG{n}{getFail}\PYG{p}{(}\PYG{n}{P}\PYG{p}{,} \PYG{n}{f}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{while}\PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{P}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{!=}\PYG{n}{T}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])}
+		\PYG{n}{j} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{P}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{==}\PYG{n}{T}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{p}{\PYGZob{}}
+			\PYG{o}{++}\PYG{n}{j}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{j}\PYG{o}{==}\PYG{n}{m}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{j} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+			\PYG{n}{ans} \PYG{o}{=} \PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+
+\PYG{c+cm}{/*}
+\PYG{c+cm}{* Author: Simon * 复 杂 度: O(n) }
+\PYG{c+cm}{*/}
+\PYG{k+kt}{int} \PYG{n}{Next}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];} \PYG{c+cm}{/*i之前相同前缀后缀的长度， 例ababc,Next[5]=2; */} 
+\PYG{k+kt}{void} \PYG{n+nf}{getNext}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,} \PYG{k+kt}{char} \PYG{n}{p}\PYG{p}{[])} \PYG{p}{\PYGZob{}}
+	\PYG{n}{memset}\PYG{p}{(}\PYG{n}{Next}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{k}{sizeof}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)}\PYG{o}{*}\PYG{p}{(}\PYG{n}{m}\PYG{o}{+}\PYG{l+m+mi}{5}\PYG{p}{));} 
+	\PYG{k+kt}{int} \PYG{n}{k}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{Next}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{j}\PYG{o}{\PYGZlt{}}\PYG{n}{m}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{k}\PYG{o}{==\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{||}\PYG{n}{p}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{o}{==}\PYG{n}{p}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])} \PYG{p}{\PYGZob{}} 
+		\PYG{n}{k}\PYG{o}{++}\PYG{p}{,}\PYG{n}{j}\PYG{o}{++}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{p}\PYG{p}{[}\PYG{n}{k}\PYG{p}{]}\PYG{o}{!=}\PYG{n}{p}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])} \PYG{n}{Next}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{=}\PYG{n}{k}\PYG{p}{;}
+		\PYG{k}{else} \PYG{n}{Next}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]}\PYG{o}{=}\PYG{n}{Next}\PYG{p}{[}\PYG{n}{k}\PYG{p}{];} 
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{else} \PYG{n}{k}\PYG{o}{=}\PYG{n}{Next}\PYG{p}{[}\PYG{n}{k}\PYG{p}{];} 
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{KMP}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{,}\PYG{k+kt}{char} \PYG{n}{s}\PYG{p}{[],}\PYG{k+kt}{char} \PYG{n}{p}\PYG{p}{[])\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{n}{ans}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;} 
+	\PYG{k}{while}\PYG{p}{(}\PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{n}{n}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{j}\PYG{o}{==\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{||}\PYG{n}{s}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{==}\PYG{n}{p}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])} \PYG{n}{i}\PYG{o}{++}\PYG{p}{,}\PYG{n}{j}\PYG{o}{++}\PYG{p}{;}
+		\PYG{k}{else} \PYG{n}{j}\PYG{o}{=}\PYG{n}{Next}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{j}\PYG{o}{==}\PYG{n}{m}\PYG{p}{)} \PYG{n}{ans}\PYG{o}{++}\PYG{p}{;} \PYG{c+cm}{/*计 数 (可 重 叠)*/}
+		\PYG{c+c1}{//if(j==m) ans++,j=0;/*计 数 ( 不 可 重 叠 )*/ }
+		\PYG{c+c1}{//if(j==m) return i\PYGZhy{}m+1; /*返回第一个匹配的位置 */}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{c+c1}{//return j;/*返回s后缀与p前缀匹配的最长长度 */}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;} 
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

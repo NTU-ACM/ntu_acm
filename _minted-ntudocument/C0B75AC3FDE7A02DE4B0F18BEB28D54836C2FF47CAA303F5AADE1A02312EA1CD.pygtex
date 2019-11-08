@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mi}{10005}\PYG{p}{;}   \PYG{c+c1}{//点的最大个数}
+
+\PYG{k+kt}{int} \PYG{n}{head}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],} \PYG{n}{cnt}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{c+c1}{//head用来表示以i为起点的第一条边存储的位置，cnt读入边的计数器}
+
+\PYG{k}{struct} \PYG{n}{Edge} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{next}\PYG{p}{;} \PYG{c+c1}{//同一起点的上一条边的储存位置}
+	\PYG{k+kt}{int} \PYG{n}{to}\PYG{p}{;} \PYG{c+c1}{//第i条边的终点}
+	\PYG{k+kt}{int} \PYG{n}{w}\PYG{p}{;} \PYG{c+c1}{//第i条边权重}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{n}{Edge} \PYG{n}{edge}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{addedge}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{w}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{edge}\PYG{p}{[}\PYG{n}{cnt}\PYG{p}{].}\PYG{n}{w} \PYG{o}{=} \PYG{n}{w}\PYG{p}{;}
+	\PYG{n}{edge}\PYG{p}{[}\PYG{n}{cnt}\PYG{p}{].}\PYG{n}{to} \PYG{o}{=} \PYG{n}{v}\PYG{p}{;}
+	\PYG{n}{edge}\PYG{p}{[}\PYG{n}{cnt}\PYG{p}{].}\PYG{n}{next} \PYG{o}{=} \PYG{n}{head}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];}
+	\PYG{n}{head}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{cnt}\PYG{o}{++}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{traverse}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j}\PYG{o}{=}\PYG{n}{head}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];} \PYG{n}{j}\PYG{err}{！}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{j}\PYG{o}{=}\PYG{n}{edge}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{next}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{head}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{to} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{head}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{w} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s+sc}{\PYGZsq{}\PYGZbs{}n\PYGZsq{}}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

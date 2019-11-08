@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ *  求多边形重心}
+\PYG{c+cm}{ *  INIT: pnt[]已按顺时针(或逆时针)排好序; | CALL: res = bcenter(pnt, n);}
+\PYG{c+cm}{ */}
+\PYG{k}{struct} \PYG{n}{point} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{double} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{n}{point} \PYG{n+nf}{bcenter}\PYG{p}{(}\PYG{n}{point} \PYG{n}{pnt}\PYG{p}{[],} \PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{point} \PYG{n}{p}\PYG{p}{,} \PYG{n}{s}\PYG{p}{;}
+	\PYG{k+kt}{double} \PYG{n}{tp}\PYG{p}{,} \PYG{n}{area} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{tpx} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{tpy} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{n}{p}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{n}{pnt}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{].}\PYG{n}{x}\PYG{p}{;}
+	\PYG{n}{p}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{n}{pnt}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{].}\PYG{n}{y}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}   \PYG{c+c1}{//  point:0 \PYGZti{} n \PYGZhy{} 1}
+		\PYG{n}{s}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{n}{pnt}\PYG{p}{[(}\PYG{n}{i} \PYG{o}{==} \PYG{n}{n}\PYG{p}{)} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{i}\PYG{p}{].}\PYG{n}{x}\PYG{p}{;}
+		\PYG{n}{s}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{n}{pnt}\PYG{p}{[(}\PYG{n}{i} \PYG{o}{==} \PYG{n}{n}\PYG{p}{)} \PYG{o}{?} \PYG{l+m+mi}{0} \PYG{o}{:} \PYG{n}{i}\PYG{p}{].}\PYG{n}{y}\PYG{p}{;}
+		\PYG{n}{tp} \PYG{o}{=} \PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n}{x} \PYG{o}{*} \PYG{n}{s}\PYG{p}{.}\PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{n}{s}\PYG{p}{.}\PYG{n}{x} \PYG{o}{*} \PYG{n}{p}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);}
+		\PYG{n}{area} \PYG{o}{+=} \PYG{n}{tp} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;}
+		\PYG{n}{tpx} \PYG{o}{+=} \PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{s}\PYG{p}{.}\PYG{n}{x}\PYG{p}{)} \PYG{o}{*} \PYG{n}{tp}\PYG{p}{;}
+		\PYG{n}{tpy} \PYG{o}{+=} \PYG{p}{(}\PYG{n}{p}\PYG{p}{.}\PYG{n}{y} \PYG{o}{+} \PYG{n}{s}\PYG{p}{.}\PYG{n}{y}\PYG{p}{)} \PYG{o}{*} \PYG{n}{tp}\PYG{p}{;}
+		\PYG{n}{p}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{n}{s}\PYG{p}{.}\PYG{n}{x}\PYG{p}{;}
+		\PYG{n}{p}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{n}{s}\PYG{p}{.}\PYG{n}{y}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{s}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{n}{tpx} \PYG{o}{/} \PYG{p}{(}\PYG{l+m+mi}{6} \PYG{o}{*} \PYG{n}{area}\PYG{p}{);}
+	\PYG{n}{s}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{n}{tpy} \PYG{o}{/} \PYG{p}{(}\PYG{l+m+mi}{6} \PYG{o}{*} \PYG{n}{area}\PYG{p}{);}
+	\PYG{k}{return} \PYG{n}{s}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

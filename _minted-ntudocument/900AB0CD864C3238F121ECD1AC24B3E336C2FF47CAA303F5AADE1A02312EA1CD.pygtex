@@ -1,0 +1,81 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author: Simon}
+\PYG{c+cm}{ * 功能: 求解x\PYGZca{}2=n(mod p),即x=sqrt(n)(mod p)}
+\PYG{c+cm}{ * 复杂度: O(sqrt(p))}
+\PYG{c+cm}{ */}
+
+\PYG{c+cm}{/*类似复数 单位元为w(复数的单位元为\PYGZhy{}1)*/}
+\PYG{k}{struct} \PYG{n}{Complex} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{w}\PYG{p}{;}
+	\PYG{n}{Complex}\PYG{p}{()} \PYG{p}{\PYGZob{}\PYGZcb{}}
+	\PYG{n}{Complex}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{x}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{y}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{w}\PYG{p}{)} \PYG{o}{:} \PYG{n}{x}\PYG{p}{(}\PYG{n}{x}\PYG{p}{),} \PYG{n}{y}\PYG{p}{(}\PYG{n}{y}\PYG{p}{),} \PYG{n}{w}\PYG{p}{(}\PYG{n}{w}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\PYG{c+cm}{/*类复数乘法 */}
+\PYG{n}{Complex} \PYG{n+nf}{mul}\PYG{p}{(}\PYG{n}{Complex} \PYG{n}{a}\PYG{p}{,} \PYG{n}{Complex} \PYG{n}{b}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{Complex} \PYG{n}{ans}\PYG{p}{;}
+	\PYG{n}{ans}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{x} \PYG{o}{*} \PYG{n}{b}\PYG{p}{.}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{n}{p} \PYG{o}{+} \PYG{n}{a}\PYG{p}{.}\PYG{n}{y} \PYG{o}{*} \PYG{n}{b}\PYG{p}{.}\PYG{n}{y} \PYG{o}{\PYGZpc{}} \PYG{n}{p} \PYG{o}{*} \PYG{n}{a}\PYG{p}{.}\PYG{n}{w} \PYG{o}{\PYGZpc{}} \PYG{n}{p}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{p}\PYG{p}{;}
+	\PYG{n}{ans}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{x} \PYG{o}{*} \PYG{n}{b}\PYG{p}{.}\PYG{n}{y} \PYG{o}{\PYGZpc{}} \PYG{n}{p} \PYG{o}{+} \PYG{n}{a}\PYG{p}{.}\PYG{n}{y} \PYG{o}{*} \PYG{n}{b}\PYG{p}{.}\PYG{n}{x} \PYG{o}{\PYGZpc{}} \PYG{n}{p}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{p}\PYG{p}{;}
+	\PYG{n}{ans}\PYG{p}{.}\PYG{n}{w} \PYG{o}{=} \PYG{n}{a}\PYG{p}{.}\PYG{n}{w}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*类复数快速幂 */}
+\PYG{n}{Complex} \PYG{n+nf}{Complexfpow}\PYG{p}{(}\PYG{n}{Complex} \PYG{n}{a}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{mod}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{Complex} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{Complex}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{a}\PYG{p}{.}\PYG{n}{w}\PYG{p}{);}
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{b}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{b} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{mul}\PYG{p}{(}\PYG{n}{ans}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{mod}\PYG{p}{);}
+		\PYG{n}{a} \PYG{o}{=} \PYG{n}{mul}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{n}{a}\PYG{p}{,} \PYG{n}{mod}\PYG{p}{);}
+		\PYG{n}{b} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{fpow}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{mod}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{ans} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{n}{a} \PYG{o}{\PYGZpc{}=} \PYG{n}{mod}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{b}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{b} \PYG{o}{\PYGZam{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{(}\PYG{n}{ans} \PYG{o}{*=} \PYG{n}{a}\PYG{p}{)} \PYG{o}{\PYGZpc{}=} \PYG{n}{mod}\PYG{p}{;}
+		\PYG{p}{(}\PYG{n}{a} \PYG{o}{*=} \PYG{n}{a}\PYG{p}{)} \PYG{o}{\PYGZpc{}=} \PYG{n}{mod}\PYG{p}{;}
+		\PYG{n}{b} \PYG{o}{\PYGZgt{}\PYGZgt{}=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*求解x\PYGZca{}2=n(mod p) */}
+\PYG{k+kt}{int} \PYG{n+nf}{solve}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{n} \PYG{o}{\PYGZpc{}=} \PYG{n}{p}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{n} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{p} \PYG{o}{==} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{k}{return} \PYG{n}{n}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,} \PYG{p}{(}\PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{p}\PYG{p}{)} \PYG{o}{==} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;} \PYG{c+cm}{/*勒让德定理判断n不是p的二次剩余 */}
+	\PYG{n}{mt19937} \PYG{n}{rnd}\PYG{p}{(}\PYG{n}{time}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{));}
+	\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,} \PYG{n}{t}\PYG{p}{,} \PYG{n}{w}\PYG{p}{;}
+	\PYG{k}{do} \PYG{p}{\PYGZob{}}
+		\PYG{n}{a} \PYG{o}{=} \PYG{n}{rnd}\PYG{p}{()} \PYG{o}{\PYGZpc{}} \PYG{n}{p}\PYG{p}{;}
+		\PYG{n}{t} \PYG{o}{=} \PYG{n}{a} \PYG{o}{*} \PYG{n}{a} \PYG{o}{\PYGZhy{}} \PYG{n}{n}\PYG{p}{;}
+		\PYG{n}{w} \PYG{o}{=} \PYG{p}{(}\PYG{n}{t} \PYG{o}{\PYGZpc{}} \PYG{n}{p} \PYG{o}{+} \PYG{n}{p}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{p}\PYG{p}{;}                    \PYG{c+cm}{/*构造w=a\PYGZca{}2\PYGZhy{}n */}
+	\PYG{p}{\PYGZcb{}} \PYG{k}{while} \PYG{p}{(}\PYG{n}{fpow}\PYG{p}{(}\PYG{n}{w}\PYG{p}{,} \PYG{p}{(}\PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{p}\PYG{p}{)} \PYG{o}{!=} \PYG{n}{p} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{);} \PYG{c+cm}{/*找到一个w不是p的二次剩余 */}
+	\PYG{n}{Complex} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{Complex}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{w}\PYG{p}{);}
+	\PYG{n}{ans} \PYG{o}{=} \PYG{n}{Complexfpow}\PYG{p}{(}\PYG{n}{ans}\PYG{p}{,} \PYG{p}{(}\PYG{n}{p} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{p}\PYG{p}{);} \PYG{c+cm}{/*答案为(a+w)\PYGZca{}\PYGZob{}(p+1)/2\PYGZcb{} */}
+	\PYG{k}{return} \PYG{n}{ans}\PYG{p}{.}\PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{exgcd}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{b}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{,}\PYG{k+kt}{int} \PYG{o}{\PYGZam{}}\PYG{n}{y}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{b}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{x}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{y}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{return} \PYG{n}{a}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{int} \PYG{n}{g}\PYG{o}{=}\PYG{n}{exgcd}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,}\PYG{n}{a}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{,}\PYG{n}{y}\PYG{p}{,}\PYG{n}{x}\PYG{p}{);}
+	\PYG{n}{y}\PYG{o}{\PYGZhy{}=}\PYG{n}{a}\PYG{o}{/}\PYG{n}{b}\PYG{o}{*}\PYG{n}{x}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{g}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+cm}{/*求解x\PYGZca{}2=n (mod p\PYGZca{}k) */}
+\PYG{k+kt}{int} \PYG{n+nf}{exsolve}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{p}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{k}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{pk}\PYG{p}{)\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{r}\PYG{o}{=}\PYG{n}{solve}\PYG{p}{(}\PYG{n}{n}\PYG{p}{,}\PYG{n}{p}\PYG{p}{);}\PYG{c+cm}{/*先求出x\PYGZca{}2=n (mod p) */}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{r}\PYG{o}{==\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{n}{Complex} \PYG{n}{ans}\PYG{o}{=}\PYG{n}{Complex}\PYG{p}{(}\PYG{n}{r}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{n}\PYG{p}{);}
+	\PYG{n}{ans}\PYG{o}{=}\PYG{n}{Complexfpow}\PYG{p}{(}\PYG{n}{ans}\PYG{p}{,}\PYG{n}{k}\PYG{p}{,}\PYG{n}{pk}\PYG{p}{);}\PYG{c+cm}{/*求出(r+sqrt(n))\PYGZca{}k=t+u·sqrt(n) */}
+	\PYG{k+kt}{int} \PYG{n}{a}\PYG{o}{=}\PYG{n}{ans}\PYG{p}{.}\PYG{n}{y}\PYG{p}{,}\PYG{n}{b}\PYG{o}{=}\PYG{n}{pk}\PYG{p}{,}\PYG{n}{c}\PYG{o}{=}\PYG{n}{ans}\PYG{p}{.}\PYG{n}{x}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{g}\PYG{o}{=}\PYG{n}{exgcd}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);}\PYG{c+cm}{/*求解u·x=t (mod p\PYGZca{}k) */}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZpc{}}\PYG{n}{g}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{n}{a}\PYG{o}{/=}\PYG{n}{g}\PYG{p}{;}\PYG{n}{b}\PYG{o}{/=}\PYG{n}{g}\PYG{p}{;}
+	\PYG{n}{x}\PYG{o}{*=}\PYG{n}{c}\PYG{o}{/}\PYG{n}{g}\PYG{p}{;}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{x}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{o}{+}\PYG{n}{b}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

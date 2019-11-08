@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//by sevenkplus}
+\PYG{c+cp}{\PYGZsh{}define ll long long}
+\PYG{c+cp}{\PYGZsh{}define ld long double}
+\PYG{n}{ll} \PYG{n+nf}{mul}\PYG{p}{(}\PYG{n}{ll} \PYG{n}{x}\PYG{p}{,}\PYG{n}{ll} \PYG{n}{y}\PYG{p}{,}\PYG{n}{ll} \PYG{n}{z}\PYG{p}{)\PYGZob{}}\PYG{k}{return} \PYG{p}{(}\PYG{n}{x}\PYG{o}{*}\PYG{n}{y}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{n}{ll}\PYG{p}{)(}\PYG{n}{x}\PYG{o}{/}\PYG{p}{(}\PYG{n}{ld}\PYG{p}{)}\PYG{n}{z}\PYG{o}{*}\PYG{n}{y}\PYG{o}{+}\PYG{l+m+mf}{1e\PYGZhy{}3}\PYG{p}{)}\PYG{o}{*}\PYG{n}{z}\PYG{o}{+}\PYG{n}{z}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{z}\PYG{p}{;\PYGZcb{}}
+
+\PYG{c+c1}{//by Lazer2001}
+\PYG{k+kr}{inline} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n+nf}{mmul} \PYG{p}{(}\PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{a}\PYG{p}{,} \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{b}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{o}{\PYGZam{}} \PYG{n}{Mod}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{lf} \PYG{o}{=} \PYG{n}{a} \PYG{o}{*} \PYG{p}{(}\PYG{n}{b} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{l+m+mi}{25LL}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{Mod} \PYG{o}{*} \PYG{p}{(}\PYG{l+m+mi}{1LL} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{25}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{Mod}\PYG{p}{;}
+    \PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{rg} \PYG{o}{=} \PYG{n}{a} \PYG{o}{*} \PYG{p}{(} \PYG{n}{b} \PYG{o}{\PYGZam{}} \PYG{p}{(} \PYG{p}{(} \PYG{l+m+mi}{1LL} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{25} \PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1} \PYG{p}{)} \PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{Mod} \PYG{p}{;}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{lf} \PYG{o}{+} \PYG{n}{rg}\PYG{p}{)} \PYG{o}{\PYGZpc{}} \PYG{n}{Mod} \PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

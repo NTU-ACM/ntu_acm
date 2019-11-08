@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/* }
+\PYG{c+cm}{ * author：Simon}
+\PYG{c+cm}{ * f[m]:可改变当前状态的方式，m为方式的种类，f[m]要在getSG之前先预处理}
+\PYG{c+cm}{ * sg[]:0\PYGZti{}n的SG函数值}
+\PYG{c+cm}{ * mex[]:为x后继状态的集合}
+\PYG{c+cm}{ * 若sg值为正数，则先手必赢，否则若为0，则先手必输。}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{sg}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{mex}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{void} \PYG{n+nf}{getSG}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{c+cm}{/*需要求多少个sg值*/}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{m}\PYG{c+cm}{/*有多少种操作方式*/}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{memset}\PYG{p}{(}\PYG{n}{sg}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{sg}\PYG{p}{));}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}} \PYG{c+cm}{/*因为SG[0]始终等于0，所以i从1开始*/}
+		\PYG{n}{memset}\PYG{p}{(}\PYG{n}{mex}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{mex}\PYG{p}{));} \PYG{c+cm}{/*每一次都要将上一状态 的 后继集合 重置*/}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{\PYGZlt{}=} \PYG{n}{i} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{m}\PYG{p}{;} \PYG{n}{j}\PYG{o}{++}\PYG{p}{)}
+			\PYG{n}{mex}\PYG{p}{[}\PYG{n}{sg}\PYG{p}{[}\PYG{n}{i}\PYG{o}{\PYGZhy{}}\PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]]]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}  \PYG{c+cm}{/*将后继状态的SG函数值进行标记*/}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;;} \PYG{n}{j}\PYG{o}{++}\PYG{p}{)} \PYG{k}{if}\PYG{p}{(}\PYG{o}{!}\PYG{n}{mex}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])\PYGZob{}}   \PYG{c+cm}{/*查询当前后继状态SG值中最小的非零值*/}
+			\PYG{n}{sg}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{j}\PYG{p}{;}
+			\PYG{k}{break}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

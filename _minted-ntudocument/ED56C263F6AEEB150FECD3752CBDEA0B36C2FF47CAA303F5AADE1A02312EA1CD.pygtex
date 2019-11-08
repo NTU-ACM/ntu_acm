@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kt}{int} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{][}\PYG{l+m+mi}{26}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{sum}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+\PYG{k+kt}{int} \PYG{n}{tot}\PYG{p}{;}
+\PYG{k+kt}{void} \PYG{n+nf}{Insert}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{len} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{str}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{root} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{len}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{id} \PYG{o}{=} \PYG{n}{str}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{tree}\PYG{p}{[}\PYG{n}{root}\PYG{p}{][}\PYG{n}{id}\PYG{p}{])} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{root}\PYG{p}{][}\PYG{n}{id}\PYG{p}{]} \PYG{o}{=} \PYG{o}{++}\PYG{n}{tot}\PYG{p}{;}
+		\PYG{n}{sum}\PYG{p}{[}\PYG{n}{tree}\PYG{p}{[}\PYG{n}{root}\PYG{p}{][}\PYG{n}{id}\PYG{p}{]]}\PYG{o}{++}\PYG{p}{;}
+		\PYG{n}{root} \PYG{o}{=} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{root}\PYG{p}{][}\PYG{n}{id}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{Find}\PYG{p}{(}\PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{str}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{len} \PYG{o}{=} \PYG{n}{strlen}\PYG{p}{(}\PYG{n}{str}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{root} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{len}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{id} \PYG{o}{=} \PYG{n}{str}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{l+s+sc}{\PYGZsq{}a\PYGZsq{}}\PYG{p}{;}
+		\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{tree}\PYG{p}{[}\PYG{n}{root}\PYG{p}{][}\PYG{n}{id}\PYG{p}{])} \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{n}{root} \PYG{o}{=} \PYG{n}{tree}\PYG{p}{[}\PYG{n}{root}\PYG{p}{][}\PYG{n}{id}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{sum}\PYG{p}{[}\PYG{n}{root}\PYG{p}{];}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

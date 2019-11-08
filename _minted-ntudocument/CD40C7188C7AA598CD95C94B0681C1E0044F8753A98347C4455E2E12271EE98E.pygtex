@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+syntax on
+set nu
+set cindent
+set tabstop=4
+set shiftwidth=4
+set noswapfile
+set mouse=a
+
+map \PYGZlt{}C\PYGZhy{}A\PYGZgt{} ggVG\PYGZdq{}+y
+
+func Close(char)
+	if getline(\PYGZdq{}.\PYGZdq{})[col(\PYGZsq{}.\PYGZsq{})\PYGZhy{}1]==a:char
+		return \PYGZdq{}\PYGZbs{}\PYGZlt{}Right\PYGZgt{}\PYGZdq{}
+	else return a:char
+	endif
+endfunc
+
+inoremap \PYGZob{} \PYGZob{}\PYGZcb{}\PYGZlt{}Esc\PYGZgt{}i
+inoremap \PYGZcb{} \PYGZlt{}c\PYGZhy{}r\PYGZgt{}=Close(\PYGZsq{}\PYGZcb{}\PYGZsq{})\PYGZlt{}CR\PYGZgt{}
+inoremap ( ()\PYGZlt{}Esc\PYGZgt{}i
+inoremap ) \PYGZlt{}c\PYGZhy{}r\PYGZgt{}=Close(\PYGZsq{})\PYGZsq{})\PYGZlt{}CR\PYGZgt{}
+inoremap [ []\PYGZlt{}Esc\PYGZgt{}i
+inoremap ] \PYGZlt{}c\PYGZhy{}r\PYGZgt{}=Close(\PYGZsq{}]\PYGZsq{})\PYGZlt{}CR\PYGZgt{}
+
+
+map \PYGZlt{}F9\PYGZgt{} :call Run()\PYGZlt{}CR\PYGZgt{}
+func! Run()
+	exec \PYGZdq{}w\PYGZdq{}
+	exec \PYGZdq{}!g++ \PYGZhy{}std=c++11 \PYGZhy{}O2 \PYGZpc{} \PYGZhy{}o \PYGZpc{}\PYGZlt{}\PYGZdq{}
+	exec \PYGZdq{}!time ./\PYGZpc{}\PYGZlt{}\PYGZdq{}
+endfunc
+\end{Verbatim}

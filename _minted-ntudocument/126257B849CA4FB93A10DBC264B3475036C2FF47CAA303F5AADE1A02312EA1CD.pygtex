@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cm}{/*}
+\PYG{c+cm}{ * Author:Simon}
+\PYG{c+cm}{ * 功能: 模数可以不互质情况下，求解同余方程组。}
+\PYG{c+cm}{ * 若返回\PYGZhy{}1则无解，否则返回最小非负整数解x，通解为x+i*M}
+\PYG{c+cm}{ * 复杂度: O(nlog)}
+\PYG{c+cm}{ */}
+\PYG{k+kt}{int} \PYG{n+nf}{excrt}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{mi}\PYG{p}{[],}\PYG{k+kt}{int} \PYG{n}{ai}\PYG{p}{[],}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)\PYGZob{}} \PYG{c+c1}{//扩展中国剩余定理}
+	\PYG{k+kt}{int} \PYG{n}{M}\PYG{o}{=}\PYG{n}{mi}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{ans}\PYG{o}{=}\PYG{n}{ai}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{];} \PYG{c+c1}{//x=ans+i*M，得到一个通解}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{;}\PYG{n}{i}\PYG{o}{\PYGZlt{}=}\PYG{n}{n}\PYG{p}{;}\PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{a}\PYG{o}{=}\PYG{n}{M}\PYG{p}{,}\PYG{n}{b}\PYG{o}{=}\PYG{n}{mi}\PYG{p}{[}\PYG{n}{i}\PYG{p}{],}\PYG{n}{c}\PYG{o}{=}\PYG{p}{((}\PYG{n}{ai}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{ans}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{o}{+}\PYG{n}{b}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{c+cm}{/*将c化为正数*/}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{;} \PYG{c+c1}{//与第二个方程组成不定方程}
+		\PYG{k+kt}{int} \PYG{n}{gcd}\PYG{o}{=}\PYG{n}{exgcd}\PYG{p}{(}\PYG{n}{a}\PYG{p}{,}\PYG{n}{b}\PYG{p}{,}\PYG{n}{x}\PYG{p}{,}\PYG{n}{y}\PYG{p}{);} \PYG{c+c1}{//通过扩展欧几里得解的一组特解（p,q)}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{c}\PYG{o}{\PYGZpc{}}\PYG{n}{gcd}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{n}{a}\PYG{o}{/=}\PYG{n}{gcd}\PYG{p}{,}\PYG{n}{b}\PYG{o}{/=}\PYG{n}{gcd}\PYG{p}{;}
+		\PYG{p}{(}\PYG{n}{x}\PYG{o}{*=}\PYG{p}{(}\PYG{n}{c}\PYG{o}{/}\PYG{n}{gcd}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{)}\PYG{o}{\PYGZpc{}=}\PYG{n}{b}\PYG{p}{;} \PYG{n}{x}\PYG{o}{=}\PYG{p}{(}\PYG{n}{x}\PYG{o}{+}\PYG{n}{b}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{b}\PYG{p}{;}
+		\PYG{n}{ans}\PYG{o}{+=}\PYG{n}{x}\PYG{o}{*}\PYG{n}{M}\PYG{p}{;} \PYG{c+c1}{//则 新同余方程的解x=ans+p*M}
+		\PYG{n}{M}\PYG{o}{*=}\PYG{n}{b}\PYG{p}{;} \PYG{c+c1}{//所有模数的最小公倍数 (M*b)/gcd=M*(b/gcd)}
+		\PYG{n}{ans}\PYG{o}{\PYGZpc{}=}\PYG{n}{M}\PYG{p}{;} \PYG{c+c1}{//最小整数解}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{ans}\PYG{o}{+}\PYG{n}{M}\PYG{p}{)}\PYG{o}{\PYGZpc{}}\PYG{n}{M}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

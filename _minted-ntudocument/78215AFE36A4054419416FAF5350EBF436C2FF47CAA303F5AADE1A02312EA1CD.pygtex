@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k+kt}{void} \PYG{n+nf}{fwt}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{[],} \PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ctz}\PYG{p}{(}\PYG{n}{m}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+				\PYG{k+kt}{int} \PYG{n}{l} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i}\PYG{p}{)],} \PYG{n}{r} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+				\PYG{n}{f}\PYG{p}{[}\PYG{n}{j} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i}\PYG{p}{)]} \PYG{o}{=} \PYG{n}{l} \PYG{o}{+} \PYG{n}{r}\PYG{p}{,} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n}{l} \PYG{o}{\PYGZhy{}} \PYG{n}{r}\PYG{p}{;}
+				\PYG{c+c1}{// or: f[j] += f[j \PYGZca{} (1 \PYGZlt{}\PYGZlt{} i)];}
+				\PYG{c+c1}{// and: f[j \PYGZca{} (1 \PYGZlt{}\PYGZlt{} i)] += f[j];}
+			\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{ifwt}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{f}\PYG{p}{[],} \PYG{k+kt}{int} \PYG{n}{m}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{n} \PYG{o}{=} \PYG{n}{\PYGZus{}\PYGZus{}builtin\PYGZus{}ctz}\PYG{p}{(}\PYG{n}{m}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{n}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{m}\PYG{p}{;} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{j} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+				\PYG{k+kt}{int} \PYG{n}{l} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i}\PYG{p}{)],} \PYG{n}{r} \PYG{o}{=} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{];}
+				\PYG{n}{f}\PYG{p}{[}\PYG{n}{j} \PYG{o}{\PYGZca{}} \PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{i}\PYG{p}{)]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{l} \PYG{o}{+} \PYG{n}{r}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{f}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{p}{(}\PYG{n}{l} \PYG{o}{\PYGZhy{}} \PYG{n}{r}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mi}{2}\PYG{p}{;}
+				\PYG{c+c1}{// 如果有取模需要使用逆元}
+				\PYG{c+c1}{// or: f[j] \PYGZhy{}= f[j \PYGZca{} (1 \PYGZlt{}\PYGZlt{} i)];}
+				\PYG{c+c1}{// and: f[j \PYGZca{} (1 \PYGZlt{}\PYGZlt{} i)] \PYGZhy{}= f[j];}
+			\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

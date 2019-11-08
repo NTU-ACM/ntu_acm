@@ -1,0 +1,69 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//模拟退火}
+\PYG{c+c1}{//平面上找一个点 使得 sigma(1..N)dist(a, i)*Wi 最小}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdlib\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}define INF (1e17)}
+\PYG{c+cp}{\PYGZsh{}define EPS (1e\PYGZhy{}3)}
+\PYG{c+cp}{\PYGZsh{}define PI  (acos(\PYGZhy{}1.0))}
+\PYG{c+cp}{\PYGZsh{}define FIRE(x) (x *= 0.99)}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{MAXN} \PYG{o}{=} \PYG{l+m+mi}{10000} \PYG{o}{+} \PYG{l+m+mi}{10}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{;}
+\PYG{k+kt}{double} \PYG{n}{total} \PYG{o}{=} \PYG{n}{INF}\PYG{p}{;}
+\PYG{k}{struct} \PYG{n}{Point} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{double} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{w}\PYG{p}{;}
+	\PYG{n}{Point} \PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{\PYGZus{}x}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{\PYGZus{}y}\PYG{p}{)} \PYG{o}{:} \PYG{n}{x}\PYG{p}{(}\PYG{n}{\PYGZus{}x}\PYG{p}{),} \PYG{n}{y}\PYG{p}{(}\PYG{n}{\PYGZus{}y}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
+	\PYG{n}{Point} \PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
+	\PYG{k+kt}{void} \PYG{n}{Read}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}lf\PYGZpc{}lf\PYGZpc{}lf\PYGZdq{}}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{x}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{y}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{w}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{void} \PYG{k}{operator} \PYG{o}{+=} \PYG{p}{(}\PYG{n}{Point} \PYG{n}{t}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{x} \PYG{o}{+=} \PYG{n}{t}\PYG{p}{.}\PYG{n}{x}\PYG{p}{;} \PYG{n}{y} \PYG{o}{+=} \PYG{n}{t}\PYG{p}{.}\PYG{n}{y}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{void} \PYG{k}{operator} \PYG{o}{/=} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{x} \PYG{o}{/=} \PYG{n}{N}\PYG{p}{,} \PYG{n}{y} \PYG{o}{/=} \PYG{n}{N}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+\PYG{n}{Point} \PYG{n}{now}\PYG{p}{,} \PYG{n}{ans}\PYG{p}{,} \PYG{n}{point}\PYG{p}{[}\PYG{n}{MAXN}\PYG{p}{];}
+\PYG{k+kr}{inline} \PYG{k+kt}{double} \PYG{n+nf}{Dist}\PYG{p}{(}\PYG{n}{Point} \PYG{n}{a}\PYG{p}{,} \PYG{n}{Point} \PYG{n}{b}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{return} \PYG{n}{sqrt}\PYG{p}{((}\PYG{n}{a}\PYG{p}{.}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{x}\PYG{p}{)} \PYG{o}{*} \PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{x}\PYG{p}{)} \PYG{o}{+}
+				 \PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{y}\PYG{p}{)} \PYG{o}{*} \PYG{p}{(}\PYG{n}{a}\PYG{p}{.}\PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{y}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kr}{inline} \PYG{k+kt}{double} \PYG{n+nf}{Statistic}\PYG{p}{(}\PYG{n}{Point} \PYG{n}{p}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{double} \PYG{n}{res} \PYG{o}{=} \PYG{l+m+mf}{0.0}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{res} \PYG{o}{+=} \PYG{n}{Dist}\PYG{p}{(}\PYG{n}{p}\PYG{p}{,} \PYG{n}{point}\PYG{p}{[}\PYG{n}{i}\PYG{p}{])} \PYG{o}{*} \PYG{n}{point}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{w}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{res} \PYG{o}{\PYGZlt{}} \PYG{n}{total}\PYG{p}{)} \PYG{n}{total} \PYG{o}{=} \PYG{n}{res}\PYG{p}{,} \PYG{n}{ans} \PYG{o}{=} \PYG{n}{p}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{res}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kr}{inline} \PYG{k+kt}{double} \PYG{n+nf}{Rand}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{return} \PYG{p}{(}\PYG{n}{rand}\PYG{p}{()} \PYG{o}{\PYGZpc{}} \PYG{l+m+mi}{1000} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mf}{1000.0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{void}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{srand}\PYG{p}{(}\PYG{l+m+mi}{10086}\PYG{p}{);}
+	\PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d\PYGZdq{}}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{N}\PYG{p}{);}
+	\PYG{k}{register} \PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{n}{point}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{Read}\PYG{p}{(),} \PYG{n}{now} \PYG{o}{+=} \PYG{n}{point}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+	\PYG{n}{now} \PYG{o}{/=} \PYG{n}{N}\PYG{p}{;}
+	\PYG{k+kt}{double} \PYG{n}{T} \PYG{o}{=} \PYG{l+m+mf}{100000.0}\PYG{p}{,} \PYG{n}{alpha}\PYG{p}{,} \PYG{n}{sub}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{T} \PYG{o}{\PYGZgt{}} \PYG{n}{EPS}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{alpha} \PYG{o}{=} \PYG{l+m+mf}{2.0} \PYG{o}{*} \PYG{n}{PI} \PYG{o}{*} \PYG{n}{Rand}\PYG{p}{();}
+		\PYG{n}{Point} \PYG{n}{tmp}\PYG{p}{(}\PYG{n}{now}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{T} \PYG{o}{*} \PYG{n}{cos}\PYG{p}{(}\PYG{n}{alpha}\PYG{p}{),} \PYG{n}{now}\PYG{p}{.}\PYG{n}{y} \PYG{o}{+} \PYG{n}{T} \PYG{o}{*} \PYG{n}{sin}\PYG{p}{(}\PYG{n}{alpha}\PYG{p}{));}
+		\PYG{n}{sub} \PYG{o}{=} \PYG{n}{Statistic}\PYG{p}{(}\PYG{n}{now}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{Statistic}\PYG{p}{(}\PYG{n}{tmp}\PYG{p}{);}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{sub} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{0} \PYG{o}{||} \PYG{n}{exp}\PYG{p}{(}\PYG{n}{sub} \PYG{o}{/} \PYG{n}{T}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{n}{Rand}\PYG{p}{())} \PYG{n}{now} \PYG{o}{=} \PYG{n}{tmp}\PYG{p}{;}
+		\PYG{n}{FIRE}\PYG{p}{(}\PYG{n}{T}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{T} \PYG{o}{=} \PYG{l+m+mf}{0.001}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{1000}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{alpha} \PYG{o}{=} \PYG{l+m+mf}{2.0} \PYG{o}{*} \PYG{n}{PI} \PYG{o}{*} \PYG{n}{Rand}\PYG{p}{();}
+		\PYG{n}{Point} \PYG{n}{tmp}\PYG{p}{(}\PYG{n}{ans}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{T} \PYG{o}{*} \PYG{n}{cos}\PYG{p}{(}\PYG{n}{alpha}\PYG{p}{)} \PYG{o}{*} \PYG{n}{Rand}\PYG{p}{(),} \PYG{n}{ans}\PYG{p}{.}\PYG{n}{y} \PYG{o}{+} \PYG{n}{T} \PYG{o}{*} \PYG{n}{sin}\PYG{p}{(}\PYG{n}{alpha}\PYG{p}{)} \PYG{o}{*} \PYG{n}{Rand}\PYG{p}{());}
+		\PYG{n}{Statistic}\PYG{p}{(}\PYG{n}{tmp}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}.3lf \PYGZpc{}.3lf}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{ans}\PYG{p}{.}\PYG{n}{x}\PYG{p}{,} \PYG{n}{ans}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//https://codeforces.com/blog/entry/45223\PYGZsh{}}
+
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i}\PYG{o}{\PYGZlt{}}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{N}\PYG{p}{);} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)}
+	\PYG{n}{F}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{A}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}\PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{mask} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{mask} \PYG{o}{\PYGZlt{}} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{N}\PYG{p}{);} \PYG{o}{++}\PYG{n}{mask}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{if}\PYG{p}{(}\PYG{n}{mask} \PYG{o}{\PYGZam{}} \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{i}\PYG{p}{))}
+		\PYG{n}{F}\PYG{p}{[}\PYG{n}{mask}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{F}\PYG{p}{[}\PYG{n}{mask}\PYG{o}{\PYGZca{}}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{i}\PYG{p}{)];}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

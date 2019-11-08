@@ -1,0 +1,45 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}set\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+
+\PYG{k}{using} \PYG{n}{ll} \PYG{o}{=} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{;}
+
+\PYG{k}{struct} \PYG{n}{node} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{n}{r}\PYG{p}{;}
+	\PYG{k}{mutable} \PYG{n}{ll} \PYG{n}{v}\PYG{p}{;}
+	\PYG{n}{node}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{L}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{R} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{ll} \PYG{n}{V} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{:} \PYG{n}{l}\PYG{p}{(}\PYG{n}{L}\PYG{p}{),} \PYG{n}{r}\PYG{p}{(}\PYG{n}{R}\PYG{p}{),} \PYG{n}{v}\PYG{p}{(}\PYG{n}{V}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
+	\PYG{k+kt}{bool} \PYG{k}{operator} \PYG{o}{\PYGZlt{}} \PYG{p}{(}\PYG{k}{const} \PYG{n}{node}\PYG{o}{\PYGZam{}} \PYG{n}{o}\PYG{p}{)} \PYG{k}{const} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{l} \PYG{o}{\PYGZlt{}} \PYG{n}{o}\PYG{p}{.}\PYG{n}{l}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{set}\PYG{o}{\PYGZlt{}}\PYG{n}{node}\PYG{o}{\PYGZgt{}} \PYG{n}{s}\PYG{p}{;}
+
+\PYG{c+c1}{//分割SET 返回一个pos位置的迭代器}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{set}\PYG{o}{\PYGZlt{}}\PYG{n}{node}\PYG{o}{\PYGZgt{}::}\PYG{n}{iterator} \PYG{n}{split}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{pos}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{auto} \PYG{n}{it} \PYG{o}{=} \PYG{n}{s}\PYG{p}{.}\PYG{n}{lower\PYGZus{}bound}\PYG{p}{(}\PYG{n}{node}\PYG{p}{(}\PYG{n}{pos}\PYG{p}{));}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{it} \PYG{o}{!=} \PYG{n}{s}\PYG{p}{.}\PYG{n}{end}\PYG{p}{()} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{it}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{l} \PYG{o}{==} \PYG{n}{pos}\PYG{p}{)} \PYG{k}{return} \PYG{n}{it}\PYG{p}{;}
+	\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{it}\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{pos} \PYG{o}{\PYGZgt{}} \PYG{n}{it}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{r}\PYG{p}{)} \PYG{k}{return} \PYG{n}{s}\PYG{p}{.}\PYG{n}{end}\PYG{p}{();}
+	\PYG{k+kt}{int} \PYG{n}{L} \PYG{o}{=} \PYG{n}{it}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{l}\PYG{p}{,} \PYG{n}{R} \PYG{o}{=} \PYG{n}{it}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{r}\PYG{p}{;}
+	\PYG{n}{ll} \PYG{n}{V} \PYG{o}{=} \PYG{n}{it}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{v}\PYG{p}{;}
+	\PYG{n}{s}\PYG{p}{.}\PYG{n}{erase}\PYG{p}{(}\PYG{n}{it}\PYG{p}{);}
+	\PYG{n}{s}\PYG{p}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{node}\PYG{p}{(}\PYG{n}{L}\PYG{p}{,} \PYG{n}{pos} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{V}\PYG{p}{));}
+	\PYG{k}{return} \PYG{n}{s}\PYG{p}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{node}\PYG{p}{(}\PYG{n}{pos}\PYG{p}{,} \PYG{n}{R}\PYG{p}{,} \PYG{n}{V}\PYG{p}{)).}\PYG{n}{first}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{//区间加值}
+\PYG{k+kt}{void} \PYG{n}{add}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,} \PYG{n}{ll} \PYG{n}{val}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{split}\PYG{p}{(}\PYG{n}{l}\PYG{p}{);}
+	\PYG{k}{auto} \PYG{n}{itr} \PYG{o}{=} \PYG{n}{split}\PYG{p}{(}\PYG{n}{r}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{),} \PYG{n}{itl} \PYG{o}{=} \PYG{n}{split}\PYG{p}{(}\PYG{n}{l}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(;} \PYG{n}{itl} \PYG{o}{!=} \PYG{n}{itr}\PYG{p}{;} \PYG{o}{++}\PYG{n}{itl}\PYG{p}{)} \PYG{n}{itl}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{v} \PYG{o}{+=} \PYG{n}{val}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{//区间赋值}
+\PYG{k+kt}{void} \PYG{n}{assign}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{l}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{r}\PYG{p}{,} \PYG{n}{ll} \PYG{n}{val} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{split}\PYG{p}{(}\PYG{n}{l}\PYG{p}{);}
+	\PYG{k}{auto} \PYG{n}{itr} \PYG{o}{=} \PYG{n}{split}\PYG{p}{(}\PYG{n}{r}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{),} \PYG{n}{itl} \PYG{o}{=} \PYG{n}{split}\PYG{p}{(}\PYG{n}{l}\PYG{p}{);}
+	\PYG{n}{s}\PYG{p}{.}\PYG{n}{erase}\PYG{p}{(}\PYG{n}{itl}\PYG{p}{,} \PYG{n}{itr}\PYG{p}{);}
+	\PYG{n}{s}\PYG{p}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{n}{node}\PYG{p}{(}\PYG{n}{l}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{val}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

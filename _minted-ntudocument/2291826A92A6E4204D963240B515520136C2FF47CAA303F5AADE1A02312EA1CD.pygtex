@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stoi} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}			\PYG{c+c1}{//将字符串转化成带符号（Signed）整数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stol} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}			\PYG{c+c1}{//将字符串转化成带符号整数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stoll} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}		\PYG{c+c1}{//将字符串转化成带符号整数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stoul} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}		\PYG{c+c1}{//将字符串转化成无符号（Unsigned）整数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stoull} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}		\PYG{c+c1}{//将字符串转化成无符号整数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stof} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}			\PYG{c+c1}{//将字符串转化成浮点数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stod} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}			\PYG{c+c1}{//将字符串转化成浮点数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{stold} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}		\PYG{c+c1}{//将字符串转化成浮点数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{to\PYGZus{}string} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}	\PYG{c+c1}{//将一个整数或浮点数转化成字符串}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{to\PYGZus{}wstring} \PYG{n}{C}\PYG{o}{++}\PYG{l+m+mi}{11}	\PYG{c+c1}{//将一个整数或浮点数转化成宽字符串}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{transform}\PYG{p}{(}\PYG{n}{s}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{n}{s}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),} \PYG{n}{s}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{o}{::}\PYG{n}{toupper}\PYG{p}{);} \PYG{c+c1}{// 大写}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{transform}\PYG{p}{(}\PYG{n}{s}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),}\PYG{n}{s}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),}\PYG{n}{s}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{o}{::}\PYG{n}{tolower}\PYG{p}{);} \PYG{c+c1}{//小写}
+\end{Verbatim}

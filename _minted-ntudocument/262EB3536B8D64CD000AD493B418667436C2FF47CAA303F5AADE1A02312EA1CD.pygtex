@@ -1,0 +1,55 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//Author:marszed}
+\PYG{c+cm}{/*}
+\PYG{c+cm}{*离线区间处理问题。}
+\PYG{c+cm}{*从区间[l,r]得到区间[l+1,r+1] [l\PYGZhy{}1,r\PYGZhy{}1]信息的转移复杂度为O(1)。}
+\PYG{c+cm}{*siz为块大小。}
+\PYG{c+cm}{*cnt为位于第几个块。}
+\PYG{c+cm}{*modify()函数为转移函数。}
+\PYG{c+cm}{*/}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{maxn} \PYG{o}{=} \PYG{l+m+mf}{2e5} \PYG{o}{+} \PYG{l+m+mi}{10}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{siz}\PYG{p}{,} \PYG{n}{q}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k}{struct} \PYG{n}{Node} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{id}\PYG{p}{,} \PYG{n}{l}\PYG{p}{,} \PYG{n}{r}\PYG{p}{,} \PYG{n}{val}\PYG{p}{,} \PYG{n}{cnt}\PYG{p}{;}
+
+	\PYG{k+kt}{int} \PYG{k}{operator}\PYG{o}{\PYGZlt{}} \PYG{p}{(}\PYG{k}{const} \PYG{n}{Node}\PYG{o}{\PYGZam{}} \PYG{n}{b}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{cnt} \PYG{o}{==} \PYG{n}{b}\PYG{p}{.}\PYG{n}{cnt} \PYG{o}{?} \PYG{n}{r} \PYG{o}{\PYGZlt{}} \PYG{n}{b}\PYG{p}{.}\PYG{n+nl}{r} \PYG{p}{:} \PYG{n}{cnt} \PYG{o}{\PYGZlt{}} \PYG{n}{b}\PYG{p}{.}\PYG{n}{cnt}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}
+
+\PYG{k+kt}{void} \PYG{n+nf}{modify}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{flag}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{mo}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cin} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{n} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{q}\PYG{p}{;}
+	\PYG{n}{siz} \PYG{o}{=} \PYG{n}{sqrt}\PYG{p}{(}\PYG{n}{n}\PYG{p}{);}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{n}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cin} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{a}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{q}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{n}{std}\PYG{o}{::}\PYG{n}{cin} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{l} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{r}\PYG{p}{;}
+		\PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{id} \PYG{o}{=} \PYG{n}{i}\PYG{p}{;}
+		\PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{cnt} \PYG{o}{=} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{l} \PYG{o}{/} \PYG{n}{siz}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{sort}\PYG{p}{(}\PYG{n}{nod} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{nod} \PYG{o}{+} \PYG{n}{q} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{);}
+	\PYG{k+kt}{int} \PYG{n}{l} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{r} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{q}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{l} \PYG{o}{\PYGZlt{}} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{l} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)}	\PYG{n}{modify}\PYG{p}{(}\PYG{o}{++}\PYG{n}{l}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{l} \PYG{o}{\PYGZgt{}=} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{l}\PYG{p}{)} 		\PYG{n}{modify}\PYG{p}{(}\PYG{n}{l}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{r} \PYG{o}{\PYGZlt{}} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{r}\PYG{p}{)} 		\PYG{n}{modify}\PYG{p}{(}\PYG{o}{++}\PYG{n}{r}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{r} \PYG{o}{\PYGZgt{}} \PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{r}\PYG{p}{)} 		\PYG{n}{modify}\PYG{p}{(}\PYG{n}{r}\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+		\PYG{n}{ans}\PYG{p}{[}\PYG{n}{nod}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{id}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Ans}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()} \PYG{p}{\PYGZob{}\PYGZcb{}}
+\end{Verbatim}

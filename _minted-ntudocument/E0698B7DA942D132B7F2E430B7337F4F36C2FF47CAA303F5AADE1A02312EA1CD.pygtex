@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//\PYGZsh{}include \PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+c1}{//\PYGZsh{}include \PYGZlt{}random\PYGZgt{}}
+
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{permutation}\PYG{p}{(}\PYG{l+m+mi}{100}\PYG{p}{);}
+\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{100}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{permutation}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{mt19937\PYGZus{}64} \PYG{n}{mt1}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);} \PYG{c+c1}{//64位}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{mt19937} \PYG{n}{mt2}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{);} \PYG{c+c1}{//32位}
+\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{permutation}\PYG{p}{.}\PYG{n}{begin}\PYG{p}{(),} \PYG{n}{permutation}\PYG{p}{.}\PYG{n}{end}\PYG{p}{(),} \PYG{n}{mt2}\PYG{p}{);} \PYG{c+c1}{// 打乱序列}
+\PYG{k}{for} \PYG{p}{(}\PYG{k}{auto} \PYG{n+nl}{it}\PYG{p}{:} \PYG{n}{permutation}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{n}{std}\PYG{o}{::}\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{it} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} \PYGZdq{}}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

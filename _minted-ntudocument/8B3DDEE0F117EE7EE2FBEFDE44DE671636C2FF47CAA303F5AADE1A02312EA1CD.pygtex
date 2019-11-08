@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{struct} \PYG{n}{Fraction} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{num}\PYG{p}{;}
+	\PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{den}\PYG{p}{;}
+	\PYG{n}{Fraction}\PYG{p}{(}\PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{num}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{den}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if}\PYG{p}{(}\PYG{n}{den}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{num}\PYG{o}{=\PYGZhy{}}\PYG{n}{num}\PYG{p}{;}
+			\PYG{n}{den}\PYG{o}{=\PYGZhy{}}\PYG{n}{den}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{assert}\PYG{p}{(}\PYG{n}{den}\PYG{o}{!=}\PYG{l+m+mi}{0}\PYG{p}{);}
+		\PYG{k+kt}{long} \PYG{k+kt}{long} \PYG{n}{g}\PYG{o}{=}\PYG{n}{gcd}\PYG{p}{(}\PYG{n}{abs}\PYG{p}{(}\PYG{n}{num}\PYG{p}{),}\PYG{n}{den}\PYG{p}{);}
+		\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{num}\PYG{o}{=}\PYG{n}{num}\PYG{o}{/}\PYG{n}{g}\PYG{p}{;}
+		\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{den}\PYG{o}{=}\PYG{n}{den}\PYG{o}{/}\PYG{n}{g}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{Fraction} \PYG{k}{operator} \PYG{o}{+}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Fraction} \PYG{o}{\PYGZam{}}\PYG{n}{o}\PYG{p}{)}\PYG{k}{const} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{Fraction}\PYG{p}{(}\PYG{n}{num}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{den}\PYG{o}{+}\PYG{n}{o}\PYG{p}{.}\PYG{n}{num}\PYG{p}{,}\PYG{n}{den}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{den}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{Fraction} \PYG{k}{operator} \PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Fraction} \PYG{o}{\PYGZam{}}\PYG{n}{o}\PYG{p}{)}\PYG{k}{const} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{Fraction}\PYG{p}{(}\PYG{n}{num}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{den}\PYG{o}{\PYGZhy{}}\PYG{n}{den}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{num}\PYG{p}{,}\PYG{n}{den}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{den}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{Fraction} \PYG{k}{operator} \PYG{o}{*}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Fraction} \PYG{o}{\PYGZam{}}\PYG{n}{o}\PYG{p}{)}\PYG{k}{const} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{Fraction}\PYG{p}{(}\PYG{n}{num}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{num}\PYG{p}{,}\PYG{n}{den}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{den}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{Fraction} \PYG{k}{operator} \PYG{o}{/}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Fraction} \PYG{o}{\PYGZam{}}\PYG{n}{o}\PYG{p}{)}\PYG{k}{const} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{Fraction}\PYG{p}{(}\PYG{n}{num}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{den}\PYG{p}{,}\PYG{n}{den}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{num}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{bool} \PYG{k}{operator} \PYG{o}{\PYGZlt{}}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Fraction} \PYG{o}{\PYGZam{}}\PYG{n}{o}\PYG{p}{)}\PYG{k}{const} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{num}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{den}\PYG{o}{\PYGZlt{}} \PYG{n}{den}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{num}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k+kt}{bool} \PYG{k}{operator} \PYG{o}{==}\PYG{p}{(}\PYG{k}{const} \PYG{n}{Fraction} \PYG{o}{\PYGZam{}}\PYG{n}{o}\PYG{p}{)}\PYG{k}{const} \PYG{p}{\PYGZob{}}
+		\PYG{k}{return} \PYG{n}{num}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{den}\PYG{o}{==}\PYG{n}{den}\PYG{o}{*}\PYG{n}{o}\PYG{p}{.}\PYG{n}{num}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}} 
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}
