@@ -48,7 +48,8 @@ char compute_n(int j) {
 	for (i=0;i<=j;i++) sum=sum-remain_nex(16,j-i,8*i+6)/(long double)(8.0*i+6);
 	temp=1.0;
 	for (;temp>0.000001;i++) {
-		temp=temp/16.0;sum=sum+(4.0/(8*i+1)-2.0/(8*i+4)-1.0/(8*i+5)-1.0/(8*i+6))*temp;
+		temp=temp/16.0;
+		sum=sum+(4.0/(8*i+1)-2.0/(8*i+4)-1.0/(8*i+5)-1.0/(8*i+6))*temp;
 	}
 	for (;sum<0;) sum=sum+16;
 	m=sum;

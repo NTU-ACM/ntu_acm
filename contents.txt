@@ -14,6 +14,7 @@ vim.txt	vim配置
 取消同步.cc	取消同步
 浮点数输出.cc	浮点数输出格式
 整型快读.cc	整型快速输入
+fread快读.cpp	fread快读
 字符串快读.cc	字符串快速输入
 pythonInput.py	python 输入
 read.java	java 输入
@@ -27,6 +28,7 @@ builtinBitFunction.txt	内置位运算函数
 random.cc	随机
 set_symmetric_difference.cc	归并求有序集合异或
 priority_queue.cc	优先队列
+pb_ds.cc	平板电视
 
 [动态规划]
 背包.cc	背包问题
@@ -44,6 +46,7 @@ bfisprime.cc	暴力判素数
 Miller_Rabin.cc	米勒罗宾素性检测
 Eratosthenes.cc	埃氏筛
 eulerSieve.cc	欧拉筛
+python线性筛.py	python线性筛
 区间筛.cc		区间筛	
 factorization.cc	分解质因数
 pollard_rho质因数分解.cc	PollardRho质因数分解
@@ -66,11 +69,14 @@ QuadraticResidue.cc	二次剩余
 二次剩余.cc	二次剩余
 超级乘方.cc	超级乘方
 mobius.cc	计算莫比乌斯函数
+快速求第一类斯特林数.cc		快速求第一类斯特林数
 区间中与p互质的数之和.cc	区间中与p互质的数之和
+1e9内素数和.cc	1e9内素数和
 Dujiao.cc	杜教筛
 min25筛.cc	min25筛
 formula.tex	常用公式
 my_formula.tex	数论公式
+降幂公式.txt	降幂公式
 
 [数学]
 杨辉三角求组合数.cc	杨辉三角求组合数
@@ -97,6 +103,7 @@ CDQfft.cc	分治fft
 polya_necklace.cc	polya项链染色
 colorPolynomial.txt	染色多项式
 derangements.cc	错位排列递推公式
+XOR为k的方案数.cc		XOR为k的方案数
 BBP.cc	BBP公式求pi十六进制的第k位
 
 [图论]
@@ -115,6 +122,7 @@ Kosaraju.cc	Kosaraju强连通分量
 BCCpoint.cc	点双联通分量
 BCCedge.cc	边双联通分量
 bridge.cc	求桥
+耳分解.cc		耳分解
 euler_circuit.cc	欧拉回路
 kth_shortest_path.cc	k短路
 floyd_mincycle.cc	最小环
@@ -131,6 +139,16 @@ upperlowerFlow.cc	上下界网络流
 Binarymatching.txt	图匹配理论
 hungary.cc 	二分图最大匹配匈牙利算法
 KM.cc	二分图最大权匹配KM算法
+全局最小割.cc		全局最小割
+图论小技巧.cc		图论小技巧
+动态图连通性.cc	动态图连通性LOJ
+最小瓶颈路.cc	最小瓶颈路LOJ
+min_25费用流.cc	min25费用流LOJ
+HLPP最大流.cc		HLPP最大流LOJ
+无源汇上下界可行流.cc	无源汇上下界可行流LOJ
+有源汇上下界最大流.cc	有源汇上下界最大流LOJ
+有源汇上下界最小流.cc	有源汇上下界最小流LOJ
+
 
 [数据结构]
 BIT.cc	树状数组
@@ -165,6 +183,18 @@ LCAonline.cc	最近公共祖先(在线)
 LCAoffline.cc	最近公共祖先(离线)
 LCAwanggann.cc	最近公共祖先
 heavy_light_decomposition.cpp	树链剖分
+kd树.cc	kd树
+KDTree.cc	K-D树
+普通平衡树LOJ.cc	普通平衡树LOJ
+文艺平衡树LOJ.cc	文艺平衡树LOJ
+二逼平衡树LOJ.cc	二逼平衡树LOJ
+三维偏序CDQLOJ.cc	三维偏序CDQLOJ
+二维树状数组LOJ.cc		二维树状数组LOJ
+树链剖分LOJ.cc	树链剖分LOJ
+节点修改子树权值和LOJ.cc	节点修改子树权值和LOJ
+子树加值子树权值和LOJ.cc	子树加值子树权值和LOJ
+树上差分LOJ.cc	树上差分LOJ
+单点加值子树加值路径求和LOJ.cc	单点加值子树加值路径求和LOJ
 
 
 [字符串]
@@ -191,7 +221,7 @@ polygonCore.cc	多边形重心
 RotatingJam.cc	旋转卡壳
 SimulatedAnnealing.cc	模拟退火
 half_plane_inter_section.cc	半平面交
-SJTUgeometry.cc	计算几何
+SJTUgeometry.cc	计算几何SJTU
 
 [类]
 point.cc	点类
@@ -207,9 +237,9 @@ discretization.cc	离散化
 EnumSubset.cc	快速枚举子集
 DLX.cc	跳舞链
 A*启发式搜索.cc	A*启发式搜索
-KDTree.cc	K-D树
 random.cc	随机
 ODT.cc	珂朵莉树（Old Driver Tree)
 CDQ.cc	CDQ分治
 0-1planning.cpp	0-1分数规划
 BM.cc	BM线性递推
+战术研究.txt	战术研究

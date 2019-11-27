@@ -53,7 +53,7 @@
 
 \PYG{c+c1}{//模板2}
 \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{],}\PYG{n}{bit}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{];}\PYG{c+c1}{//a为分解整数数组，bit数组为10\PYGZca{}(i\PYGZhy{}1)}
-\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}}\PYG{n}{dp}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{][}\PYG{l+m+mi}{2000}\PYG{p}{];}\PYG{c+c1}{//first=满足条件的数个数，second=满足条件的数的和}
+\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{dp}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{][}\PYG{l+m+mi}{2000}\PYG{p}{];}\PYG{c+c1}{//first=满足条件的数个数，second=满足条件的数的和}
 \PYG{k+kt}{bool} \PYG{n}{vis}\PYG{p}{[}\PYG{n}{maxn}\PYG{p}{][}\PYG{l+m+mi}{2000}\PYG{p}{];}
 \PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{pos}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{sta}\PYG{p}{,}\PYG{k+kt}{int} \PYG{n}{num}\PYG{p}{,}\PYG{k+kt}{bool} \PYG{n}{lead}\PYG{p}{,}\PYG{k+kt}{bool} \PYG{n}{limit}\PYG{p}{)\PYGZob{}}\PYG{c+c1}{//求满足条件的所有数的和}
 	\PYG{k}{if}\PYG{p}{(}\PYG{n}{pos}\PYG{o}{==}\PYG{l+m+mi}{0}\PYG{p}{)} \PYG{k}{return} \PYG{n}{make\PYGZus{}pair}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{0}\PYG{p}{);}\PYG{c+c1}{//计数}

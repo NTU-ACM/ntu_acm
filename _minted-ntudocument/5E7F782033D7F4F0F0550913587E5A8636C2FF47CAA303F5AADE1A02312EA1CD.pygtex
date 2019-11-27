@@ -1,0 +1,308 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//尽量不要使用}
+\PYG{c+c1}{//测试\PYGZus{}\PYGZus{}lg(N)是否会CE}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cassert\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstring\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}algorithm\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}vector\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}map\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}set\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}functional\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}stack\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}queue\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}tuple\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}define getchar getchar\PYGZus{}unlocked}
+\PYG{c+cp}{\PYGZsh{}define putchar putchar\PYGZus{}unlocked}
+
+\PYG{c+cp}{\PYGZsh{}define \PYGZus{}rep(\PYGZus{}1, \PYGZus{}2, \PYGZus{}3, \PYGZus{}4, name, ...) name}
+\PYG{c+cp}{\PYGZsh{}define rep2(i, n) rep3(i, 0, n)}
+\PYG{c+cp}{\PYGZsh{}define rep3(i, a, b) rep4(i, a, b, 1)}
+\PYG{c+cp}{\PYGZsh{}define rep4(i, a, b, c) for (int i = int(a); i \PYGZlt{} int(b); i += int(c))}
+\PYG{c+cp}{\PYGZsh{}define rep(...) \PYGZus{}rep(\PYGZus{}\PYGZus{}VA\PYGZus{}ARGS\PYGZus{}\PYGZus{}, rep4, rep3, rep2, \PYGZus{})(\PYGZus{}\PYGZus{}VA\PYGZus{}ARGS\PYGZus{}\PYGZus{})}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k}{using} \PYG{n}{i64} \PYG{o}{=} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{u8} \PYG{o}{=} \PYG{k+kt}{unsigned} \PYG{k+kt}{char}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{u32} \PYG{o}{=} \PYG{k+kt}{unsigned}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{u64} \PYG{o}{=} \PYG{k+kt}{unsigned} \PYG{k+kt}{long} \PYG{k+kt}{long}\PYG{p}{;}
+\PYG{k}{using} \PYG{n}{f80} \PYG{o}{=} \PYG{k+kt}{long} \PYG{k+kt}{double}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n+nf}{get\PYGZus{}int}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{,} \PYG{n}{c}\PYG{p}{,} \PYG{n}{sign} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{((}\PYG{n}{c} \PYG{o}{=} \PYG{n}{getchar}\PYG{p}{())} \PYG{o}{\PYGZlt{}} \PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{)}
+		\PYG{p}{;}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{c} \PYG{o}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZhy{}\PYGZsq{}}\PYG{p}{)}
+		\PYG{n}{sign} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{n} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{else}
+		\PYG{n}{n} \PYG{o}{=} \PYG{n}{c} \PYG{o}{\PYGZhy{}} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{((}\PYG{n}{c} \PYG{o}{=} \PYG{n}{getchar}\PYG{p}{())} \PYG{o}{\PYGZgt{}=} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{)} \PYG{n}{n} \PYG{o}{=} \PYG{n}{n} \PYG{o}{*} \PYG{l+m+mi}{10} \PYG{o}{+} \PYG{n}{c} \PYG{o}{\PYGZhy{}} \PYG{l+s+sc}{\PYGZsq{}0\PYGZsq{}}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{sign} \PYG{o}{?} \PYG{o}{\PYGZhy{}}\PYG{n+nl}{n} \PYG{p}{:} \PYG{n}{n}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{template} \PYG{o}{\PYGZlt{}}\PYG{k}{typename} \PYG{n}{CapType}\PYG{p}{,} \PYG{k}{typename} \PYG{n}{TotalCapType}\PYG{p}{,} \PYG{k}{typename} \PYG{n}{CostType}\PYG{p}{,} \PYG{k}{typename} \PYG{n}{TotalCostType}\PYG{o}{\PYGZgt{}}
+\PYG{k}{class} \PYG{n+nc}{CostScaling} \PYG{p}{\PYGZob{}}
+\PYG{k}{private}\PYG{o}{:}
+	\PYG{k}{static} \PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{alpha} \PYG{o}{=} \PYG{l+m+mi}{8}\PYG{p}{;}  \PYG{c+c1}{// eps \PYGZlt{}\PYGZhy{} max(1, eps / alpha)}
+
+	\PYG{k}{using} \PYG{n}{cap\PYGZus{}t} \PYG{o}{=} \PYG{n}{CapType}\PYG{p}{;}
+	\PYG{k}{using} \PYG{n}{tcap\PYGZus{}t} \PYG{o}{=} \PYG{n}{TotalCapType}\PYG{p}{;}
+	\PYG{k}{using} \PYG{n}{cost\PYGZus{}t} \PYG{o}{=} \PYG{n}{CostType}\PYG{p}{;}  \PYG{c+c1}{// \PYGZgt{} max\PYGZob{}|C|\PYGZcb{} * (2 * |V|)}
+	\PYG{k}{using} \PYG{n}{tcost\PYGZus{}t} \PYG{o}{=} \PYG{n}{TotalCostType}\PYG{p}{;}
+	\PYG{k}{static} \PYG{k}{constexpr} \PYG{n}{cost\PYGZus{}t} \PYG{n}{Inf} \PYG{o}{=} \PYG{p}{(}\PYG{n}{tcap\PYGZus{}t}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{p}{(}\PYG{k}{sizeof}\PYG{p}{(}\PYG{n}{tcap\PYGZus{}t}\PYG{p}{)} \PYG{o}{*} \PYG{l+m+mi}{8} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2}\PYG{p}{))} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;}
+
+	\PYG{k}{struct} \PYG{n}{InputEdge} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{from}\PYG{p}{,} \PYG{n}{to}\PYG{p}{;}
+		\PYG{n}{cap\PYGZus{}t} \PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{;}
+		\PYG{n}{cost\PYGZus{}t} \PYG{n}{cost}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{k}{struct} \PYG{n}{Edge} \PYG{p}{\PYGZob{}}
+		\PYG{k+kt}{int} \PYG{n}{to}\PYG{p}{,} \PYG{n}{rev}\PYG{p}{;}
+		\PYG{n}{cap\PYGZus{}t} \PYG{n}{cap}\PYG{p}{;}
+		\PYG{n}{cost\PYGZus{}t} \PYG{n}{cost}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{};}
+
+	\PYG{k}{class} \PYG{n+nc}{Dinic} \PYG{p}{\PYGZob{}}
+	\PYG{k}{public}\PYG{o}{:}
+		\PYG{n}{Dinic}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,} \PYG{k}{const} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{ofs}\PYG{p}{,} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Edge}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{edges}\PYG{p}{,} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{tcap\PYGZus{}t}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{capacity}\PYG{p}{)}
+			\PYG{o}{:} \PYG{n}{N}\PYG{p}{(}\PYG{n}{N}\PYG{p}{),} \PYG{n}{ofs}\PYG{p}{(}\PYG{n}{ofs}\PYG{p}{),} \PYG{n}{edges}\PYG{p}{(}\PYG{n}{edges}\PYG{p}{),} \PYG{n}{capacity}\PYG{p}{(}\PYG{n}{capacity}\PYG{p}{),} \PYG{n}{last}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)} \PYG{p}{\PYGZob{}\PYGZcb{}}
+
+		\PYG{k+kt}{bool} \PYG{n}{succeeded}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+			\PYG{c+c1}{// s \PYGZhy{}\PYGZgt{} u: capacity[u]}
+			\PYG{c+c1}{// u \PYGZhy{}\PYGZgt{} t: capacity[u + N]}
+			\PYG{n}{tcap\PYGZus{}t} \PYG{n}{f} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{u} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{u}\PYG{p}{)} \PYG{n}{f} \PYG{o}{+=} \PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];}
+			\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{que}\PYG{p}{(}\PYG{n}{N}\PYG{p}{);}
+			\PYG{k}{while} \PYG{p}{(}\PYG{n}{f}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{n}{dist}\PYG{p}{.}\PYG{n}{assign}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+				\PYG{k+kt}{int} \PYG{n}{qh} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{qt} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{lv} \PYG{o}{=} \PYG{n}{N}\PYG{p}{;}
+				\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{u} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{u}\PYG{p}{)}
+					\PYG{k}{if} \PYG{p}{(}\PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+						\PYG{n}{que}\PYG{p}{[}\PYG{n}{qt}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{u}\PYG{p}{,} \PYG{n}{dist}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+				\PYG{k}{for} \PYG{p}{(;} \PYG{n}{qh} \PYG{o}{\PYGZlt{}} \PYG{n}{qt}\PYG{p}{;)} \PYG{p}{\PYGZob{}}
+					\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{n}{que}\PYG{p}{[}\PYG{n}{qh}\PYG{o}{++}\PYG{p}{];}
+					\PYG{k}{if} \PYG{p}{(}\PYG{n}{lv} \PYG{o}{==} \PYG{n}{N} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{n}{N}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+						\PYG{n}{lv} \PYG{o}{=} \PYG{n}{dist}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];}
+					\PYG{k}{if} \PYG{p}{(}\PYG{n}{dist}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{n}{lv}\PYG{p}{)}
+						\PYG{k}{break}\PYG{p}{;}
+					\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{ei} \PYG{o}{=} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];} \PYG{n}{ei} \PYG{o}{\PYGZlt{}} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{];} \PYG{o}{++}\PYG{n}{ei}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+						\PYG{k+kt}{int} \PYG{n}{v} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{ei}\PYG{p}{].}\PYG{n}{to}\PYG{p}{;}
+						\PYG{k}{if} \PYG{p}{(}\PYG{n}{edges}\PYG{p}{[}\PYG{n}{ei}\PYG{p}{].}\PYG{n}{cap} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{dist}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]} \PYG{o}{==} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+							\PYG{n}{que}\PYG{p}{[}\PYG{n}{qt}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{n}{v}\PYG{p}{,} \PYG{n}{dist}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]} \PYG{o}{=} \PYG{n}{dist}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{;}
+						\PYG{p}{\PYGZcb{}}
+					\PYG{p}{\PYGZcb{}}
+				\PYG{p}{\PYGZcb{}}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{lv} \PYG{o}{==} \PYG{n}{N}\PYG{p}{)}
+					\PYG{k}{break}\PYG{p}{;}
+				\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{u} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{u}\PYG{p}{)} \PYG{n}{last}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];}
+				\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{u} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{u}\PYG{p}{)}
+					\PYG{k}{if} \PYG{p}{(}\PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+						\PYG{k}{auto} \PYG{n}{df} \PYG{o}{=} \PYG{n}{block\PYGZus{}flow}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]);}
+						\PYG{n}{f} \PYG{o}{\PYGZhy{}=} \PYG{n}{df}\PYG{p}{,} \PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{n}{df}\PYG{p}{;}
+					\PYG{p}{\PYGZcb{}}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{k}{return} \PYG{n}{f} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+
+	\PYG{k}{private}\PYG{o}{:}
+		\PYG{n}{tcap\PYGZus{}t} \PYG{n}{block\PYGZus{}flow}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{n}{tcap\PYGZus{}t} \PYG{n}{f}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{tcap\PYGZus{}t} \PYG{n}{ret} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{n}{N}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{n}{tcap\PYGZus{}t} \PYG{n}{df} \PYG{o}{=} \PYG{n}{min}\PYG{p}{(}\PYG{n}{f}\PYG{p}{,} \PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{n}{N}\PYG{p}{]);}
+				\PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{n}{N}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{n}{df}\PYG{p}{;}
+				\PYG{k}{return} \PYG{n}{df}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n}{ei} \PYG{o}{=} \PYG{n}{last}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];} \PYG{n}{ei} \PYG{o}{\PYGZlt{}} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{];} \PYG{o}{++}\PYG{n}{ei}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n}{e} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{ei}\PYG{p}{];}
+				\PYG{k+kt}{int} \PYG{n}{v} \PYG{o}{=} \PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{;}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{cap} \PYG{o}{==} \PYG{l+m+mi}{0} \PYG{o}{||} \PYG{n}{dist}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]} \PYG{o}{\PYGZlt{}=} \PYG{n}{dist}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])}
+					\PYG{k}{continue}\PYG{p}{;}
+				\PYG{n}{cap\PYGZus{}t} \PYG{n}{df} \PYG{o}{=} \PYG{n}{block\PYGZus{}flow}\PYG{p}{(}\PYG{n}{v}\PYG{p}{,} \PYG{n}{min}\PYG{o}{\PYGZlt{}}\PYG{n}{cap\PYGZus{}t}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{cap}\PYG{p}{,} \PYG{n}{f}\PYG{p}{));}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{df} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
+					\PYG{k}{continue}\PYG{p}{;}
+				\PYG{n}{e}\PYG{p}{.}\PYG{n}{cap} \PYG{o}{\PYGZhy{}=} \PYG{n}{df}\PYG{p}{,} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{rev}\PYG{p}{].}\PYG{n}{cap} \PYG{o}{+=} \PYG{n}{df}\PYG{p}{;}
+				\PYG{n}{f} \PYG{o}{\PYGZhy{}=} \PYG{n}{df}\PYG{p}{,} \PYG{n}{ret} \PYG{o}{+=} \PYG{n}{df}\PYG{p}{;}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{f} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
+					\PYG{k}{break}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{k}{return} \PYG{n}{ret}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+
+		\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{;}
+		\PYG{k}{const} \PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{ofs}\PYG{p}{;}
+		\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Edge}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{edges}\PYG{p}{;}
+		\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{tcap\PYGZus{}t}\PYG{o}{\PYGZgt{}\PYGZam{}} \PYG{n}{capacity}\PYG{p}{;}
+		\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{last}\PYG{p}{,} \PYG{n}{dist}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{public}\PYG{o}{:}
+	\PYG{n}{CostScaling}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{M} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{o}{:} \PYG{n}{N}\PYG{p}{(}\PYG{n}{N}\PYG{p}{),} \PYG{n}{capacity}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{N}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{M} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+			\PYG{n}{in}\PYG{p}{.}\PYG{n}{reserve}\PYG{p}{(}\PYG{n}{M}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n}{add\PYGZus{}directed\PYGZus{}edge}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{v}\PYG{p}{,} \PYG{n}{cap\PYGZus{}t} \PYG{n}{b}\PYG{p}{,} \PYG{n}{cap\PYGZus{}t} \PYG{n}{c}\PYG{p}{,} \PYG{n}{cost\PYGZus{}t} \PYG{n}{cost}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{b} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+			\PYG{n}{capacity}\PYG{p}{[}\PYG{n}{v}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{b}\PYG{p}{,} \PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{n}{N}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{b}\PYG{p}{;}
+		\PYG{k}{else}
+			\PYG{n}{capacity}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{+=} \PYG{o}{\PYGZhy{}}\PYG{n}{b}\PYG{p}{,} \PYG{n}{capacity}\PYG{p}{[}\PYG{n}{v} \PYG{o}{+} \PYG{n}{N}\PYG{p}{]} \PYG{o}{+=} \PYG{o}{\PYGZhy{}}\PYG{n}{b}\PYG{p}{;}
+		\PYG{n}{in}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(\PYGZob{}} \PYG{n}{u}\PYG{p}{,} \PYG{n}{v}\PYG{p}{,} \PYG{n}{b}\PYG{p}{,} \PYG{n}{c}\PYG{p}{,} \PYG{n}{cost} \PYG{p}{\PYGZcb{});}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{n}{pair}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{bool}\PYG{p}{,} \PYG{n}{tcost\PYGZus{}t}\PYG{o}{\PYGZgt{}} \PYG{n}{minimum\PYGZus{}cost\PYGZus{}circulation}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+		\PYG{n}{construct}\PYG{p}{();}
+		\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{has\PYGZus{}feasible\PYGZus{}circulation}\PYG{p}{())}
+			\PYG{k}{return} \PYG{p}{\PYGZob{}} \PYG{n+nb}{false}\PYG{p}{,} \PYG{l+m+mi}{0} \PYG{p}{\PYGZcb{};}
+
+		\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{cost\PYGZus{}multiplier} \PYG{o}{=} \PYG{l+m+mi}{2} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{\PYGZus{}\PYGZus{}lg}\PYG{p}{(}\PYG{n}{N}\PYG{p}{);}  \PYG{c+c1}{// should be \PYGZgt{} |V|}
+		\PYG{n}{cost\PYGZus{}t} \PYG{n}{eps} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n+nl}{e} \PYG{p}{:} \PYG{n}{edges}\PYG{p}{)} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cost} \PYG{o}{*=} \PYG{n}{cost\PYGZus{}multiplier}\PYG{p}{,} \PYG{n}{eps} \PYG{o}{=} \PYG{n}{max}\PYG{p}{(}\PYG{n}{eps}\PYG{p}{,} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cost}\PYG{p}{);}
+
+		\PYG{k}{while} \PYG{p}{(}\PYG{n}{eps} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{n}{refine}\PYG{p}{(}\PYG{n}{eps} \PYG{o}{=} \PYG{n}{max}\PYG{o}{\PYGZlt{}}\PYG{n}{cost\PYGZus{}t}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{eps} \PYG{o}{/} \PYG{n}{alpha}\PYG{p}{));}
+
+		\PYG{n}{tcost\PYGZus{}t} \PYG{n}{ret} \PYG{o}{=} \PYG{n}{initial\PYGZus{}cost}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n+nl}{e} \PYG{p}{:} \PYG{n}{edges}\PYG{p}{)} \PYG{n}{ret} \PYG{o}{\PYGZhy{}=} \PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{cost} \PYG{o}{/} \PYG{n}{cost\PYGZus{}multiplier}\PYG{p}{)} \PYG{o}{*} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cap}\PYG{p}{;}
+		\PYG{k}{return} \PYG{p}{\PYGZob{}} \PYG{n+nb}{true}\PYG{p}{,} \PYG{n}{ret} \PYG{o}{/} \PYG{l+m+mi}{2} \PYG{p}{\PYGZcb{};}
+	\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{private}\PYG{o}{:}
+	\PYG{k+kt}{void} \PYG{n}{refine}\PYG{p}{(}\PYG{k}{const} \PYG{n}{cost\PYGZus{}t} \PYG{n}{eps}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{auto} \PYG{n}{cost\PYGZus{}p} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{](}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{k}{const} \PYG{n}{Edge}\PYG{o}{\PYGZam{}} \PYG{n}{e}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cost} \PYG{o}{+} \PYG{n}{potential}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{potential}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{];} \PYG{p}{\PYGZcb{};}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{u} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{u}\PYG{p}{)}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{];} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n}{e} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{i}\PYG{p}{];}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{cost\PYGZus{}p}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{e}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+					\PYG{n}{edges}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{rev}\PYG{p}{].}\PYG{n}{cap} \PYG{o}{+=} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cap}\PYG{p}{,} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cap} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{tcap\PYGZus{}t}\PYG{o}{\PYGZgt{}} \PYG{n}{excess}\PYG{p}{(}\PYG{n}{initial\PYGZus{}excess}\PYG{p}{);}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n+nl}{e} \PYG{p}{:} \PYG{n}{edges}\PYG{p}{)} \PYG{n}{excess}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cap}\PYG{p}{;}
+
+		\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{stack}\PYG{p}{;}
+		\PYG{n}{stack}\PYG{p}{.}\PYG{n}{reserve}\PYG{p}{(}\PYG{n}{N}\PYG{p}{);}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{u} \PYG{o}{\PYGZlt{}} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{u}\PYG{p}{)}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{excess}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+				\PYG{n}{stack}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{u}\PYG{p}{);}
+
+		\PYG{k}{auto} \PYG{n}{residue} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{](}\PYG{k}{const} \PYG{n}{Edge}\PYG{o}{\PYGZam{}} \PYG{n}{e}\PYG{p}{)} \PYG{o}{\PYGZhy{}\PYGZgt{}} \PYG{n}{cap\PYGZus{}t} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cap}\PYG{p}{;} \PYG{p}{\PYGZcb{};}
+		\PYG{k}{auto} \PYG{n}{push} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{](}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{n}{Edge}\PYG{o}{\PYGZam{}} \PYG{n}{e}\PYG{p}{,} \PYG{n}{cap\PYGZus{}t} \PYG{n}{df}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{e}\PYG{p}{.}\PYG{n}{cap} \PYG{o}{\PYGZhy{}=} \PYG{n}{df}\PYG{p}{;}
+			\PYG{n}{edges}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{rev}\PYG{p}{].}\PYG{n}{cap} \PYG{o}{+=} \PYG{n}{df}\PYG{p}{;}
+			\PYG{n}{excess}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{df}\PYG{p}{;}
+			\PYG{n}{excess}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{n}{df}\PYG{p}{;}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{excess}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{excess}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]} \PYG{o}{\PYGZlt{}=} \PYG{n}{df}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{n}{stack}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{);}
+			\PYG{p}{\PYGZcb{}}
+		\PYG{p}{\PYGZcb{};}
+		\PYG{k}{auto} \PYG{n}{relabel} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{](}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{,} \PYG{n}{cost\PYGZus{}t} \PYG{n}{delta}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n}{potential}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{\PYGZhy{}=} \PYG{n}{delta} \PYG{o}{+} \PYG{n}{eps}\PYG{p}{;} \PYG{p}{\PYGZcb{};}
+		\PYG{k}{auto} \PYG{n}{relabel\PYGZus{}in\PYGZus{}advance} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{](}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k}{if} \PYG{p}{(}\PYG{n}{excess}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{)}
+				\PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+			\PYG{k}{auto} \PYG{n}{delta} \PYG{o}{=} \PYG{n}{Inf}\PYG{p}{;}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{ei} \PYG{o}{=} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];} \PYG{n}{ei} \PYG{o}{\PYGZlt{}} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{];} \PYG{o}{++}\PYG{n}{ei}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n}{e} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{ei}\PYG{p}{];}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{residue}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
+					\PYG{k}{continue}\PYG{p}{;}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{cost\PYGZus{}p}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{e}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)}
+					\PYG{k}{return} \PYG{n+nb}{false}\PYG{p}{;}
+				\PYG{k}{else}
+					\PYG{n}{delta} \PYG{o}{=} \PYG{n}{min}\PYG{o}{\PYGZlt{}}\PYG{n}{tcost\PYGZus{}t}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{delta}\PYG{p}{,} \PYG{n}{cost\PYGZus{}p}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{e}\PYG{p}{));}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{n}{relabel}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{delta}\PYG{p}{);}
+			\PYG{k}{return} \PYG{n+nb}{true}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{};}
+		\PYG{k}{auto} \PYG{n}{discharge} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{](}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k}{auto} \PYG{n}{delta} \PYG{o}{=} \PYG{n}{Inf}\PYG{p}{;}
+			\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{ei} \PYG{o}{=} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u}\PYG{p}{];} \PYG{n}{ei} \PYG{o}{\PYGZlt{}} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{u} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{];} \PYG{o}{++}\PYG{n}{ei}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+				\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n}{e} \PYG{o}{=} \PYG{n}{edges}\PYG{p}{[}\PYG{n}{ei}\PYG{p}{];}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{residue}\PYG{p}{(}\PYG{n}{e}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)}
+					\PYG{k}{continue}\PYG{p}{;}
+				\PYG{k}{if} \PYG{p}{(}\PYG{n}{cost\PYGZus{}p}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{e}\PYG{p}{)} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+					\PYG{k}{if} \PYG{p}{(}\PYG{n}{relabel\PYGZus{}in\PYGZus{}advance}\PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+						\PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{ei}\PYG{p}{;}
+						\PYG{k}{continue}\PYG{p}{;}  \PYG{c+c1}{// modify ei (!)}
+					\PYG{p}{\PYGZcb{}}
+					\PYG{n}{cap\PYGZus{}t} \PYG{n}{df} \PYG{o}{=} \PYG{n}{min}\PYG{o}{\PYGZlt{}}\PYG{n}{tcap\PYGZus{}t}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{excess}\PYG{p}{[}\PYG{n}{u}\PYG{p}{],} \PYG{n}{residue}\PYG{p}{(}\PYG{n}{e}\PYG{p}{));}
+					\PYG{n}{push}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{e}\PYG{p}{,} \PYG{n}{df}\PYG{p}{);}
+					\PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{excess}\PYG{p}{[}\PYG{n}{u}\PYG{p}{])}
+						\PYG{k}{return}\PYG{p}{;}
+				\PYG{p}{\PYGZcb{}} \PYG{k}{else}
+					\PYG{n}{delta} \PYG{o}{=} \PYG{n}{min}\PYG{o}{\PYGZlt{}}\PYG{n}{tcost\PYGZus{}t}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{delta}\PYG{p}{,} \PYG{n}{cost\PYGZus{}p}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{e}\PYG{p}{));}
+			\PYG{p}{\PYGZcb{}}
+			\PYG{n}{relabel}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{delta}\PYG{p}{);}
+			\PYG{n}{stack}\PYG{p}{.}\PYG{n}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{u}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{};}
+		\PYG{k}{while} \PYG{p}{(}\PYG{o}{!}\PYG{n}{stack}\PYG{p}{.}\PYG{n}{empty}\PYG{p}{())} \PYG{p}{\PYGZob{}}
+			\PYG{k}{auto} \PYG{n}{u} \PYG{o}{=} \PYG{n}{stack}\PYG{p}{.}\PYG{n}{back}\PYG{p}{();}
+			\PYG{n}{stack}\PYG{p}{.}\PYG{n}{pop\PYGZus{}back}\PYG{p}{();}
+			\PYG{n}{discharge}\PYG{p}{(}\PYG{n}{u}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{void} \PYG{n}{construct}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+		\PYG{n}{ofs}\PYG{p}{.}\PYG{n}{assign}\PYG{p}{(}\PYG{n}{N} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+		\PYG{n}{edges}\PYG{p}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{in}\PYG{p}{.}\PYG{n}{size}\PYG{p}{());}
+		\PYG{n}{initial\PYGZus{}excess}\PYG{p}{.}\PYG{n}{assign}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+		\PYG{n}{initial\PYGZus{}cost} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+		\PYG{n}{potential}\PYG{p}{.}\PYG{n}{assign}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n+nl}{e} \PYG{p}{:} \PYG{n}{in}\PYG{p}{)} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{from} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{++}\PYG{p}{,} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{++}\PYG{p}{;}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}=} \PYG{n}{N}\PYG{p}{;} \PYG{o}{++}\PYG{n}{i}\PYG{p}{)} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{];}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k}{auto}\PYG{o}{\PYGZam{}} \PYG{n+nl}{e} \PYG{p}{:} \PYG{n}{in}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{n}{initial\PYGZus{}excess}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]} \PYG{o}{+=} \PYG{n}{e}\PYG{p}{.}\PYG{n}{c}\PYG{p}{;}
+			\PYG{n}{initial\PYGZus{}excess}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{from}\PYG{p}{]} \PYG{o}{+=} \PYG{o}{\PYGZhy{}}\PYG{n}{e}\PYG{p}{.}\PYG{n}{b}\PYG{p}{;}
+			\PYG{n}{initial\PYGZus{}cost} \PYG{o}{+=} \PYG{n}{tcost\PYGZus{}t}\PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{cost}\PYG{p}{)} \PYG{o}{*} \PYG{p}{(}\PYG{n}{e}\PYG{p}{.}\PYG{n}{c} \PYG{o}{+} \PYG{n}{e}\PYG{p}{.}\PYG{n}{b}\PYG{p}{);}
+			\PYG{n}{edges}\PYG{p}{[}\PYG{n}{ofs}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{from}\PYG{p}{]}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}} \PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{,} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{],} \PYG{n}{e}\PYG{p}{.}\PYG{n}{c} \PYG{o}{\PYGZhy{}} \PYG{n}{e}\PYG{p}{.}\PYG{n}{b}\PYG{p}{,} \PYG{n}{e}\PYG{p}{.}\PYG{n}{cost} \PYG{p}{\PYGZcb{};}
+			\PYG{n}{edges}\PYG{p}{[}\PYG{n}{ofs}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{to}\PYG{p}{]}\PYG{o}{++}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}} \PYG{n}{e}\PYG{p}{.}\PYG{n}{from}\PYG{p}{,} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{e}\PYG{p}{.}\PYG{n}{from}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{n}{e}\PYG{p}{.}\PYG{n}{cost} \PYG{p}{\PYGZcb{};}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{N}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{i}\PYG{p}{)} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{ofs}\PYG{p}{[}\PYG{n}{i} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{];}
+		\PYG{n}{ofs}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{k+kt}{bool} \PYG{n}{has\PYGZus{}feasible\PYGZus{}circulation}\PYG{p}{()} \PYG{p}{\PYGZob{}} \PYG{k}{return} \PYG{n}{Dinic}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,} \PYG{n}{ofs}\PYG{p}{,} \PYG{n}{edges}\PYG{p}{,} \PYG{n}{capacity}\PYG{p}{).}\PYG{n}{succeeded}\PYG{p}{();} \PYG{p}{\PYGZcb{}}
+
+\PYG{k}{private}\PYG{o}{:}
+	\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{;}
+	\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{InputEdge}\PYG{o}{\PYGZgt{}} \PYG{n}{in}\PYG{p}{;}
+	\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{tcap\PYGZus{}t}\PYG{o}{\PYGZgt{}} \PYG{n}{capacity}\PYG{p}{;}
+
+	\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}} \PYG{n}{ofs}\PYG{p}{;}
+	\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{Edge}\PYG{o}{\PYGZgt{}} \PYG{n}{edges}\PYG{p}{;}
+
+	\PYG{n}{tcost\PYGZus{}t} \PYG{n}{initial\PYGZus{}cost}\PYG{p}{;}
+	\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{tcap\PYGZus{}t}\PYG{o}{\PYGZgt{}} \PYG{n}{initial\PYGZus{}excess}\PYG{p}{;}
+	\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{tcost\PYGZus{}t}\PYG{o}{\PYGZgt{}} \PYG{n}{potential}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\PYG{c+c1}{// cap, total\PYGZus{}cap, cost * (2 * |V|), total\PYGZus{}cost}
+\PYG{k}{using} \PYG{n}{MCC} \PYG{o}{=} \PYG{n}{CostScaling}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int64\PYGZus{}t}\PYG{p}{,} \PYG{k+kt}{int64\PYGZus{}t}\PYG{p}{,} \PYG{k+kt}{int64\PYGZus{}t}\PYG{p}{,} \PYG{k+kt}{int64\PYGZus{}t}\PYG{o}{\PYGZgt{}}\PYG{p}{;}
+\PYG{c+c1}{// using MCC = CostScaling\PYGZlt{}int, int, int, int\PYGZgt{};}
+
+\PYG{k+kt}{void} \PYG{n+nf}{solve}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{N}\PYG{p}{,} \PYG{n}{M}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{o}{\PYGZti{}}\PYG{n}{scanf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}d \PYGZpc{}d\PYGZdq{}}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{N}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{M}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+		\PYG{n}{MCC} \PYG{n}{mcc1}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,} \PYG{n}{M}\PYG{p}{),} \PYG{n}{mcc2}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,} \PYG{n}{M}\PYG{p}{);}
+		\PYG{n}{rep}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{M}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+			\PYG{k+kt}{int} \PYG{n}{u} \PYG{o}{=} \PYG{n}{get\PYGZus{}int}\PYG{p}{()} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{v} \PYG{o}{=} \PYG{n}{get\PYGZus{}int}\PYG{p}{()} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{;}
+			\PYG{k+kt}{int} \PYG{n}{c} \PYG{o}{=} \PYG{n}{get\PYGZus{}int}\PYG{p}{(),} \PYG{n}{cost} \PYG{o}{=} \PYG{n}{get\PYGZus{}int}\PYG{p}{();}
+			\PYG{n}{mcc1}\PYG{p}{.}\PYG{n}{add\PYGZus{}directed\PYGZus{}edge}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{v}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{c}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+			\PYG{n}{mcc2}\PYG{p}{.}\PYG{n}{add\PYGZus{}directed\PYGZus{}edge}\PYG{p}{(}\PYG{n}{u}\PYG{p}{,} \PYG{n}{v}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{c}\PYG{p}{,} \PYG{n}{cost}\PYG{p}{);}
+		\PYG{p}{\PYGZcb{}}
+		\PYG{n}{mcc1}\PYG{p}{.}\PYG{n}{add\PYGZus{}directed\PYGZus{}edge}\PYG{p}{(}\PYG{n}{N} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mf}{1e18}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{);}
+		\PYG{k}{auto} \PYG{n}{max\PYGZus{}flow} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{mcc1}\PYG{p}{.}\PYG{n}{minimum\PYGZus{}cost\PYGZus{}circulation}\PYG{p}{().}\PYG{n}{second}\PYG{p}{;}
+		\PYG{n}{mcc2}\PYG{p}{.}\PYG{n}{add\PYGZus{}directed\PYGZus{}edge}\PYG{p}{(}\PYG{n}{N} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{max\PYGZus{}flow}\PYG{p}{,} \PYG{n}{max\PYGZus{}flow}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+		\PYG{n}{printf}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}\PYGZpc{}lld \PYGZpc{}lld}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{max\PYGZus{}flow}\PYG{p}{,} \PYG{n}{mcc2}\PYG{p}{.}\PYG{n}{minimum\PYGZus{}cost\PYGZus{}circulation}\PYG{p}{().}\PYG{n}{second}\PYG{p}{);}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{clock\PYGZus{}t} \PYG{n}{beg} \PYG{o}{=} \PYG{n}{clock}\PYG{p}{();}
+	\PYG{n}{solve}\PYG{p}{();}
+	\PYG{k+kt}{clock\PYGZus{}t} \PYG{n}{end} \PYG{o}{=} \PYG{n}{clock}\PYG{p}{();}
+	\PYG{n}{fprintf}\PYG{p}{(}\PYG{n}{stderr}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}\PYGZpc{}.3f sec}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{k+kt}{double}\PYG{p}{(}\PYG{n}{end} \PYG{o}{\PYGZhy{}} \PYG{n}{beg}\PYG{p}{)} \PYG{o}{/} \PYG{n}{CLOCKS\PYGZus{}PER\PYGZus{}SEC}\PYG{p}{);}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

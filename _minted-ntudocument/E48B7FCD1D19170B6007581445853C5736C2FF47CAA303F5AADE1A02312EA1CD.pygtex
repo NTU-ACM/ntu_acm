@@ -1,0 +1,49 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//by UESTC\PYGZus{}retared}
+\PYG{err}{从左边的未匹配点开始进行}\PYG{n}{BFS}\PYG{err}{，对于左边的点，依次检查所有向连的点并加入}\PYG{n}{BFS}\PYG{err}{（判断是否加过），右边的点只能走匹配边，然后对访问到的点进行标记，取左边没被标记的，右边标记了的如果一个图是二分图，那么它的最大独立集就是多项式时间可以解决的问题了} \PYG{o}{|}\PYG{err}{最大独立集}\PYG{o}{|} \PYG{o}{=} \PYG{o}{|}\PYG{n}{V}\PYG{o}{|\PYGZhy{}|}\PYG{err}{最大匹配数}\PYG{o}{|}
+
+\PYG{err}{二分图的最大团} \PYG{o}{=} \PYG{err}{补图的最大独立集}
+
+\PYG{err}{先做一次最大匹配} \PYG{err}{然后对于已经匹配的点} \PYG{err}{如果他存在与之相连} \PYG{err}{但是不是被匹配的点} \PYG{err}{那么他总是在最小覆盖集里面}
+
+\PYG{l+m+mf}{1.}\PYG{err}{给一张图，问有多少条边肯定在} \PYG{n}{MST} \PYG{err}{上？}
+ \PYG{err}{对所有边排序}\PYG{p}{,}\PYG{err}{每次扫出权值相同的边}\PYG{p}{,}\PYG{err}{然后跑}\PYG{n}{tarjan\PYGZus{}dcc}\PYG{p}{(}\PYG{err}{求割边}\PYG{p}{),}\PYG{err}{有多少条割边，表示对答案的贡献就是多少，之后将这些边的两边点进行缩点}\PYG{p}{(}\PYG{err}{并查集维护}\PYG{p}{)}
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0} \PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{m} \PYG{p}{;} \PYG{o}{++} \PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{base} \PYG{o}{=} \PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{w}\PYG{p}{;}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{m} \PYG{p}{;} \PYG{o}{++} \PYG{n}{j}\PYG{p}{)\PYGZob{}}
+					\PYG{c+c1}{//扫描相同权值的边}
+					\PYG{c+c1}{//进行tarjan\PYGZus{}dcc算法}
+					\PYG{c+c1}{//合并}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{l+m+mf}{2.}\PYG{err}{给一张图，问有多少条边可能在} \PYG{n}{MST} \PYG{err}{上？}
+ \PYG{err}{对所有边排序，每次新加入一条边之后，向后扫描所有相同权值的边，如果有边也可以合并两端，则打上标记}
+\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0} \PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{m} \PYG{p}{;} \PYG{o}{++} \PYG{n}{i}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{find\PYGZus{}set}\PYG{p}{(}\PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{u}\PYG{p}{)} \PYG{o}{==} \PYG{n}{find\PYGZus{}set}\PYG{p}{(}\PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{v}\PYG{p}{)} \PYG{p}{)} \PYG{k}{continue}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{a1} \PYG{o}{=} \PYG{n}{find\PYGZus{}set}\PYG{p}{(}\PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{u}\PYG{p}{)} \PYG{p}{,}\PYG{n}{a2} \PYG{o}{=} \PYG{n}{find\PYGZus{}set}\PYG{p}{(}\PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{v}\PYG{p}{);}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{a1} \PYG{o}{\PYGZgt{}} \PYG{n}{a2}\PYG{p}{)}
+	\PYG{n}{swap}\PYG{p}{(}\PYG{n}{a1}\PYG{p}{,}\PYG{n}{a2}\PYG{p}{);}
+	\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{m} \PYG{p}{;} \PYG{o}{++} \PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{e}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{w} \PYG{o}{!=} \PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{w} \PYG{p}{)} \PYG{k}{break}\PYG{p}{;}
+		\PYG{k+kt}{int} \PYG{n}{b1} \PYG{o}{=} \PYG{n}{find\PYGZus{}set}\PYG{p}{(}\PYG{n}{e}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{u}\PYG{p}{)} \PYG{p}{,} \PYG{n}{b2} \PYG{o}{=}\PYG{n}{find\PYGZus{}set}\PYG{p}{(}\PYG{n}{e}\PYG{p}{[}\PYG{n}{j}\PYG{p}{].}\PYG{n}{v}\PYG{p}{);}
+		\PYG{k}{if} \PYG{p}{(}\PYG{n}{b1} \PYG{o}{\PYGZgt{}} \PYG{n}{b2}\PYG{p}{)}
+			 \PYG{n}{swap}\PYG{p}{(}\PYG{n}{b1}\PYG{p}{,}\PYG{n}{b2}\PYG{p}{);}
+		\PYG{k}{if} \PYG{p}{(} \PYG{n}{a1} \PYG{o}{==} \PYG{n}{b1} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{a2} \PYG{o}{==} \PYG{n}{b2}\PYG{p}{)}
+			\PYG{n}{flag}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{n}{union\PYGZus{}set}\PYG{p}{(}\PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{u} \PYG{p}{,}\PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{v}\PYG{p}{);}
+	\PYG{n}{flag}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{l+m+mf}{3.}\PYG{err}{可以一次}\PYG{n}{dfs用n}\PYG{o}{\PYGZca{}}\PYG{l+m+mi}{2}\PYG{err}{的时间预处理出树上任意两点的某个属性，用}\PYG{n}{dp做}
+\PYG{n}{dfs}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{u}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	 \PYG{n}{vis}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+	 \PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{n}{head}\PYG{p}{[}\PYG{n}{u}\PYG{p}{]} \PYG{p}{;} \PYG{o}{\PYGZti{}}\PYG{n}{i} \PYG{p}{;} \PYG{n}{i} \PYG{o}{=}\PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{nxt}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	 	\PYG{k+kt}{int} \PYG{n}{v} \PYG{o}{=} \PYG{n}{e}\PYG{p}{[}\PYG{n}{i}\PYG{p}{].}\PYG{n}{v}\PYG{p}{;}
+		\PYG{k}{for}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{1} \PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}=} \PYG{n}{n} \PYG{p}{;} \PYG{o}{++} \PYG{n}{j}\PYG{p}{)}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{vis}\PYG{p}{[}\PYG{n}{j}\PYG{p}{])}
+				\PYG{err}{更新}\PYG{n}{dp}
+	\PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

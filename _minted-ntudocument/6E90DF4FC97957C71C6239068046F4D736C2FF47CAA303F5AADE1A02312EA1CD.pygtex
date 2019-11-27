@@ -1,0 +1,34 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}cstdio\PYGZgt{}}
+
+\PYG{k}{using} \PYG{n}{uchar}\PYG{o}{=}\PYG{k+kt}{unsigned} \PYG{k+kt}{char}\PYG{p}{;}
+
+\PYG{k}{constexpr} \PYG{k+kt}{int} \PYG{n+nf}{Maxn}\PYG{p}{(}\PYG{l+m+mi}{1000000}\PYG{p}{);}
+
+\PYG{k}{namespace} \PYG{n}{IOManager}\PYG{p}{\PYGZob{}}
+	\PYG{k}{constexpr} \PYG{k+kt}{int} \PYG{n}{FILESZ}\PYG{p}{(}\PYG{l+m+mi}{131072}\PYG{p}{);}
+	\PYG{k+kt}{char} \PYG{n}{buf}\PYG{p}{[}\PYG{n}{FILESZ}\PYG{p}{];}
+	\PYG{k}{const} \PYG{k+kt}{char}\PYG{o}{*}\PYG{n}{ibuf}\PYG{o}{=}\PYG{n}{buf}\PYG{p}{,}\PYG{o}{*}\PYG{n}{tbuf}\PYG{o}{=}\PYG{n}{buf}\PYG{p}{;}
+	\PYG{k}{struct} \PYG{n}{IOManager}\PYG{p}{\PYGZob{}}
+		\PYG{k+kr}{inline} \PYG{k+kt}{char} \PYG{n}{gc}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+			\PYG{k}{return} \PYG{p}{(}\PYG{n}{ibuf}\PYG{o}{==}\PYG{n}{tbuf}\PYG{p}{)} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{p}{(}\PYG{n}{tbuf}\PYG{o}{=}\PYG{p}{(}\PYG{n}{ibuf}\PYG{o}{=}\PYG{n}{buf}\PYG{p}{)}\PYG{o}{+}\PYG{n}{fread}\PYG{p}{(}\PYG{n}{buf}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{FILESZ}\PYG{p}{,}\PYG{n}{stdin}\PYG{p}{),}\PYG{n}{ibuf}\PYG{o}{==}\PYG{n}{tbuf}\PYG{p}{)} \PYG{o}{?} \PYG{n+nl}{EOF} \PYG{p}{:} \PYG{o}{*}\PYG{n}{ibuf}\PYG{o}{++}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+
+		\PYG{k}{template}\PYG{o}{\PYGZlt{}}\PYG{k}{class} \PYG{n+nc}{\PYGZus{}Tp}\PYG{o}{\PYGZgt{}}
+			\PYG{k+kr}{inline} \PYG{k}{operator} \PYG{n}{\PYGZus{}Tp}\PYG{p}{()\PYGZob{}}
+				\PYG{n}{\PYGZus{}Tp} \PYG{n}{s}\PYG{o}{=}\PYG{l+m+mi}{0u}\PYG{p}{;}\PYG{k+kt}{char} \PYG{n}{c}\PYG{o}{=}\PYG{n}{gc}\PYG{p}{(),}\PYG{n}{w}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{;}
+				\PYG{k}{for}\PYG{p}{(;}\PYG{n}{c}\PYG{o}{\PYGZlt{}}\PYG{l+m+mi}{48}\PYG{p}{;}\PYG{n}{c}\PYG{o}{=}\PYG{n}{gc}\PYG{p}{())}
+					\PYG{n}{c}\PYG{o}{==}\PYG{l+m+mi}{45}\PYG{o}{\PYGZam{}\PYGZam{}}\PYG{p}{(}\PYG{n}{w}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{);}
+				\PYG{k}{for}\PYG{p}{(;}\PYG{n}{c}\PYG{o}{\PYGZgt{}}\PYG{l+m+mi}{47}\PYG{p}{;}\PYG{n}{c}\PYG{o}{=}\PYG{n}{gc}\PYG{p}{())}
+					\PYG{n}{s}\PYG{o}{=}\PYG{p}{(}\PYG{n}{\PYGZus{}Tp}\PYG{p}{)(}\PYG{n}{s}\PYG{o}{*}\PYG{l+m+mi}{10u}\PYG{o}{+}\PYG{n}{c}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{48u}\PYG{p}{);}
+				\PYG{k}{return} \PYG{n}{w}\PYG{o}{?\PYGZhy{}}\PYG{n+nl}{s}\PYG{p}{:}\PYG{n}{s}\PYG{p}{;}
+			\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{};}
+\PYG{p}{\PYGZcb{}}\PYG{n}{IOManager}\PYG{o}{::}\PYG{n}{IOManager} \PYG{n}{io}\PYG{p}{;}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{argc}\PYG{p}{,} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{argv}\PYG{p}{[])} \PYG{p}{\PYGZob{}}  
+	\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{;}
+	\PYG{n}{n} \PYG{o}{=} \PYG{n}{io}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

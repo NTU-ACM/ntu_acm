@@ -61,7 +61,7 @@ def get_tex(sections):
             else:
                 tex += '\\inputminted{%s}{%s/%s}\n' % (get_style(filename), code_dir, filename)
                 tex += '\n'
-        tex += '\\newpage'
+#        tex += '\\newpage'
     return tex
 
 if __name__ == "__main__":

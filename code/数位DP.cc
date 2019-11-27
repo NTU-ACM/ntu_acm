@@ -52,7 +52,7 @@ int main()
 
 //模板2
 int a[maxn],bit[maxn];//a为分解整数数组，bit数组为10^(i-1)
-pair<int,int>dp[maxn][2000];//first=满足条件的数个数，second=满足条件的数的和
+pair<int,int> dp[maxn][2000];//first=满足条件的数个数，second=满足条件的数的和
 bool vis[maxn][2000];
 pair<int,int> dfs(int pos,int sta,int num,bool lead,bool limit){//求满足条件的所有数的和
 	if(pos==0) return make_pair(1,0);//计数

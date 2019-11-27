@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{c+c1}{//by UESTC\PYGZus{}retared}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}ext/pb\PYGZus{}ds/priority\PYGZus{}queue.hpp\PYGZgt{}}
+\PYG{n}{\PYGZus{}\PYGZus{}gnu\PYGZus{}pbds}\PYG{o}{::}\PYG{n}{priority\PYGZus{}queue} \PYG{o}{\PYGZlt{}} \PYG{k+kt}{int} \PYG{o}{\PYGZgt{}} \PYG{n}{Q}\PYG{p}{;}
+\PYG{err}{优先队列，配对堆默认，从小到大}\PYG{o}{!}
+
+\PYG{n}{\PYGZus{}\PYGZus{}gnu\PYGZus{}pbds}\PYG{o}{::}\PYG{n}{priority\PYGZus{}queue} \PYG{o}{\PYGZlt{}} \PYG{k+kt}{int} \PYG{p}{,} \PYG{n}{greater} \PYG{o}{\PYGZlt{}} \PYG{k+kt}{int} \PYG{o}{\PYGZgt{}} \PYG{p}{,} \PYG{n}{pairing\PYGZus{}heap\PYGZus{}tag}  \PYG{o}{\PYGZgt{}} \PYG{n}{Q}\PYG{p}{;}
+\PYG{n}{\PYGZus{}\PYGZus{}gnu\PYGZus{}pbds}\PYG{o}{::}\PYG{n}{priority\PYGZus{}queue} \PYG{o}{\PYGZlt{}} \PYG{k+kt}{int} \PYG{p}{,} \PYG{n}{greater} \PYG{o}{\PYGZlt{}} \PYG{k+kt}{int} \PYG{o}{\PYGZgt{}} \PYG{p}{,} \PYG{n}{pairing\PYGZus{}heap\PYGZus{}tag}  \PYG{o}{\PYGZgt{}} \PYG{o}{::} \PYG{n}{point\PYGZus{}iterator} \PYG{n}{id}\PYG{p}{[} \PYG{n}{maxn} \PYG{p}{];}
+\PYG{n}{id}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{o}{=} \PYG{n}{Q}\PYG{p}{.}\PYG{n}{push}\PYG{p}{(} \PYG{l+m+mi}{5} \PYG{p}{)} \PYG{p}{;}
+\PYG{n}{Q}\PYG{p}{.}\PYG{n}{modify}\PYG{p}{(} \PYG{n}{id}\PYG{p}{[}\PYG{n}{x}\PYG{p}{]} \PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{)} \PYG{p}{;} \PYG{c+c1}{//直接修改}
+
+\PYG{err}{支持}\PYG{n}{join} \PYG{p}{,} \PYG{n}{push} \PYG{p}{,} \PYG{n}{pop操作}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}ext/pb\PYGZus{}ds/assoc\PYGZus{}container.hpp\PYGZgt{}}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{\PYGZus{}\PYGZus{}gnu\PYGZus{}pbds}\PYG{p}{;}
+\PYG{n}{tree}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{n}{null\PYGZus{}type}\PYG{p}{,}\PYG{n}{less}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}}\PYG{p}{,}\PYG{n}{rb\PYGZus{}tree\PYGZus{}tag}\PYG{p}{,}\PYG{n}{tree\PYGZus{}order\PYGZus{}statistics\PYGZus{}node\PYGZus{}update}\PYG{o}{\PYGZgt{}} \PYG{n}{rbt}\PYG{p}{;}
+\PYG{n}{tree}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{,}\PYG{n}{null\PYGZus{}type}\PYG{p}{,}\PYG{n}{less}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{o}{\PYGZgt{}}\PYG{p}{,}\PYG{n}{rb\PYGZus{}tree\PYGZus{}tag}\PYG{p}{,}\PYG{n}{tree\PYGZus{}order\PYGZus{}statistics\PYGZus{}node\PYGZus{}update}\PYG{o}{\PYGZgt{}} \PYG{o}{::} \PYG{n}{iterator} \PYG{n}{it} \PYG{p}{;}
+
+\PYG{n}{find\PYGZus{}by\PYGZus{}order}\PYG{p}{(}\PYG{n}{size\PYGZus{}type} \PYG{n}{order}\PYG{p}{)}
+\PYG{err}{找第}\PYG{n}{order}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{err}{小的元素的迭代器}
+
+\PYG{n}{order\PYGZus{}of\PYGZus{}key}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{val}\PYG{p}{)}
+\PYG{err}{问有多少个比}\PYG{n}{val小}
+
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}ext/pb\PYGZus{}ds/assoc\PYGZus{}container.hpp\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}ext/pb\PYGZus{}ds/hash\PYGZus{}policy.hpp\PYGZgt{}}
+
+\PYG{n}{\PYGZus{}\PYGZus{}gnu\PYGZus{}pbds}\PYG{o}{::}\PYG{n}{gp\PYGZus{}hash\PYGZus{}table} \PYG{o}{\PYGZlt{}} \PYG{n}{key} \PYG{p}{,} \PYG{n}{value} \PYG{o}{\PYGZgt{}} \PYG{n}{hs}\PYG{p}{;}
+\PYG{err}{哈希}
+\PYG{err}{支持}\PYG{p}{[]}\PYG{err}{和}\PYG{n}{find操作}
+\end{Verbatim}

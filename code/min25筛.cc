@@ -50,13 +50,14 @@ int fpow(int a,int b,int mod){
 int S(int x,int y,int n){
 	if (x<=1||prime[y]>x) return 0;
 	int k=(x<=Sqr)?id1[x]:id2[n/x];
-	int res=((1LL*g[k]-h[k])-(getSigmaG(y-1)-getSigmaH(y-1)))%mod;/*g(n,|P|)-sigma(f(P_i)) */
+	int res=((1LL*g[k]-h[k])-(getSigmaG(y-1)-getSigmaH(y-1)))%mod;
+	/*g(n,|P|)-sigma(f(P_i)) */
 	res=(res+mod)%mod;
 	if (y==1) res+=2; //特判。
 	for (int i=y;i<=cnt&&1LL*prime[i]*prime[i]<=x;++i){
 		int p1=prime[i],p2=1LL*prime[i]*prime[i];
 		for (int e=1;p2<=x;++e,p1=p2,p2*=prime[i])
-			(res+=(1LL*S(x/p1,i+1,n)*getF(prime[i],e)%mod+getF(prime[i],(e+1)))%mod)%=mod;
+			(res+= (1LL*S(x/p1,i+1,n) * getF(prime[i],e)%mod + getF(prime[i],(e+1)))%mod) %= mod;
 	}
 	return res;
 }

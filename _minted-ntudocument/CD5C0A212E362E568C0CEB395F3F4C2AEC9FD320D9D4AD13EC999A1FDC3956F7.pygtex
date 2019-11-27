@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYG{k}{def} \PYG{n+nf}{PrimeInit}\PYG{p}{():}
+	\PYG{n}{IsPrime} \PYG{o}{=} \PYG{p}{[}\PYG{n+nb+bp}{True}\PYG{p}{]} \PYG{o}{*} \PYG{n}{maxn}
+	\PYG{n}{Prime} \PYG{o}{=} \PYG{p}{[]}
+	\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{maxn}\PYG{p}{):}
+		\PYG{k}{if} \PYG{n}{IsPrime}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]:}
+			\PYG{n}{Prime}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}
+			\PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{i} \PYG{o}{*} \PYG{n}{i}\PYG{p}{,} \PYG{n}{maxn}\PYG{p}{,} \PYG{n}{i}\PYG{p}{):}
+				\PYG{n}{IsPrime}\PYG{p}{[}\PYG{n}{j}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb+bp}{False}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{Prime}
+\end{Verbatim}

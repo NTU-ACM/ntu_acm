@@ -114,7 +114,7 @@
 \PYG{c+cm}{\PYGZcb{}}
 \PYG{c+cm}{*/}
 
-\PYG{c+c1}{//==========================================================================================}
+\PYG{c+c1}{//=======================================}
 
 \PYG{c+c1}{// 矩形周长并}
 \PYG{k+kt}{int} \PYG{n}{Sum}\PYG{p}{[}\PYG{n}{maxn} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{],} \PYG{n}{cnt}\PYG{p}{[}\PYG{n}{maxn} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{],} \PYG{n}{vNum}\PYG{p}{[}\PYG{n}{maxn} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+m+mi}{3}\PYG{p}{];}

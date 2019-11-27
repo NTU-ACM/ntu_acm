@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+降幂公式
+A\PYGZca{}x = A\PYGZca{}(x \PYGZpc{} Phi(C) + Phi(C)) (mod C)，其中x≥Phi(C)  这个降幂公式适用于C不是素数的情况
+A \PYGZca{} X \PYGZpc{} C = A \PYGZca{} ( X \PYGZpc{} ( C \PYGZhy{} 1 ) )  这个降幂公式只适用于C是素数的情况
+\end{Verbatim}
