@@ -1,6 +1,6 @@
-const int maxn=100005;
-int w[maxn],v[maxn],num[maxn];
-int W,n;
+const int maxn = 100005;
+int w[maxn], v[maxn], num[maxn];
+int W, n;
 int dp[maxn];
 
 void ZOP(int weight, int value) {

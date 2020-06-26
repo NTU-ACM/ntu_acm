@@ -17,7 +17,7 @@ ll Inv(ll a, ll n){
 	return PowMod(a,n-2,n);
 }
 
-
+//可能是错的...
 ll C(const ll &n, const ll &m, const int &pr) {
 	ll ans = 1;
 	for (int i = 1; i <= m; i++) {

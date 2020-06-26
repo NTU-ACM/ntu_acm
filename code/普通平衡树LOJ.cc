@@ -1,4 +1,4 @@
-//1插入 2删除 3排名 4k大 5前驱 6后继
+e//1插入 2删除 3排名 4k大 5前驱 6后继
 #include <cstdio>
 #include <algorithm>
 #define N 100005
